@@ -11,7 +11,7 @@ public class VendingMachine
         {
             // display home screen
             UserOutput.displayMainMenu();
-
+            
 
             // get user selection
             UserOutput.displayPurchaseMenu();
