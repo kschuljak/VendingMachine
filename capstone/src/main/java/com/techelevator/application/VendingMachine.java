@@ -70,6 +70,7 @@ public class VendingMachine
             {
                 // add money
                 UserOutput.displayFeedMoney();
+                UserInput.feedMoney();
 
             }
             else if (purchaseMenuSelection.equals("2"))

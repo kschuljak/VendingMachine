@@ -23,14 +23,14 @@ public class UserInput {
         return selection;
     }
 
-    public void feedMoney()
+    public static void feedMoney()
     {
         String amount = userInput.nextLine().toLowerCase().strip();
         BigDecimal dollarsAdded = new BigDecimal(amount);
         if (isMoneyValid(dollarsAdded)) Transaction.addMoney(dollarsAdded);
     }
 
-    public boolean isMoneyValid(BigDecimal money){
+    public static boolean isMoneyValid(BigDecimal money){
         BigDecimal zero = new BigDecimal("0.00");
         BigDecimal oneDollar = new BigDecimal("1.00");
         BigDecimal fiveDollars = new BigDecimal("5.00");
