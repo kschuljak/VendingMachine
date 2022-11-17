@@ -1,9 +1,12 @@
 package com.techelevator.application;
 
 import com.techelevator.models.Inventory;
+import com.techelevator.models.Transaction;
 import com.techelevator.models.file_io.ProductLoader;
 import com.techelevator.ui.UserInput;
 import com.techelevator.ui.UserOutput;
+
+import java.math.BigDecimal;
 
 import static com.techelevator.models.file_io.ProductLoader.LoadProductList;
 
@@ -56,8 +59,8 @@ public class VendingMachine
                 case "2":
                     // purchase product
                     UserOutput.displayPurchaseMenu();
-                    UserInput.getPurchaseItemSelection();
-
+                    String purchaseMenuSelection = UserInput.getPurchaseMenuSelection();
+                    purchaseMenu(purchaseMenuSelection);
                     break;
                 case "3":
                     // Exit program/vending machine
@@ -72,6 +75,8 @@ public class VendingMachine
                     UserOutput.displayMainMenu();
 
             }
+        }
+    }
 
         }
     }
