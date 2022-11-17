@@ -5,16 +5,19 @@ import com.techelevator.models.products.Product;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.math.BigDecimal;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
-public class ProductLoader {
+public class ProductLoader{
 
-    public static Map<Product, Integer> LoadProductList()
+//    @Override
+//    public int compare(Product productA, Product productB)
+//    {
+//        return productA.getSlotID().compareTo(productB.getSlotID());
+//    }
+
+    public static List<Product> LoadProductList()
         {
-            Map<Product,Integer> productList = new HashMap<>();
+            List<Product> productList = new ArrayList<>();
             File productFile = new File("data/vendingmachine.csv");
             try (Scanner productloader = new Scanner(productFile))
             {
@@ -25,11 +28,12 @@ public class ProductLoader {
                     String productID = splitLine[0];
                     String productName = splitLine[1];
                     BigDecimal productPrice = new BigDecimal(splitLine[2]);
+                    productPrice = productPrice.setScale(2);
                     String productType = splitLine[3];
 
                     Product product = new Product(productID, productName, productPrice, productType);
 
-                    productList.put(product, 5);
+                    productList.add(product);
                 }
 
             }
@@ -37,6 +41,7 @@ public class ProductLoader {
 
             return productList;
         }
+
 
 
 }

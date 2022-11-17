@@ -17,29 +17,53 @@ public class VendingMachine
             UserOutput.displayMainMenu();
             String mainMenuSelection = UserInput.getMainMenuSelection();
 
-            if(mainMenuSelection.equals("1"))
-            {
-                // display products
-                Inventory.displayInventory();
+//            if(mainMenuSelection.equals("1"))
+//            {
+//                // display products
+//                Inventory.displayInventory();
+//
+//            }
+//            else if (mainMenuSelection.equals("2"))
+//            {
+//                // purchase product
+//            }
+//            else if (mainMenuSelection.equals("3")) break;
+//            else if (mainMenuSelection.equals("4"))
+//            {
+//                // get sales report
+//            }
+//            else
+//            {
+//                // invalid option exception
+//            }
 
-            }
-            else if (mainMenuSelection.equals("2"))
+            switch (mainMenuSelection)
             {
-                // purchase product
-            }
-            else if (mainMenuSelection.equals("3")) break;
-            else if (mainMenuSelection.equals("4"))
-            {
-                // get sales report
-            }
-            else
-            {
-                // invalid option exception
+                case "1":
+                    // display products
+                    Inventory.displayInventory();
+                    break;
+                case "2":
+                    // purchase product
+                    UserOutput.displayPurchaseMenu();
+                    break;
+                case "3":
+                    // Exit program/vending machine
+                    System.exit(0);
+                    break;
+                case "4":
+                    // get sales report
+                    break;
+                default:
+                    // invalid option exception
+                    System.out.println("Not a valid menu option. Try again...");
+                    UserOutput.displayMainMenu();
+
             }
 
 
             // get user selection
-            UserOutput.displayPurchaseMenu();
+
             String purchaseMenuSelection = UserInput.getPurchaseMenuSelection();
 
             if(purchaseMenuSelection.equals("1"))
