@@ -36,31 +36,34 @@ public class Transaction {
     {
         final int ITEM_QUANTITY_PER_SELECTION = 1;
 
-        List<Product> productList = Inventory.getProductList();
-        Product selection = null;
-        int quantity = 0;
-        BigDecimal price = new BigDecimal("0.00");
-        for (Product product : productList) {
-            if (product.getSlotID().equals(itemID)) {
-                selection = product;
-                quantity = product.getQuantity();
-                price = product.getPrice();
-            }
-        }
-        // if item in stock
-        if ((selection == null) || (quantity < 1)) return;  // add error handling
+        if (isItemSelectionValid(itemID)) {
 
-        // check if enough money to purchase
-        try
-        {
-            if (price.compareTo(remainingFunds) > 0)
-            {
-                // update funds and product quantity
-                Inventory.updateInventory(selection, ITEM_QUANTITY_PER_SELECTION);
+            List<Product> productList = Inventory.getProductList();
+            Product selection = null;
+            int quantity = 0;
+            BigDecimal price = new BigDecimal("0.00");
+            for (Product product : productList) {
+                if (product.getSlotID().equals(itemID)) {
+                    selection = product;
+                    quantity = product.getQuantity();
+                    price = product.getPrice();
+                }
             }
-            else {throw new InsufficientFundsException("You don't have enough funds to make that transaction.", remainingFunds, price);}
+            // if item in stock
+            if ((selection == null) || (quantity < 1)) return;  // add error handling
+
+            // check if enough money to purchase
+            try {
+                if (price.compareTo(remainingFunds) > 0) {
+                    // update funds and product quantity
+                    Inventory.updateInventory(selection, ITEM_QUANTITY_PER_SELECTION);
+                } else {
+                    throw new InsufficientFundsException("You don't have enough funds to make that transaction.", remainingFunds, price);
+                }
+            } catch (InsufficientFundsException exception) {
+                Logger.createLogEntry(exception.getMessage());
+            }
         }
-        catch (InsufficientFundsException exception) {Logger.createLogEntry(exception.getMessage());}
     }
 
 
