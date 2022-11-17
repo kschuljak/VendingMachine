@@ -4,17 +4,16 @@ import com.techelevator.models.file_io.ProductLoader;
 import com.techelevator.models.products.Product;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class Inventory {
 
+private static List<Product> productList = new ArrayList<>();
 
 public static void displayInventory()
 {
-    ProductLoader.LoadProductList();
-
-    List<Product> productList = ProductLoader.LoadProductList();
+    productList = ProductLoader.LoadProductList();
 
     for (Product product : productList)
     {
@@ -22,7 +21,8 @@ public static void displayInventory()
         String name = product.getName();
         BigDecimal price = product.getPrice();
         int quantity = product.getQuantity();
-        System.out.println("[" + id + "] " + name + " - $" + price + " - Left: " + quantity);
+        if (quantity == 0) {System.out.println("[" + id + "] " + name + " - $" + price + " - SOLD OUT");}
+        else {System.out.println("[" + id + "] " + name + " - $" + price + " - Left: " + quantity);}
     }
 }
 

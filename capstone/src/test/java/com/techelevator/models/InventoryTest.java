@@ -44,7 +44,7 @@ public class InventoryTest
         int actual = product.getQuantity();
 
         // assert
-        assertEquals("If there is 0 stock left, amount shouldn't be updated as nothing should be buyable", expected, actual);
+        assertEquals("If there is 0 stock left, amount shouldn't be updated as there is nothing to buy.", expected, actual);
 
     }
 }
