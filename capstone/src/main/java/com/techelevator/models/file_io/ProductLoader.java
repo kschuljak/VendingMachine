@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class ProductLoader {
 
-    public static void LoadProductList()
+    public static Map<Product, Integer> LoadProductList()
         {
             Map<Product,Integer> productList = new HashMap<>();
             File productFile = new File("data/vendingmachine.csv");
@@ -32,17 +32,10 @@ public class ProductLoader {
                     productList.put(product, 5);
                 }
 
-                for (Map.Entry<Product, Integer> product : productList.entrySet())
-                {
-                    String id = product.getKey().getSlotID();
-                    String name = product.getKey().getName();
-                    BigDecimal price = product.getKey().getPrice();
-                    int quantity = product.getValue();
-                    System.out.println(id + " " + name + " - " + price + " - Left: " + quantity);
-                }
-
             }
             catch (FileNotFoundException ex) {System.out.println(ex.getMessage());}
+
+            return productList;
         }
 
 

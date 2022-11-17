@@ -1,5 +1,6 @@
 package com.techelevator.application;
 
+import com.techelevator.models.Inventory;
 import com.techelevator.models.file_io.ProductLoader;
 import com.techelevator.ui.UserInput;
 import com.techelevator.ui.UserOutput;
@@ -19,7 +20,7 @@ public class VendingMachine
             if(mainMenuSelection.equals("1"))
             {
                 // display products
-                ProductLoader.LoadProductList();
+                Inventory.displayInventory();
 
             }
             else if (mainMenuSelection.equals("2"))
