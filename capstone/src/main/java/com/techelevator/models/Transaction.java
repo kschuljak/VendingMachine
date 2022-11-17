@@ -26,17 +26,28 @@ public class Transaction {
     }
 
     public static void purchaseItem(String itemID){
-
-        List<Product> productList = Inventory.getProductList();
         final int ITEM_QUANTITY_PER_SELECTION = 1;
 
-        // if item in stock
-        if (product.getQuantity() > 0) {
-            // check if enough money to purchase
-
-            // update funds and product quantity
-            Inventory.updateInventory(Product product, ITEM_QUANTITY_PER_SELECTION);
+        List<Product> productList = Inventory.getProductList();
+        Product selection = null;
+        int quantity = 0;
+        BigDecimal price = new BigDecimal("0.00");
+        for (Product product : productList) {
+            if (product.getSlotID().equals(itemID)) {
+                selection = product;
+                quantity = product.getQuantity();
+                price = product.getPrice();
+            }
         }
+
+        // if item in stock
+        if (selection != null)
+            if (quantity > 0) {
+                // check if enough money to purchase
+                if (price.compareTo(remainingFunds))
+                    // update funds and product quantity
+                    Inventory.updateInventory(selection, ITEM_QUANTITY_PER_SELECTION);
+            }
     }
 
 
