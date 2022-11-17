@@ -1,5 +1,6 @@
 package com.techelevator.models;
 
+import com.techelevator.models.exceptions.InsufficientFundsException;
 import com.techelevator.models.products.Product;
 
 import java.math.BigDecimal;
@@ -25,7 +26,8 @@ public class Transaction {
         remainingFunds = remainingFunds.add(amount);
     }
 
-    public static void purchaseItem(String itemID){
+    public static void purchaseItem(String itemID) throws InsufficientFundsException
+    {
         final int ITEM_QUANTITY_PER_SELECTION = 1;
 
         List<Product> productList = Inventory.getProductList();
@@ -48,6 +50,8 @@ public class Transaction {
             // update funds and product quantity
             Inventory.updateInventory(selection, ITEM_QUANTITY_PER_SELECTION);
         }
+
+
     }
 
 
