@@ -4,17 +4,18 @@ import java.util.Scanner;
 
 public class UserInput {
 
-    Scanner userInput= new Scanner(System.in);
+    private static Scanner userInput= new Scanner(System.in);
 
-    String mainMenuSelection = userInput.nextLine();
-
-    public String getMainMenuSelection() {
-        return mainMenuSelection;
+    public static String getMainMenuSelection()
+    {
+        String selection = userInput.nextLine().toLowerCase().strip();
+        return selection;
     }
 
-    String purchaseMenuSelection = userInput.nextLine();
-
-    public String getPurchaseMenuSelection() {
-        return purchaseMenuSelection;
+    public static String getPurchaseMenuSelection()
+    {
+        String selection = userInput.nextLine().toLowerCase().strip();
+        return selection;
     }
+
 }
