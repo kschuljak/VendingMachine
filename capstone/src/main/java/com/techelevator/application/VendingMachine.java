@@ -39,6 +39,8 @@ public class VendingMachine
             if(purchaseMenuSelection.equals("1"))
             {
                 // add money
+                UserOutput.displayFeedMoney();
+
             }
             else if (purchaseMenuSelection.equals("2"))
             {
