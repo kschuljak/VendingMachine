@@ -33,17 +33,19 @@ public class Product {
 
     // In case Umbrella Corp wants to update the prices later
     public void setPrice(BigDecimal price) {this.price = price;}
-    
+
 
     public Product()
     {
 
     }
 
-    public Product(String name, BigDecimal price)
+    public Product(String slotID, String name, BigDecimal price, String type)
     {
+        this.slotID = slotID;
         this.name = name;
         this.price = price;
+        this.type = type;
     }
 
 }
