@@ -39,15 +39,15 @@ public class Transaction {
                 price = product.getPrice();
             }
         }
-
         // if item in stock
-        if (selection != null)
-            if (quantity > 0) {
-                // check if enough money to purchase
-                if (price.compareTo(remainingFunds))
-                    // update funds and product quantity
-                    Inventory.updateInventory(selection, ITEM_QUANTITY_PER_SELECTION);
-            }
+        if ((selection == null) || (quantity < 1)) return;  // add error handling
+        
+        // check if enough money to purchase
+        if (price.compareTo(remainingFunds) > 0)
+        {
+            // update funds and product quantity
+            Inventory.updateInventory(selection, ITEM_QUANTITY_PER_SELECTION);
+        }
     }
 
 
