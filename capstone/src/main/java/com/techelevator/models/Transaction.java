@@ -1,11 +1,9 @@
 package com.techelevator.models;
 
-<<<<<<< HEAD
 import com.techelevator.models.exceptions.InsufficientFundsException;
-=======
 import com.techelevator.models.exceptions.InvalidFundsException;
+import com.techelevator.models.exceptions.InvalidOptionException;
 import com.techelevator.models.file_io.Logger;
->>>>>>> 16661ebdc703439a2b07c1f5c9f685bb07897dc4
 import com.techelevator.models.products.Product;
 
 import java.math.BigDecimal;
@@ -50,22 +48,31 @@ public class Transaction {
         if ((selection == null) || (quantity < 1)) return;  // add error handling
 
         // check if enough money to purchase
-        if (price.compareTo(remainingFunds) > 0)
+        try
         {
-            // update funds and product quantity
-            Inventory.updateInventory(selection, ITEM_QUANTITY_PER_SELECTION);
+            if (price.compareTo(remainingFunds) > 0)
+            {
+                // update funds and product quantity
+                Inventory.updateInventory(selection, ITEM_QUANTITY_PER_SELECTION);
+            }
+            else {throw new InsufficientFundsException("You don't have enough funds to make that transaction.", remainingFunds, price);}
         }
-
-
+        catch (InsufficientFundsException exception) {Logger.createLogEntry(exception.getMessage());}
     }
 
     // if (isMoneyValid(dollarsAdded)) Transaction.addMoney(dollarsAdded);
 
     public static boolean isItemSelectionValid(String itemID) {
-        if(itemID != null) {
-            return ((itemID.startsWith("A") || itemID.startsWith("B") || itemID.startsWith("C") || itemID.startsWith("D"))
-                    && (itemID.endsWith("1") || itemID.endsWith("2") || itemID.endsWith("3") || itemID.endsWith("4")));
+        try {
+            if (itemID != null)
+            {
+                return ((itemID.startsWith("A") || itemID.startsWith("B") || itemID.startsWith("C") || itemID.startsWith("D"))
+                        && (itemID.endsWith("1") || itemID.endsWith("2") || itemID.endsWith("3") || itemID.endsWith("4")));
+            }
+            else {throw new InvalidOptionException("That is not a valid selection. Try again...", itemID);}
         }
+        catch (InvalidOptionException exception) {Logger.createLogEntry(exception.getMessage());}
+
         return false;
     }
 
@@ -84,10 +91,8 @@ public class Transaction {
             {
                 throw new InvalidFundsException("Invalid bill type", money);
             } else isValid = true;
-        } catch (InvalidFundsException exception){
+        } catch (InvalidFundsException exception){Logger.createLogEntry(exception.getMessage());}
 
-            Logger.createLogEntry(exception.getMessage());
-        }
         return isValid;
     }
 
