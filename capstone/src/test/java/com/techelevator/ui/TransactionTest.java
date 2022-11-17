@@ -8,9 +8,8 @@ import java.math.BigDecimal;
 
 import static org.junit.Assert.*;
 
-public class UserInputTest {
+public class TransactionTest {
 
-    UserInput userInput = new UserInput();
     Transaction transaction = new Transaction();
 
     final BigDecimal ONE_DOLLAR = new BigDecimal("1.00");
@@ -20,7 +19,6 @@ public class UserInputTest {
 
     @Before
     public void setUp() throws Exception {
-        userInput = new UserInput();
         transaction = new Transaction();
     }
 
@@ -58,9 +56,9 @@ public class UserInputTest {
         BigDecimal given3 = new BigDecimal("-1.00");
 
         //act
-        if (userInput.isMoneyValid(given)) transaction.addMoney(given);
-        if (userInput.isMoneyValid(given)) transaction.addMoney(given2);
-        if (userInput.isMoneyValid(given)) transaction.addMoney(given3);
+        if (transaction.isMoneyValid(given)) transaction.addMoney(given);
+        if (transaction.isMoneyValid(given)) transaction.addMoney(given2);
+        if (transaction.isMoneyValid(given)) transaction.addMoney(given3);
         BigDecimal actual = transaction.getRemainingFunds();
 
         //assert

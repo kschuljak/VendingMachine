@@ -46,6 +46,8 @@ public class VendingMachine
                 case "2":
                     // purchase product
                     UserOutput.displayPurchaseMenu();
+                    UserInput.getPurchaseItemSelection();
+
                     break;
                 case "3":
                     // Exit program/vending machine
@@ -70,7 +72,7 @@ public class VendingMachine
             {
                 // add money
                 UserOutput.displayFeedMoney();
-                UserInput.feedMoney();
+                UserInput.getMoney();
 
             }
             else if (purchaseMenuSelection.equals("2"))
