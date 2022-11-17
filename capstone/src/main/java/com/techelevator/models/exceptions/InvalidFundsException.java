@@ -4,23 +4,7 @@ import java.math.BigDecimal;
 
 public class InvalidFundsException extends Exception{
 
-    // if a user enters money not in acceptable values ($1.00, $5.00, $10.00, $20.00)
-
-    /*
-        BigDecimal oneDollar = new BigDecimal("1.00");
-        BigDecimal fiveDollars = new BigDecimal("5.00");
-        BigDecimal tenDollars = new BigDecimal("10.00");
-        BigDecimal twentyDollars = new BigDecimal("20.00");
-
-        if (
-                !dollarsAdded.equals(oneDollar) ||
-                !dollarsAdded.equals(fiveDollars) ||
-                !dollarsAdded.equals(tenDollars) ||
-                !dollarsAdded.equals(twentyDollars)
-        ){
-            // invalid funds exception
-        }
-     */
+    // if a user enters money not in acceptable values ($1.00, $5.00, $10.00, or $20.00)
 
     private BigDecimal dollarsAdded;
 
@@ -32,6 +16,7 @@ public class InvalidFundsException extends Exception{
 
     @Override
     public String getMessage(){
+
         String message = super.getMessage();
 
         return message
