@@ -1,9 +1,12 @@
 package com.techelevator.application;
 
 import com.techelevator.models.Inventory;
+import com.techelevator.models.Transaction;
 import com.techelevator.models.file_io.ProductLoader;
 import com.techelevator.ui.UserInput;
 import com.techelevator.ui.UserOutput;
+
+import java.math.BigDecimal;
 
 import static com.techelevator.models.file_io.ProductLoader.LoadProductList;
 
@@ -46,8 +49,8 @@ public class VendingMachine
                 case "2":
                     // purchase product
                     UserOutput.displayPurchaseMenu();
-                    UserInput.getPurchaseItemSelection();
-
+                    String purchaseMenuSelection = UserInput.getPurchaseMenuSelection();
+                    purchaseMenu(purchaseMenuSelection);
                     break;
                 case "3":
                     // Exit program/vending machine
@@ -62,31 +65,33 @@ public class VendingMachine
                     UserOutput.displayMainMenu();
 
             }
-
-
-            // get user selection
-
-            String purchaseMenuSelection = UserInput.getPurchaseMenuSelection();
-
-            if(purchaseMenuSelection.equals("1"))
-            {
-                // add money
-                UserOutput.displayFeedMoney();
-                UserInput.getMoney();
-
-            }
-            else if (purchaseMenuSelection.equals("2"))
-            {
-                // select product
-            }
-            else if (purchaseMenuSelection.equals(3))
-            {
-                // finish transaction
-            }
-            else
-            {
-                // invalid option exception
-            }
         }
-    }    
+    }
+
+    public void purchaseMenu(String purchaseMenuSelection){
+        if(purchaseMenuSelection.equals("1"))
+        {
+            // add money
+            UserOutput.displayFeedMoney();
+            BigDecimal addedFunds = UserInput.getMoney();
+            Transaction.addMoney(addedFunds);
+
+        }
+        else if (purchaseMenuSelection.equals("2"))
+        {
+            // select product
+            UserOutput.displayEnterProduct();
+            String item = UserInput.getPurchaseItemSelection();
+            Transaction.purchaseItem(item);
+        }
+        else if (purchaseMenuSelection.equals(3))
+        {
+            // finish transaction
+        }
+        else
+        {
+            // invalid option exception
+        }
+    }
+
 }
