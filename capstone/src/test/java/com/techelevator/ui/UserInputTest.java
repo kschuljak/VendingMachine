@@ -66,5 +66,5 @@ public class UserInputTest {
         //assert
         assertTrue("Because invalid amounts should not update total", expectedNewTotal.equals(actual));
     }
-    
+
 }

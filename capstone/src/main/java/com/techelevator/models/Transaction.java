@@ -20,8 +20,7 @@ public class Transaction {
     public static void addMoney(BigDecimal amount){
         remainingFunds = remainingFunds.add(amount);
     }
-
-
+    
     public void purchaseItem(String itemID){
 
 

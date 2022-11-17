@@ -27,9 +27,7 @@ public class UserInput {
     {
         String amount = userInput.nextLine().toLowerCase().strip();
         BigDecimal dollarsAdded = new BigDecimal(amount);
-        if (isMoneyValid(dollarsAdded)) {
-            Transaction.addMoney(dollarsAdded);
-        }
+        if (isMoneyValid(dollarsAdded)) Transaction.addMoney(dollarsAdded);
     }
 
     public boolean isMoneyValid(BigDecimal money){
