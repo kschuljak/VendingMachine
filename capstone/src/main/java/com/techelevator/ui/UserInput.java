@@ -27,29 +27,31 @@ public class UserInput {
     {
         String amount = userInput.nextLine().toLowerCase().strip();
         BigDecimal dollarsAdded = new BigDecimal(amount);
-        if (!isMoneyValid(dollarsAdded)) return;
-        Transaction.addMoney(dollarsAdded);
+        if (isMoneyValid(dollarsAdded)) {
+            Transaction.addMoney(dollarsAdded);
+        }
     }
 
     public boolean isMoneyValid(BigDecimal money){
+        BigDecimal zero = new BigDecimal("0.00");
         BigDecimal oneDollar = new BigDecimal("1.00");
         BigDecimal fiveDollars = new BigDecimal("5.00");
         BigDecimal tenDollars = new BigDecimal("10.00");
         BigDecimal twentyDollars = new BigDecimal("20.00");
 
+        boolean isValid = false;
         try
         {
             if (!money.equals(oneDollar) || !money.equals(fiveDollars) ||
-                !money.equals(tenDollars) || !money.equals(twentyDollars))
+                !money.equals(tenDollars) || !money.equals(twentyDollars) || money.compareTo(zero) < 0)
             {
                 throw new InvalidFundsException("Invalid bill type", money);
-            }
+            } else isValid = true;
         } catch (InvalidFundsException exception){
 
                 Logger.createLogEntry(exception.getMessage());
-                return false;
         }
-        return true;
+        return isValid;
     }
 
 }

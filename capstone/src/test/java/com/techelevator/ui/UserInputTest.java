@@ -21,7 +21,7 @@ public class UserInputTest {
     @Before
     public void setUp() throws Exception {
         userInput = new UserInput();
-        transaction =new Transaction();
+        transaction = new Transaction();
     }
 
     @Test
@@ -29,33 +29,42 @@ public class UserInputTest {
 
         //arrange
         // if given $1, $5, $10, or $20, should return true
-        BigDecimal expectedOne = ONE_DOLLAR;
-        BigDecimal expectedFive = FIVE_DOLLARS;
-        BigDecimal expectedTen = TEN_DOLLARS;
-        BigDecimal expectedTwenty = TWENTY_DOLLARS;
+        boolean expectedOne = true;
+        boolean expectedFive = true;
+        boolean expectedTen = true;
+        boolean expectedTwenty = true;
+        BigDecimal expectedNewTotal = new BigDecimal("36.00");
 
         //act
+        Transaction.addMoney(ONE_DOLLAR);
+        transaction.addMoney(FIVE_DOLLARS);
+        transaction.addMoney(TEN_DOLLARS);
+        transaction.addMoney(TWENTY_DOLLARS);
 
-
+        BigDecimal actualTotal = transaction.getRemainingFunds();
 
         //assert
+        assertTrue("Because $1,$5, $10, and $20 are valid bill types", actualTotal.equals(expectedNewTotal));
     }
 
     @Test
     public void feedMoney_Should_Fail_GivenInvalidMoney() {
 
         //arrange
+        transaction.setRemainingFunds(new BigDecimal("0.00"));
+        BigDecimal expectedNewTotal = new BigDecimal("0.00");
+        BigDecimal given = new BigDecimal("6.50");
+        BigDecimal given2 = new BigDecimal("17.00");
+        BigDecimal given3 = new BigDecimal("-1.00");
 
         //act
+        if (userInput.isMoneyValid(given)) transaction.addMoney(given);
+        if (userInput.isMoneyValid(given)) transaction.addMoney(given2);
+        if (userInput.isMoneyValid(given)) transaction.addMoney(given3);
+        BigDecimal actual = transaction.getRemainingFunds();
 
         //assert
+        assertTrue("Because invalid amounts should not update total", expectedNewTotal.equals(actual));
     }
-
-    @Test
-    public void isMoneyValid_Should_ReturnTrue_GivenValidMoney() {
-    }
-
-    @Test
-    public void isMoneyValid_Should_ReturnFalse_AndThrowError_GivenInvalidMoney() {
-    }
+    
 }
