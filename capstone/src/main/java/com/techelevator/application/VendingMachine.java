@@ -1,7 +1,10 @@
 package com.techelevator.application;
 
+import com.techelevator.models.file_io.ProductLoader;
 import com.techelevator.ui.UserInput;
 import com.techelevator.ui.UserOutput;
+
+import static com.techelevator.models.file_io.ProductLoader.LoadProductList;
 
 public class VendingMachine
 {
@@ -16,6 +19,8 @@ public class VendingMachine
             if(mainMenuSelection.equals("1"))
             {
                 // display products
+                ProductLoader.LoadProductList();
+
             }
             else if (mainMenuSelection.equals("2"))
             {

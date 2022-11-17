@@ -5,6 +5,7 @@ import com.techelevator.models.products.Product;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.math.BigDecimal;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -29,6 +30,15 @@ public class ProductLoader {
                     Product product = new Product(productID, productName, productPrice, productType);
 
                     productList.put(product, 5);
+                }
+
+                for (Map.Entry<Product, Integer> product : productList.entrySet())
+                {
+                    String id = product.getKey().getSlotID();
+                    String name = product.getKey().getName();
+                    BigDecimal price = product.getKey().getPrice();
+                    int quantity = product.getValue();
+                    System.out.println(id + " " + name + " - " + price + " - Left: " + quantity);
                 }
 
             }
