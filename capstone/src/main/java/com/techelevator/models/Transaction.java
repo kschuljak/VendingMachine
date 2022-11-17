@@ -1,7 +1,11 @@
 package com.techelevator.models;
 
+<<<<<<< HEAD
+import com.techelevator.models.exceptions.InsufficientFundsException;
+=======
 import com.techelevator.models.exceptions.InvalidFundsException;
 import com.techelevator.models.file_io.Logger;
+>>>>>>> 16661ebdc703439a2b07c1f5c9f685bb07897dc4
 import com.techelevator.models.products.Product;
 import com.techelevator.ui.UserOutput;
 
@@ -30,7 +34,8 @@ public class Transaction {
         }
     }
 
-    public static void purchaseItem(String itemID){
+    public static void purchaseItem(String itemID)
+    {
         final int ITEM_QUANTITY_PER_SELECTION = 1;
 
         List<Product> productList = Inventory.getProductList();
@@ -55,6 +60,8 @@ public class Transaction {
             Inventory.updateInventory(selection, ITEM_QUANTITY_PER_SELECTION);
             UserOutput.displayPurchaseSuccess();
         }
+
+
     }
 
 
