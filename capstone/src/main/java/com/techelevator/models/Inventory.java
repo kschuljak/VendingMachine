@@ -29,7 +29,7 @@ public static void displayInventory()
 public static void updateInventory(Product product, int quantity)
 {
     int currentQuantity = product.getQuantity();
-    if (currentQuantity >= quantity) {product.setQuantity(currentQuantity - quantity);}
+    product.setQuantity(currentQuantity+= quantity);
 }
 
 

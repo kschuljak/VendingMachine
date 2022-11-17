@@ -23,9 +23,9 @@ public class InventoryTest
     public void updateInventory_PurchasingProductShouldUpdateQuantity()
     {
         // arrange
-        int expected = 2;
+        int expected = 4;
         // act
-        Inventory.updateInventory(product, 3);
+        Inventory.updateInventory(product, -1);
         int actual = product.getQuantity();
 
         // assert
