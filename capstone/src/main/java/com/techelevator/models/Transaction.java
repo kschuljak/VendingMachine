@@ -13,11 +13,12 @@ import java.math.BigDecimal;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class Transaction {
 
     private  BigDecimal remainingFunds = new BigDecimal("0.00");
-    private  List<Product> purchasedProducts = new ArrayList<>();
+    private List<Product> productsPurchased = new ArrayList<>();
 
     public BigDecimal getRemainingFunds() {
         return remainingFunds;
@@ -64,9 +65,8 @@ public class Transaction {
                     && isItemSelectionValid(itemID)
                     && hasEnoughMoney(selection)
             ) {
-
                 Inventory.updateInventory(selection, ITEM_QUANTITY_PER_SELECTION);
-                purchasedProducts.add(selection);
+                productsPurchased.add(selection);
                 BigDecimal price = selection.getPrice();
                 spendMoney(price);
                 String type = selection.getType();
@@ -77,17 +77,21 @@ public class Transaction {
 
 
     public boolean isItemSelectionValid(String itemID) {
+        boolean isValidSelection = false;
         try {
-            if (itemID != null)
-            {
-                return ((itemID.startsWith("a") || itemID.startsWith("b") || itemID.startsWith("c") || itemID.startsWith("d"))
-                        && (itemID.endsWith("1") || itemID.endsWith("2") || itemID.endsWith("3") || itemID.endsWith("4")));
-            }
-            else {throw new InvalidOptionException("That is not a valid selection. Try again...", itemID);}
+            if (itemID != null) {
+                itemID = (itemID).toLowerCase();
+                if ((itemID.startsWith("a") || itemID.startsWith("b") || itemID.startsWith("c") || itemID.startsWith("d"))
+                        && (itemID.endsWith("1") || itemID.endsWith("2") || itemID.endsWith("3") || itemID.endsWith("4"))
+                ) isValidSelection = true;
+                else {
+                    throw new InvalidOptionException("That is not a valid selection. Try again...", itemID);
+                }
+            } else throw new InvalidOptionException("That is not a valid selection. Try again...", null);
         }
         catch (InvalidOptionException exception) {Logger.createLogEntry(exception.getMessage());}
 
-        return false;
+        return isValidSelection;
     }
 
     public boolean isInStock(Product product) {

@@ -7,6 +7,7 @@ import com.techelevator.ui.UserInput;
 import com.techelevator.ui.UserOutput;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 import static com.techelevator.models.file_io.ProductLoader.LoadProductList;
 
@@ -63,8 +64,6 @@ public class VendingMachine
 
     public void purchaseMenu(Transaction transaction)
     {
-
-
         while (true)
         {
             // get user selection
@@ -75,7 +74,7 @@ public class VendingMachine
 
                 UserOutput.displayFeedMoney();
                 BigDecimal userFunds = UserInput.getMoney();
-                transaction.addMoney(userFunds.setScale(2));
+                transaction.addMoney(userFunds.setScale(2, RoundingMode.UNNECESSARY));
             }
 
             else if (purchaseMenuSelection.equals("2"))
@@ -85,7 +84,6 @@ public class VendingMachine
                 String productSelection = UserInput.getPurchaseItemSelection();
                 transaction.purchaseItem(productSelection);
                 UserOutput.displayPurchaseSuccess();
-                BigDecimal remainingFunds = transaction.getRemainingFunds();
 
             }
 
