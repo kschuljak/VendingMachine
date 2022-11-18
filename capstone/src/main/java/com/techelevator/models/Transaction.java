@@ -39,14 +39,18 @@ public class Transaction {
         if (isItemSelectionValid(itemID)) {
 
             List<Product> productList = Inventory.getProductList();
+
             Product selection = null;
             int quantity = 0;
             BigDecimal price = new BigDecimal("0.00");
+            String type = "";
+
             for (Product product : productList) {
                 if (product.getSlotID().equals(itemID)) {
                     selection = product;
                     quantity = product.getQuantity();
                     price = product.getPrice();
+                    type = product.getType();
                 }
             }
             // if item in stock
@@ -55,8 +59,12 @@ public class Transaction {
             // check if enough money to purchase
             try {
                 if (price.compareTo(remainingFunds) > 0) {
+
                     // update funds and product quantity
                     Inventory.updateInventory(selection, ITEM_QUANTITY_PER_SELECTION);
+                    remainingFunds = remainingFunds.subtract(price);
+                    UserOutput.displayItemTypeReturnMessage(type);
+
                 } else {
                     throw new InsufficientFundsException("You don't have enough funds to make that transaction.", remainingFunds, price);
                 }
@@ -91,8 +99,9 @@ public class Transaction {
         boolean isValid = false;
         try
         {
-            if (!money.equals(oneDollar) || !money.equals(fiveDollars) ||
-                    !money.equals(tenDollars) || !money.equals(twentyDollars) || money.compareTo(zero) < 0)
+            if (!(money.equals(oneDollar) || money.equals(fiveDollars) ||
+                    money.equals(tenDollars) || money.equals(twentyDollars))
+                    || money.compareTo(zero) < 0)
             {
                 throw new InvalidFundsException("Invalid bill type", money);
             } else isValid = true;
