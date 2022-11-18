@@ -116,7 +116,17 @@ public class TransactionTest {
         String str4 = "D1";
 
         //act
-        Transaction.isItemSelectionValid(str1);
+        boolean actual1 = Transaction.isItemSelectionValid(str1);
+        boolean actual2 = Transaction.isItemSelectionValid(str1);
+        boolean actual3 = Transaction.isItemSelectionValid(str1);
+        boolean actual4 = Transaction.isItemSelectionValid(str1);
+
+        //assert
+        assertTrue("because A4 is valid", actual1);
+        assertTrue("because B3 is valid", actual2);
+        assertTrue("because C2 is valid", actual3);
+        assertTrue("because D1 is valid", actual4);
     }
+
 
 }

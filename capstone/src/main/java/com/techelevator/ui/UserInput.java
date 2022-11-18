@@ -33,7 +33,7 @@ public class UserInput {
     public static BigDecimal getMoney()
     {
         String amount = userInput.nextLine().toLowerCase().strip();
-        return new BigDecimal(amount);
+        return new BigDecimal(amount).setScale(2);
 
     }
 
