@@ -6,16 +6,18 @@ import java.util.Scanner;
 
 public class UserOutput {
 
+
+
     public static void displayMainMenu()
     {
-        System.out.println("1) Display Products");
-        System.out.println("2) Purchase");
-        System.out.println("3) Exit");
+        System.out.println("1) Browse Vending Machine");
+        System.out.println("2) Exit");
     }
 
     public static void displayPurchaseMenu()
     {
-        System.out.println("Current Funds: " + Transaction.getRemainingFunds());
+        Transaction transaction = new Transaction();
+        System.out.println("Current Funds: " + transaction.getRemainingFunds());
         System.out.println();
         System.out.println("1) Add Money");
         System.out.println("2) Select Product");

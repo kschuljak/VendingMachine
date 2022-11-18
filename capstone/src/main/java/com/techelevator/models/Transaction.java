@@ -17,7 +17,7 @@ public class Transaction {
     private static BigDecimal remainingFunds = new BigDecimal("0.00");
     private static List<Product> purchasedProducts = new ArrayList<>();
 
-    public static BigDecimal getRemainingFunds() {
+    public BigDecimal getRemainingFunds() {
         return remainingFunds;
     }
     public void setRemainingFunds(BigDecimal remainingFunds) {
@@ -27,13 +27,13 @@ public class Transaction {
     public Transaction() {
     }
 
-    public static void addMoney(BigDecimal amount){
+    public void addMoney(BigDecimal amount){
         if (isMoneyValid(amount)) {
             remainingFunds = remainingFunds.add(amount);
         }
     }
 
-    public static void purchaseItem(String itemID)
+    public void purchaseItem(String itemID)
     {
         final int ITEM_QUANTITY_PER_SELECTION = 1;
 
@@ -47,7 +47,8 @@ public class Transaction {
             String type = "";
 
             for (Product product : productList) {
-                if (product.getSlotID().equals(itemID)) {
+                String productID = product.getSlotID();
+                if (productID.equalsIgnoreCase(itemID)) {
                     selection = product;
                     quantity = product.getQuantity();
                     price = product.getPrice();
@@ -77,7 +78,7 @@ public class Transaction {
     }
 
 
-    public static boolean isItemSelectionValid(String itemID) {
+    public boolean isItemSelectionValid(String itemID) {
         try {
             if (itemID != null)
             {
@@ -91,7 +92,7 @@ public class Transaction {
         return false;
     }
 
-    public static boolean isMoneyValid(BigDecimal money){
+    public boolean isMoneyValid(BigDecimal money){
         BigDecimal zero = new BigDecimal("0.00");
         BigDecimal oneDollar = new BigDecimal("1.00");
         BigDecimal fiveDollars = new BigDecimal("5.00");
