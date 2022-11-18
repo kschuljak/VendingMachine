@@ -18,12 +18,45 @@ public class TransactionTest {
     final BigDecimal TWENTY_DOLLARS = new BigDecimal("20.00");
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         transaction = new Transaction();
     }
 
     @Test
-    public void feedMoney_Should_CallTransactionAddMoney_GivenValidMoney() {
+    public void isMoneyValid_Should_ReturnTrue_GivenValidMoney(){
+
+        //arrange
+
+        //act
+        boolean valueForOne = Transaction.isMoneyValid(ONE_DOLLAR);
+        boolean valueForFive = Transaction.isMoneyValid(FIVE_DOLLARS);
+        boolean valueForTen = Transaction.isMoneyValid(TEN_DOLLARS);
+        boolean valueForTwenty = Transaction.isMoneyValid(TWENTY_DOLLARS);
+
+        //assert
+        assertTrue("because $1 is valid", valueForOne);
+        assertTrue("because $5 is valid", valueForFive);
+        assertTrue("because $10 is valid", valueForTen);
+        assertTrue("because $20 is valid", valueForTwenty);
+    }
+
+    @Test
+    public void isMoneyValid_Should_ReturnFalse_GivenInvalidMoney() {
+
+        //arrange
+
+        //act
+        boolean value1 = Transaction.isMoneyValid(ONE_DOLLAR);
+        boolean valueForFive = Transaction.isMoneyValid(FIVE_DOLLARS);
+        boolean valueForTen = Transaction.isMoneyValid(TEN_DOLLARS);
+        boolean valueForTwenty = Transaction.isMoneyValid(TWENTY_DOLLARS);
+
+        //assert
+    }
+
+
+    @Test
+    public void addMoney_Should_UpdateRemainingFunds_GivenValidMoney() {
 
         //arrange
         // if given $1, $5, $10, or $20, should return true
@@ -34,10 +67,10 @@ public class TransactionTest {
         BigDecimal expectedNewTotal = new BigDecimal("36.00");
 
         //act
-        Transaction.addMoney(ONE_DOLLAR);
-        transaction.addMoney(FIVE_DOLLARS);
-        transaction.addMoney(TEN_DOLLARS);
-        transaction.addMoney(TWENTY_DOLLARS);
+        if (transaction.isMoneyValid(ONE_DOLLAR))transaction.addMoney(ONE_DOLLAR);
+        if (transaction.isMoneyValid(FIVE_DOLLARS))transaction.addMoney(FIVE_DOLLARS);
+        if (transaction.isMoneyValid(TEN_DOLLARS))transaction.addMoney(TEN_DOLLARS);
+        if (transaction.isMoneyValid(TWENTY_DOLLARS))transaction.addMoney(TWENTY_DOLLARS);
 
         BigDecimal actualTotal = transaction.getRemainingFunds();
 
@@ -46,7 +79,7 @@ public class TransactionTest {
     }
 
     @Test
-    public void feedMoney_Should_Fail_GivenInvalidMoney() {
+    public void addMoney_Should_Not_UpdateRemainingFunds_GivenInvalidMoney() {
 
         //arrange
         transaction.setRemainingFunds(new BigDecimal("0.00"));

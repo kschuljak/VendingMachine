@@ -37,4 +37,22 @@ public class UserOutput {
         System.out.println("Item received.");
     }
 
+    public static void displayItemTypeReturnMessage(String type) {
+        switch (type.toLowerCase()) {
+            case "chips":
+                System.out.println("Crunch Crunch, Yum!");
+                break;
+            case "candy":
+                System.out.println("Munch Munch, Yum!");
+                break;
+            case "drink":
+                System.out.println("Glug Glug, Yum!");
+                break;
+            case "gum":
+                System.out.println("Chew Chew, Yum!");
+                break;
+            default:
+                break;
+        }
+    }
 }

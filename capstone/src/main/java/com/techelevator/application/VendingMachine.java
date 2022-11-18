@@ -41,8 +41,8 @@ public class VendingMachine
                 case "2":
                     // purchase product
                     UserOutput.displayPurchaseMenu();
-//                    String purchaseMenuSelection = UserInput.getPurchaseMenuSelection();
-                    purchaseMenu();
+                    String purchaseMenuSelection = UserInput.getPurchaseMenuSelection();
+                    //purchaseMenu(purchaseMenuSelection);
                     break;
                 case "3":
                     // Exit program/vending machine
@@ -86,10 +86,6 @@ public class VendingMachine
 
             }
         }
-
-    }
-
-}
 
 
 
