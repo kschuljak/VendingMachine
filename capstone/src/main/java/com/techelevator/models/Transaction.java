@@ -4,6 +4,7 @@ import com.techelevator.models.exceptions.InsufficientFundsException;
 import com.techelevator.models.exceptions.InvalidFundsException;
 import com.techelevator.models.exceptions.InvalidOptionException;
 import com.techelevator.models.file_io.Logger;
+import com.techelevator.models.file_io.SalesReport;
 import com.techelevator.models.products.Product;
 import com.techelevator.ui.UserOutput;
 
@@ -14,7 +15,7 @@ import java.util.List;
 public class Transaction {
 
     private static BigDecimal remainingFunds = new BigDecimal("0.00");
-    private List<Product> purchasedProducts = new ArrayList<>();
+    private static List<Product> purchasedProducts = new ArrayList<>();
 
     public static BigDecimal getRemainingFunds() {
         return remainingFunds;
@@ -62,6 +63,7 @@ public class Transaction {
 
                     // update funds and product quantity
                     Inventory.updateInventory(selection, ITEM_QUANTITY_PER_SELECTION);
+                    purchasedProducts.add(selection);
                     remainingFunds = remainingFunds.subtract(price);
                     UserOutput.displayItemTypeReturnMessage(type);
 
@@ -108,6 +110,10 @@ public class Transaction {
         } catch (InvalidFundsException exception){Logger.createLogEntry(exception.getMessage());}
 
         return isValid;
+    }
+
+    public static void finishTransaction(){
+
     }
 
 

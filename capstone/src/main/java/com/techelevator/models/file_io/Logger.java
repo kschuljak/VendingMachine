@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Logger {
 
-    private static final String FILE_TYPE = ".log";
+    private static  String fileType = ".log";
 
     private static String directory = "logs";
 
@@ -33,5 +33,8 @@ public class Logger {
             printWriter.println(time + " " + message);
 
         } catch (IOException ex) { };
+    }
+
+    public Logger() {
     }
 }
