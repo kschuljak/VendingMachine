@@ -39,25 +39,18 @@ public class VendingMachine
             {
                 // display products & purchase
                 Inventory.displayInventory();
-                System.out.println();
                 // purchase product
                 UserOutput.displayPurchaseMenu(transaction);
                 purchaseMenu(transaction);
 
             }
-            else if (mainMenuSelection.equals("2"))
-            {
-                // exit program
-                System.exit(0);
-            }
+            // exit program
+            else if (mainMenuSelection.equals("2")) {System.exit(0);}
             else if (mainMenuSelection.equals("3"))
             {
                 // Secret bonus sales report easter egg
             }
-            else
-            {
-                System.out.println("Not a valid menu option.");
-            }
+            else {System.out.println("Not a valid menu option.");}
         }
     }
 
@@ -67,38 +60,37 @@ public class VendingMachine
         {
             // get user selection
             String purchaseMenuSelection = UserInput.getPurchaseMenuSelection();
-            if (purchaseMenuSelection.equals("1"))
-            {
-                // Display add money menu
-
-                UserOutput.displayFeedMoney();
-                BigDecimal userFunds = UserInput.getMoney();
-                transaction.addMoney(userFunds.setScale(2, RoundingMode.UNNECESSARY));
-            }
-
-            else if (purchaseMenuSelection.equals("2"))
-            {
-                // Display select product menu
-                UserOutput.displayEnterProduct();
-                String productSelection = UserInput.getPurchaseItemSelection();
-                transaction.purchaseItem(productSelection);
-
-            }
-
+            // Display addMoneyMenu()
+            if (purchaseMenuSelection.equals("1")) {addMoneyMenu(transaction);}
+            // Display select product menu
+            else if (purchaseMenuSelection.equals("2")) { selectProductMenu(transaction);}
             else if (purchaseMenuSelection.equals("3"))
             {
                 // Finish transaction
-
+//                transaction.finishTransaction();
+                MainMenu();
             }
-
-            else
-            {
-                System.out.println("Not a valid menu option.");
-            }
-
+            else {System.out.println("Not a valid menu option.");}
             UserOutput.displayPurchaseMenu(transaction);
         }
     }
+
+    public void addMoneyMenu(Transaction transaction)
+    {
+        UserOutput.displayFeedMoney();
+        BigDecimal userFunds = UserInput.getMoney();
+        transaction.addMoney(userFunds.setScale(2, RoundingMode.UNNECESSARY));
+    }
+
+    public void selectProductMenu(Transaction transaction)
+    {
+        UserOutput.displayEnterProduct();
+        String productSelection = UserInput.getPurchaseItemSelection();
+        transaction.purchaseItem(productSelection);
+
+    }
+
+
 }
 
 

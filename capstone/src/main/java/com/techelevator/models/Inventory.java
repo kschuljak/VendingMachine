@@ -9,11 +9,10 @@ import java.util.List;
 
 public class Inventory {
 
-    private static List<Product> productList = new ArrayList<>();
+    private static List<Product> productList = ProductLoader.LoadProductList();
 
     public static void displayInventory()
     {
-        productList = ProductLoader.LoadProductList();
 
         for (Product product : productList)
         {
@@ -24,12 +23,13 @@ public class Inventory {
             if (quantity == 0) {System.out.println("[" + id + "] " + name + " - $" + price + " - SOLD OUT");}
             else {System.out.println("[" + id + "] " + name + " - $" + price + " - Left: " + quantity);}
         }
+        System.out.println();
     }
 
     public static void updateInventory(Product product, int quantity)
     {
         int currentQuantity = product.getQuantity();
-        product.setQuantity(currentQuantity+= quantity);
+        product.setQuantity(currentQuantity-= quantity);
     }
 
     public static List<Product> getProductList() {
