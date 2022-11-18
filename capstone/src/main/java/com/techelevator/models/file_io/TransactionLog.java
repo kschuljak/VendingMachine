@@ -23,7 +23,7 @@ public class TransactionLog extends Logger {
         String timePattern = "hh:mm:ss a";
         String now = LocalTime.now().format(DateTimeFormatter.ofPattern(timePattern));
 
-        String file =
+        String file;
 
 
 

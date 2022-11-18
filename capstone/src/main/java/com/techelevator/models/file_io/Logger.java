@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Logger {
 
-    private static  String fileType = ".log";
+    private static String fileType = ".log";
 
     private static String directory = "logs";
 
@@ -22,19 +22,20 @@ public class Logger {
     public static void createLogEntry(String message)
     {
         String today = LocalDate.now().format(DateTimeFormatter.BASIC_ISO_DATE);
-        String file = directory + "/" + today + FILE_TYPE;
+        String file = directory + "/" + today + fileType;
 
         File logFile = new File(file);
 
-        try (FileWriter fileWriter = new FileWriter(file, true);
+        try (FileWriter fileWriter = new FileWriter(logFile, true);
              PrintWriter printWriter = new PrintWriter(fileWriter))
         {
             String time = String.valueOf(LocalDateTime.now());
             printWriter.println(time + " " + message);
 
-        } catch (IOException ex) { };
+        } catch (IOException ex) {System.out.println(ex.getMessage());}
     }
 
     public Logger() {
+
     }
 }
