@@ -6,6 +6,7 @@ import com.techelevator.models.exceptions.InvalidFundsException;
 import com.techelevator.models.exceptions.InvalidOptionException;
 import com.techelevator.models.file_io.Logger;
 import com.techelevator.models.file_io.SalesReport;
+import com.techelevator.models.file_io.TransactionLog;
 import com.techelevator.models.products.Product;
 import com.techelevator.ui.UserOutput;
 
@@ -33,6 +34,7 @@ public class Transaction {
     public void addMoney(BigDecimal amount){
         if (isMoneyValid(amount)) {
             remainingFunds = remainingFunds.add(amount);
+            TransactionLog.createLogEntry("FEED MONEY: " + amount + " " + remainingFunds);
         }
     }
 
@@ -42,6 +44,10 @@ public class Transaction {
             BigDecimal price = product.getPrice();
             BigDecimal newFunds = remainingFunds.subtract(price);
             setRemainingFunds(newFunds);
+        }
+        else
+        {
+            System.out.println("Not enough money");
         }
     }
 
@@ -70,8 +76,17 @@ public class Transaction {
                 Inventory.updateInventory(selection, ITEM_QUANTITY_PER_SELECTION);
                 productsPurchased.add(selection);
                 spendMoney(selection);
+
                 String type = selection.getType();
+                String name = selection.getName();
+                String id = selection.getSlotID();
+                BigDecimal price = selection.getPrice();
+                TransactionLog.createLogEntry(name + " " + id + " " + price + " " + remainingFunds);
+
+                System.out.println();
+                UserOutput.displayPurchaseSuccess();
                 UserOutput.displayItemTypeReturnMessage(type);
+                System.out.println();
             }
         }
     }
@@ -141,8 +156,12 @@ public class Transaction {
             try {
                 BigDecimal totalFunds = getRemainingFunds();
 
-                if (totalFunds.compareTo(itemCost) >= 0) isValid = true;
+                if (totalFunds.compareTo(itemCost) >= 0) {
+                    isValid = true;
+                }
                 else {
+                    System.out.println("\nYou don't have enough funds to make that transaction. Please add more bills.\n");
+
                     throw new InsufficientFundsException("You don't have enough funds to make that transaction.", remainingFunds, itemCost);
                 }
             } catch (InsufficientFundsException exception) {

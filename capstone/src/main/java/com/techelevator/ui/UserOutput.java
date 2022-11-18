@@ -45,7 +45,7 @@ public class UserOutput {
 
     public static void displayItemTypeReturnMessage(String type) {
         switch (type.toLowerCase()) {
-            case "chips":
+            case "chip":
                 System.out.println("Crunch Crunch, Yum!");
                 break;
             case "candy":

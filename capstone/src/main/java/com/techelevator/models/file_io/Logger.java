@@ -30,7 +30,7 @@ public class Logger {
              PrintWriter printWriter = new PrintWriter(fileWriter))
         {
             String time = String.valueOf(LocalDateTime.now());
-            printWriter.println(time + " " + message);
+            printWriter.println(today + " " + time + " " + message);
 
         } catch (IOException ex) {System.out.println(ex.getMessage());}
     }

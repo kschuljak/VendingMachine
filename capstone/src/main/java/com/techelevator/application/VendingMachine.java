@@ -40,7 +40,6 @@ public class VendingMachine
                 // display products & purchase
                 Inventory.displayInventory();
                 System.out.println();
-                System.out.println();
                 // purchase product
                 UserOutput.displayPurchaseMenu(transaction);
                 purchaseMenu(transaction);
@@ -83,7 +82,6 @@ public class VendingMachine
                 UserOutput.displayEnterProduct();
                 String productSelection = UserInput.getPurchaseItemSelection();
                 transaction.purchaseItem(productSelection);
-                UserOutput.displayPurchaseSuccess();
 
             }
 
