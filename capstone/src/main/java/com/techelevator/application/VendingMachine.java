@@ -13,6 +13,7 @@ import static com.techelevator.models.file_io.ProductLoader.LoadProductList;
 public class VendingMachine
 {
     Transaction transaction = new Transaction();
+
     public void run()
     {
         // run main menu
@@ -25,7 +26,7 @@ public class VendingMachine
 
     public void MainMenu()
     {
-        while(true)
+        while (true)
         {
             // display home screen
             UserOutput.displayMainMenu();
@@ -41,8 +42,9 @@ public class VendingMachine
                 case "2":
                     // purchase product
                     UserOutput.displayPurchaseMenu();
-                    String purchaseMenuSelection = UserInput.getPurchaseMenuSelection();
+//                    String purchaseMenuSelection = UserInput.getPurchaseMenuSelection();
                     //purchaseMenu(purchaseMenuSelection);
+                    purchaseMenu();
                     break;
                 case "3":
                     // Exit program/vending machine
@@ -70,7 +72,8 @@ public class VendingMachine
             {
                 case "1":
                     UserOutput.displayFeedMoney();
-                    UserInput.getMoney();
+                    BigDecimal userFunds = UserInput.getMoney();
+                    Transaction.addMoney(userFunds);
                     UserOutput.displayPurchaseMenu();
                     break;
                 case "2":
@@ -86,6 +89,8 @@ public class VendingMachine
 
             }
         }
+    }
+}
 
 
 
