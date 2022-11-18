@@ -73,13 +73,19 @@ public class VendingMachine
                 case "1":
                     UserOutput.displayFeedMoney();
                     BigDecimal userFunds = UserInput.getMoney();
-                    Transaction.addMoney(userFunds);
+                    Transaction.addMoney(userFunds.setScale(2));
                     UserOutput.displayPurchaseMenu();
+// Refactor into individual methods. Add Exit option to User I/O. Call MainMenu() in Exit & add to each case.
+
                     break;
                 case "2":
                     // select product
                     UserOutput.displayEnterProduct();
-                    UserInput.getPurchaseItemSelection();
+                    String productSelection = UserInput.getPurchaseItemSelection();
+                    Transaction.purchaseItem(productSelection);
+                    UserOutput.displayPurchaseSuccess();
+                    UserOutput.displayPurchaseMenu();
+
                     break;
                 case "3":
                     // finish transaction
