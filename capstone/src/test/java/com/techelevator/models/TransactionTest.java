@@ -57,12 +57,25 @@ public class TransactionTest {
     public void spendMoney_Should_SubtractFromRemainingFunds_ByAmountSpent() {
 
         //arrange
+        transaction.setRemainingFunds(TWENTY_DOLLARS);
+
+        BigDecimal itemCost1 = new BigDecimal("2.50");
+        BigDecimal itemCost2 = new BigDecimal("1.00");
+        BigDecimal itemCost3 = new BigDecimal("1.75");
+
+        BigDecimal expected = new BigDecimal("14.75");
 
         //act
+        transaction.spendMoney(itemCost1);
+        transaction.spendMoney(itemCost2);
+        transaction.spendMoney(itemCost3);
+
+        BigDecimal actual = transaction.getRemainingFunds();
 
         //assert
+        assertEquals("Because 20 to start; (2.50 + 1.00 + 1.75) = 5.25; (20.00 - 5.25) = 14.75 remaining", expected, actual);
 
-        
+
     }
 
     @Test
