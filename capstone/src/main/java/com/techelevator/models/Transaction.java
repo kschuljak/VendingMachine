@@ -1,6 +1,7 @@
 package com.techelevator.models;
 
 import com.techelevator.models.exceptions.InsufficientFundsException;
+import com.techelevator.models.exceptions.InsufficientStockException;
 import com.techelevator.models.exceptions.InvalidFundsException;
 import com.techelevator.models.exceptions.InvalidOptionException;
 import com.techelevator.models.file_io.Logger;
@@ -9,6 +10,7 @@ import com.techelevator.models.products.Product;
 import com.techelevator.ui.UserOutput;
 
 import java.math.BigDecimal;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,7 +45,7 @@ public class Transaction {
 
             Product selection = null;
             int quantity = 0;
-            BigDecimal price = new BigDecimal("0.00");
+            BigDecimal price = null;
             String type = "";
 
             for (Product product : productList) {
@@ -56,17 +58,26 @@ public class Transaction {
                 }
             }
             // if item in stock
-            if ((selection == null) || (quantity < 1)) return;  // add error handling
+            try {
+                if ((selection == null) || (quantity < 1)) {
+                    throw new InsufficientStockException("This product is not available", quantity);
+                }
+            } catch (InsufficientStockException exception) {
+                Logger.createLogEntry(exception.getMessage());
+            }
 
             // check if enough money to purchase
             try {
-                if (price.compareTo(remainingFunds) > 0) {
+                if (price != null)
+                {
+                    if (price.compareTo(remainingFunds) > 0) {
 
-                    // update funds and product quantity
-                    Inventory.updateInventory(selection, ITEM_QUANTITY_PER_SELECTION);
-                    purchasedProducts.add(selection);
-                    remainingFunds = remainingFunds.subtract(price);
-                    UserOutput.displayItemTypeReturnMessage(type);
+                        // update funds and product quantity
+                        Inventory.updateInventory(selection, ITEM_QUANTITY_PER_SELECTION);
+                        purchasedProducts.add(selection);
+                        remainingFunds = remainingFunds.subtract(price);
+                        UserOutput.displayItemTypeReturnMessage(type);
+                    }
 
                 } else {
                     throw new InsufficientFundsException("You don't have enough funds to make that transaction.", remainingFunds, price);

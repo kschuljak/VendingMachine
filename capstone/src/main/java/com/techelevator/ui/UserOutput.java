@@ -14,9 +14,8 @@ public class UserOutput {
         System.out.println("2) Exit");
     }
 
-    public static void displayPurchaseMenu()
+    public static void displayPurchaseMenu(Transaction transaction)
     {
-        Transaction transaction = new Transaction();
         System.out.println("Current Funds: " + transaction.getRemainingFunds());
         System.out.println();
         System.out.println("1) Add Money");
