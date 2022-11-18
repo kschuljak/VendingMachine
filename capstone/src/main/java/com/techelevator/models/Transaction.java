@@ -79,7 +79,7 @@ public class Transaction {
         try {
             if (itemID != null)
             {
-                return ((itemID.startsWith("A") || itemID.startsWith("B") || itemID.startsWith("C") || itemID.startsWith("D"))
+                return ((itemID.startsWith("a") || itemID.startsWith("b") || itemID.startsWith("c") || itemID.startsWith("d"))
                         && (itemID.endsWith("1") || itemID.endsWith("2") || itemID.endsWith("3") || itemID.endsWith("4")));
             }
             else {throw new InvalidOptionException("That is not a valid selection. Try again...", itemID);}
