@@ -12,7 +12,7 @@ import static com.techelevator.models.file_io.ProductLoader.LoadProductList;
 
 public class VendingMachine
 {
-    Transaction transaction = new Transaction();
+
 
     public void run()
     {
@@ -26,6 +26,8 @@ public class VendingMachine
 
     public void MainMenu()
     {
+        Transaction transaction = new Transaction();
+
         while (true)
         {
             // display home screen
@@ -39,8 +41,8 @@ public class VendingMachine
                 System.out.println();
                 System.out.println();
                 // purchase product
-                UserOutput.displayPurchaseMenu();
-                purchaseMenu();
+                UserOutput.displayPurchaseMenu(transaction);
+                purchaseMenu(transaction);
 
             }
             else if (mainMenuSelection.equals("2"))
@@ -59,7 +61,7 @@ public class VendingMachine
         }
     }
 
-    public void purchaseMenu()
+    public void purchaseMenu(Transaction transaction)
     {
 
 
@@ -67,7 +69,6 @@ public class VendingMachine
         {
             // get user selection
             String purchaseMenuSelection = UserInput.getPurchaseMenuSelection();
-            Transaction transaction = new Transaction();
             if (purchaseMenuSelection.equals("1"))
             {
                 // Display add money menu
@@ -80,7 +81,6 @@ public class VendingMachine
             else if (purchaseMenuSelection.equals("2"))
             {
                 // Display select product menu
-                transaction = new Transaction();
                 UserOutput.displayEnterProduct();
                 String productSelection = UserInput.getPurchaseItemSelection();
                 transaction.purchaseItem(productSelection);
@@ -100,7 +100,7 @@ public class VendingMachine
                 System.out.println("Not a valid menu option.");
             }
 
-            UserOutput.displayPurchaseMenu();
+            UserOutput.displayPurchaseMenu(transaction);
         }
     }
 }
