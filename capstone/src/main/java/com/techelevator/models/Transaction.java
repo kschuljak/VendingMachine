@@ -16,14 +16,14 @@ import java.util.List;
 
 public class Transaction {
 
-    private static BigDecimal remainingFunds = new BigDecimal("0.00");
-    private static List<Product> purchasedProducts = new ArrayList<>();
+    private  BigDecimal remainingFunds = new BigDecimal("0.00");
+    private  List<Product> purchasedProducts = new ArrayList<>();
 
     public BigDecimal getRemainingFunds() {
         return remainingFunds;
     }
     public void setRemainingFunds(BigDecimal remainingFunds) {
-        Transaction.remainingFunds = remainingFunds;
+        this.remainingFunds = remainingFunds;
     }
 
     public Transaction() {
@@ -32,6 +32,13 @@ public class Transaction {
     public void addMoney(BigDecimal amount){
         if (isMoneyValid(amount)) {
             remainingFunds = remainingFunds.add(amount);
+        }
+    }
+
+    public void spendMoney(BigDecimal amount){
+        if (isMoneyValid(amount)) {
+            BigDecimal newFunds = remainingFunds.subtract(amount);
+            setRemainingFunds(newFunds);
         }
     }
 
@@ -44,46 +51,26 @@ public class Transaction {
             List<Product> productList = Inventory.getProductList();
 
             Product selection = null;
-            int quantity = 0;
-            BigDecimal price = null;
-            String type = "";
 
             for (Product product : productList) {
                 String productID = product.getSlotID();
                 if (productID.equalsIgnoreCase(itemID)) {
                     selection = product;
-                    quantity = product.getQuantity();
-                    price = product.getPrice();
-                    type = product.getType();
                 }
             }
-            // if item in stock
-            try {
-                if ((selection == null) || (quantity < 1)) {
-                    throw new InsufficientStockException("This product is not available", quantity);
-                }
-            } catch (InsufficientStockException exception) {
-                Logger.createLogEntry(exception.getMessage());
-            }
 
-            // check if enough money to purchase
-            try {
-                if (price != null)
-                {
-                    if (price.compareTo(remainingFunds) > 0) {
+            if (selection != null
+                    && isInStock(selection)
+                    && isItemSelectionValid(itemID)
+                    && hasEnoughMoney(selection)
+            ) {
 
-                        // update funds and product quantity
-                        Inventory.updateInventory(selection, ITEM_QUANTITY_PER_SELECTION);
-                        purchasedProducts.add(selection);
-                        remainingFunds = remainingFunds.subtract(price);
-                        UserOutput.displayItemTypeReturnMessage(type);
-                    }
-
-                } else {
-                    throw new InsufficientFundsException("You don't have enough funds to make that transaction.", remainingFunds, price);
-                }
-            } catch (InsufficientFundsException exception) {
-                Logger.createLogEntry(exception.getMessage());
+                Inventory.updateInventory(selection, ITEM_QUANTITY_PER_SELECTION);
+                purchasedProducts.add(selection);
+                BigDecimal price = selection.getPrice();
+                spendMoney(price);
+                String type = selection.getType();
+                UserOutput.displayItemTypeReturnMessage(type);
             }
         }
     }
@@ -101,6 +88,22 @@ public class Transaction {
         catch (InvalidOptionException exception) {Logger.createLogEntry(exception.getMessage());}
 
         return false;
+    }
+
+    public boolean isInStock(Product product) {
+        boolean isInStock = false;
+        int quantity = 0;
+        if (product != null) quantity = product.getQuantity();
+        try {
+            if (quantity > 0)
+            {
+                isInStock = true;
+            }
+            else {throw new InsufficientStockException("This product is not available", quantity);}
+        } catch (InsufficientStockException exception) {
+            Logger.createLogEntry(exception.getMessage());
+        }
+        return isInStock;
     }
 
     public boolean isMoneyValid(BigDecimal money){
@@ -121,6 +124,26 @@ public class Transaction {
             } else isValid = true;
         } catch (InvalidFundsException exception){Logger.createLogEntry(exception.getMessage());}
 
+        return isValid;
+    }
+
+    public boolean hasEnoughMoney(Product product){
+        BigDecimal zero = new BigDecimal("0.00");
+        BigDecimal itemCost = product.getPrice();
+        boolean isValid = false;
+
+        if (itemCost != null) {
+            try {
+                BigDecimal totalFunds = getRemainingFunds();
+
+                if (totalFunds.compareTo(itemCost) >= 0) isValid = true;
+                else {
+                    throw new InsufficientFundsException("You don't have enough funds to make that transaction.", remainingFunds, itemCost);
+                }
+            } catch (InsufficientFundsException exception) {
+                Logger.createLogEntry(exception.getMessage());
+            }
+        }
         return isValid;
     }
 
