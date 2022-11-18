@@ -67,7 +67,6 @@ public class VendingMachine
             else if (purchaseMenuSelection.equals("3"))
             {
                 // Finish transaction
-//                transaction.finishTransaction();
                 MainMenu();
                 transaction.finishTransaction();
                 transaction = new Transaction();
