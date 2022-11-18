@@ -36,9 +36,11 @@ public class Transaction {
         }
     }
 
-    public void spendMoney(BigDecimal amount){
-        if (isMoneyValid(amount)) {
-            BigDecimal newFunds = remainingFunds.subtract(amount);
+    public void spendMoney(Product product){
+        if (hasEnoughMoney(product))
+        {
+            BigDecimal price = product.getPrice();
+            BigDecimal newFunds = remainingFunds.subtract(price);
             setRemainingFunds(newFunds);
         }
     }
@@ -67,8 +69,7 @@ public class Transaction {
             ) {
                 Inventory.updateInventory(selection, ITEM_QUANTITY_PER_SELECTION);
                 productsPurchased.add(selection);
-                BigDecimal price = selection.getPrice();
-                spendMoney(price);
+                spendMoney(selection);
                 String type = selection.getType();
                 UserOutput.displayItemTypeReturnMessage(type);
             }

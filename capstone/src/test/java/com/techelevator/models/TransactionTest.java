@@ -63,12 +63,16 @@ public class TransactionTest {
         BigDecimal itemCost2 = new BigDecimal("1.00");
         BigDecimal itemCost3 = new BigDecimal("1.75");
 
+        Product one = new Product("a1", "chips1", itemCost1, "chips");
+        Product two = new Product("a2", "chips2", itemCost2, "chips");
+        Product three = new Product("3", "chips3", itemCost3, "chips");
+
         BigDecimal expected = new BigDecimal("14.75");
 
         //act
-        transaction.spendMoney(itemCost1);
-        transaction.spendMoney(itemCost2);
-        transaction.spendMoney(itemCost3);
+        transaction.spendMoney(one);
+        transaction.spendMoney(two);
+        transaction.spendMoney(three);
 
         BigDecimal actual = transaction.getRemainingFunds();
 
