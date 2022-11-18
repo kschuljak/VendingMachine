@@ -1,8 +1,11 @@
 package com.techelevator.ui;
 
 import com.techelevator.models.Transaction;
+import com.techelevator.models.products.Product;
 
 import java.math.BigDecimal;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class UserOutput {
@@ -60,5 +63,25 @@ public class UserOutput {
             default:
                 break;
         }
+    }
+
+    public static void displaySummaryIntro() {
+        System.out.println("Thank you for shopping with us today!");
+        System.out.println();
+        System.out.println("Items Purchased: ");
+    }
+
+    public static void displayItemSummary(String item, String amount)
+    {
+       System.out.println(item + "'s Purchased: " + amount);
+    }
+
+    public static void displayChange(int quarters, int dimes, int nickels, int pennies)
+    {
+        System.out.println("Change Dispensed: ");
+        System.out.println("Quarters: " + quarters);
+        System.out.println("Dimes: " + dimes);
+        System.out.println("Nickels: " + nickels);
+        System.out.println("Pennies: " + pennies);
     }
 }
