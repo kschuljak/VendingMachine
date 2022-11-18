@@ -2,6 +2,7 @@ package com.techelevator.ui;
 
 import com.techelevator.models.Transaction;
 
+import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class UserOutput {
@@ -16,7 +17,11 @@ public class UserOutput {
 
     public static void displayPurchaseMenu(Transaction transaction)
     {
-        System.out.println("Current Funds: " + transaction.getRemainingFunds());
+        if (transaction != null)
+        {
+            BigDecimal remainingFunds = transaction.getRemainingFunds();
+            System.out.println("Current Funds: " + remainingFunds.toString());
+        }
         System.out.println();
         System.out.println("1) Add Money");
         System.out.println("2) Select Product");
