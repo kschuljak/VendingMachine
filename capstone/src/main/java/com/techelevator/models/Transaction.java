@@ -1,5 +1,6 @@
 package com.techelevator.models;
 
+import com.techelevator.application.VendingMachine;
 import com.techelevator.models.exceptions.InsufficientFundsException;
 import com.techelevator.models.exceptions.InsufficientStockException;
 import com.techelevator.models.exceptions.InvalidFundsException;
@@ -12,14 +13,12 @@ import com.techelevator.ui.UserOutput;
 
 import java.math.BigDecimal;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 public class Transaction {
 
     private  BigDecimal remainingFunds = new BigDecimal("0.00");
-    private List<Product> productsPurchased = new ArrayList<>();
+    private Map<Product, Integer> productsPurcahsed = new HashMap<>();
 
     public BigDecimal getRemainingFunds() {
         return remainingFunds;
@@ -51,6 +50,15 @@ public class Transaction {
         }
     }
 
+    public void updatePurchases(Product product) {
+        if (productsPurcahsed.containsKey(product))
+        {
+            int amountPurchased = productsPurcahsed.get(product);
+            productsPurcahsed.replace(product, amountPurchased + 1);
+        }
+        else productsPurcahsed.put(product, 1);
+    }
+
     public void purchaseItem(String itemID)
     {
         final int ITEM_QUANTITY_PER_SELECTION = 1;
@@ -74,7 +82,9 @@ public class Transaction {
                     && hasEnoughMoney(selection)
             ) {
                 Inventory.updateInventory(selection, ITEM_QUANTITY_PER_SELECTION);
-                productsPurchased.add(selection);
+
+                updatePurchases(selection);
+
                 spendMoney(selection);
 
                 String type = selection.getType();
@@ -171,8 +181,40 @@ public class Transaction {
         return isValid;
     }
 
-    public static void finishTransaction(){
+    public Map<Product, Integer> finishTransaction()
+    {
+        UserOutput.displaySummaryIntro();
+        getItemSummary(productsPurcahsed);
+        returnChange(remainingFunds);
+        return productsPurcahsed;
+    }
 
+    public void getItemSummary(Map<Product, Integer> productsPurchased)
+    {
+        for (Map.Entry<Product, Integer> product: productsPurchased.entrySet()) {
+            String productName = product.getKey().getName();
+            String amountPurchased = product.getValue().toString();
+            UserOutput.displayItemSummary(productName, amountPurchased);
+        }
+    }
+
+    public void returnChange(BigDecimal remainingFunds) {
+
+        int penniesRemaining = Integer.parseInt(String.valueOf(remainingFunds)) * 100;
+
+        final int QUARTER = 25;
+        final int DIME = 10;
+        final int NICKEL = 5;
+        final int PENNY = 1;
+
+        int quartersReturned = penniesRemaining / QUARTER;
+        int lessQuarters = penniesRemaining % QUARTER;
+        int dimesReturned = lessQuarters / DIME;
+        int lessDimes = lessQuarters % DIME;
+        int nicklesReturned = lessDimes / NICKEL;
+        int penniesReturned = lessDimes % NICKEL;
+
+        UserOutput.displayChange(quartersReturned, dimesReturned, nicklesReturned, penniesReturned);
     }
 
 

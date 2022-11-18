@@ -69,6 +69,8 @@ public class VendingMachine
                 // Finish transaction
 //                transaction.finishTransaction();
                 MainMenu();
+                transaction.finishTransaction();
+                transaction = new Transaction();
             }
             else {System.out.println("Not a valid menu option.");}
             UserOutput.displayPurchaseMenu(transaction);
