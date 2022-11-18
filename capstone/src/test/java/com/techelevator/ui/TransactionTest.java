@@ -28,10 +28,10 @@ public class TransactionTest {
         //arrange
 
         //act
-        boolean valueForOne = Transaction.isMoneyValid(ONE_DOLLAR);
-        boolean valueForFive = Transaction.isMoneyValid(FIVE_DOLLARS);
-        boolean valueForTen = Transaction.isMoneyValid(TEN_DOLLARS);
-        boolean valueForTwenty = Transaction.isMoneyValid(TWENTY_DOLLARS);
+        boolean valueForOne = transaction.isMoneyValid(ONE_DOLLAR);
+        boolean valueForFive = transaction.isMoneyValid(FIVE_DOLLARS);
+        boolean valueForTen = transaction.isMoneyValid(TEN_DOLLARS);
+        boolean valueForTwenty = transaction.isMoneyValid(TWENTY_DOLLARS);
 
         //assert
         assertTrue("because $1 is valid", valueForOne);
@@ -50,10 +50,10 @@ public class TransactionTest {
         BigDecimal num4 = new BigDecimal("40.00");
 
         //act
-        boolean value1 = Transaction.isMoneyValid(num1);
-        boolean value2 = Transaction.isMoneyValid(num2);
-        boolean value3 = Transaction.isMoneyValid(num3);
-        boolean value4 = Transaction.isMoneyValid(num4);
+        boolean value1 = transaction.isMoneyValid(num1);
+        boolean value2 = transaction.isMoneyValid(num2);
+        boolean value3 = transaction.isMoneyValid(num3);
+        boolean value4 = transaction.isMoneyValid(num4);
 
         //assert
         assertFalse("because $14 is not valid", value1);
@@ -75,12 +75,12 @@ public class TransactionTest {
         BigDecimal expectedNewTotal = new BigDecimal("36.00");
 
         //act
-        if (Transaction.isMoneyValid(ONE_DOLLAR))Transaction.addMoney(ONE_DOLLAR);
-        if (Transaction.isMoneyValid(FIVE_DOLLARS))Transaction.addMoney(FIVE_DOLLARS);
-        if (Transaction.isMoneyValid(TEN_DOLLARS))Transaction.addMoney(TEN_DOLLARS);
-        if (Transaction.isMoneyValid(TWENTY_DOLLARS))Transaction.addMoney(TWENTY_DOLLARS);
+        if (transaction.isMoneyValid(ONE_DOLLAR))transaction.addMoney(ONE_DOLLAR);
+        if (transaction.isMoneyValid(FIVE_DOLLARS))transaction.addMoney(FIVE_DOLLARS);
+        if (transaction.isMoneyValid(TEN_DOLLARS))transaction.addMoney(TEN_DOLLARS);
+        if (transaction.isMoneyValid(TWENTY_DOLLARS))transaction.addMoney(TWENTY_DOLLARS);
 
-        BigDecimal actualTotal = Transaction.getRemainingFunds();
+        BigDecimal actualTotal = transaction.getRemainingFunds();
 
         //assert
         assertTrue("Because $1,$5, $10, and $20 are valid bill types", actualTotal.equals(expectedNewTotal));
@@ -97,10 +97,10 @@ public class TransactionTest {
         BigDecimal given3 = new BigDecimal("-1.00");
 
         //act
-        if (Transaction.isMoneyValid(given)) Transaction.addMoney(given);
-        if (Transaction.isMoneyValid(given)) Transaction.addMoney(given2);
-        if (Transaction.isMoneyValid(given)) Transaction.addMoney(given3);
-        BigDecimal actual = Transaction.getRemainingFunds();
+        if (transaction.isMoneyValid(given)) transaction.addMoney(given);
+        if (transaction.isMoneyValid(given)) transaction.addMoney(given2);
+        if (transaction.isMoneyValid(given)) transaction.addMoney(given3);
+        BigDecimal actual = transaction.getRemainingFunds();
 
         //assert
         assertTrue("Because invalid amounts should not update total", expectedNewTotal.equals(actual));
@@ -116,10 +116,10 @@ public class TransactionTest {
         String str4 = "D1";
 
         //act
-        boolean actual1 = Transaction.isItemSelectionValid(str1);
-        boolean actual2 = Transaction.isItemSelectionValid(str1);
-        boolean actual3 = Transaction.isItemSelectionValid(str1);
-        boolean actual4 = Transaction.isItemSelectionValid(str1);
+        boolean actual1 = transaction.isItemSelectionValid(str1);
+        boolean actual2 = transaction.isItemSelectionValid(str1);
+        boolean actual3 = transaction.isItemSelectionValid(str1);
+        boolean actual4 = transaction.isItemSelectionValid(str1);
 
         //assert
         assertTrue("because A4 is valid", actual1);

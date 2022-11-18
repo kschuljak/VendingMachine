@@ -32,68 +32,75 @@ public class VendingMachine
             UserOutput.displayMainMenu();
             String mainMenuSelection = UserInput.getMainMenuSelection();
 
-
-            switch (mainMenuSelection)
+            if (mainMenuSelection.equals("1"))
             {
-                case "1":
-                    // display products
-                    Inventory.displayInventory();
-                    break;
-                case "2":
-                    // purchase product
-                    UserOutput.displayPurchaseMenu();
-//                    String purchaseMenuSelection = UserInput.getPurchaseMenuSelection();
-                    //purchaseMenu(purchaseMenuSelection);
-                    purchaseMenu();
-                    break;
-                case "3":
-                    // Exit program/vending machine
-                    System.exit(0);
-                    break;
-                case "4":
-                    // get sales report
-                    break;
-                default:
-                    // invalid option exception
-                    System.out.println("Not a valid menu option. Try again...");
-                    UserOutput.displayMainMenu();
+                // display products & purchase
+                Inventory.displayInventory();
+                System.out.println();
+                System.out.println();
+                // purchase product
+                UserOutput.displayPurchaseMenu();
+                purchaseMenu();
+
+            }
+            else if (mainMenuSelection.equals("2"))
+            {
+                // exit program
+                System.exit(0);
+            }
+            else if (mainMenuSelection.equals("3"))
+            {
+                // Secret bonus sales report easter egg
+            }
+            else
+            {
+                System.out.println("Not a valid menu option.");
             }
         }
     }
 
     public void purchaseMenu()
     {
-        // get user selection
-        String purchaseMenuSelection = UserInput.getPurchaseMenuSelection();
+
 
         while (true)
         {
-            switch (purchaseMenuSelection)
+            // get user selection
+            String purchaseMenuSelection = UserInput.getPurchaseMenuSelection();
+            Transaction transaction = new Transaction();
+            if (purchaseMenuSelection.equals("1"))
             {
-                case "1":
-                    UserOutput.displayFeedMoney();
-                    BigDecimal userFunds = UserInput.getMoney();
-                    Transaction.addMoney(userFunds.setScale(2));
-                    UserOutput.displayPurchaseMenu();
-// Refactor into individual methods. Add Exit option to User I/O. Call MainMenu() in Exit & add to each case.
+                // Display add money menu
 
-                    break;
-                case "2":
-                    // select product
-                    UserOutput.displayEnterProduct();
-                    String productSelection = UserInput.getPurchaseItemSelection();
-                    Transaction.purchaseItem(productSelection);
-                    UserOutput.displayPurchaseSuccess();
-                    UserOutput.displayPurchaseMenu();
+                UserOutput.displayFeedMoney();
+                BigDecimal userFunds = UserInput.getMoney();
+                transaction.addMoney(userFunds.setScale(2));
+            }
 
-                    break;
-                case "3":
-                    // finish transaction
-                    break;
-                default:
-                    System.out.println("Not a valid menu option. Try again...");
+            else if (purchaseMenuSelection.equals("2"))
+            {
+                // Display select product menu
+                transaction = new Transaction();
+                UserOutput.displayEnterProduct();
+                String productSelection = UserInput.getPurchaseItemSelection();
+                transaction.purchaseItem(productSelection);
+                UserOutput.displayPurchaseSuccess();
+                BigDecimal remainingFunds = transaction.getRemainingFunds();
 
             }
+
+            else if (purchaseMenuSelection.equals("3"))
+            {
+                // Finish transaction
+
+            }
+
+            else
+            {
+                System.out.println("Not a valid menu option.");
+            }
+
+            UserOutput.displayPurchaseMenu();
         }
     }
 }
