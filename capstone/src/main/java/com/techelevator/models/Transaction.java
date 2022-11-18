@@ -130,7 +130,10 @@ public class Transaction {
             {
                 isInStock = true;
             }
-            else {throw new InsufficientStockException("This product is not available", quantity);}
+            else
+            {
+                System.out.println("\nThis item is out of stock.\n");
+                throw new InsufficientStockException("This product is not available", quantity);}
         } catch (InsufficientStockException exception) {
             Logger.createLogEntry(exception.getMessage());
         }
@@ -151,6 +154,8 @@ public class Transaction {
                     money.equals(tenDollars) || money.equals(twentyDollars))
                     || money.compareTo(zero) < 0)
             {
+                System.out.println("\nPlease enter a valid bill type ($1, $5, $10, or $20).\n");
+
                 throw new InvalidFundsException("Invalid bill type", money);
             } else isValid = true;
         } catch (InvalidFundsException exception){Logger.createLogEntry(exception.getMessage());}
@@ -201,7 +206,8 @@ public class Transaction {
 
     public void returnChange(BigDecimal remainingFunds) {
 
-        int penniesRemaining = Integer.parseInt(String.valueOf(remainingFunds)) * 100;
+        String remaining = remainingFunds.toString();
+        int penniesRemaining = Integer.parseInt(remaining) * 100;
 
         final int QUARTER = 25;
         final int DIME = 10;
