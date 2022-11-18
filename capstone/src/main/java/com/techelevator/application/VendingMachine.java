@@ -12,43 +12,25 @@ import static com.techelevator.models.file_io.ProductLoader.LoadProductList;
 
 public class VendingMachine
 {
+    Transaction transaction = new Transaction();
     public void run()
     {
         // run main menu
-        displayMainMenu();
+        MainMenu();
 
-            // get user selection
+        // run purchase menu
 
-            String purchaseMenuSelection = UserInput.getPurchaseMenuSelection();
 
-            if(purchaseMenuSelection.equals("1"))
-            {
-                // add money
-                UserOutput.displayFeedMoney();
-                UserInput.getMoney();
-
-            }
-            else if (purchaseMenuSelection.equals("2"))
-            {
-                // select product
-            }
-            else if (purchaseMenuSelection.equals(3))
-            {
-                // finish transaction
-            }
-            else
-            {
-                // invalid option exception
-            }
     }
 
-    public void displayMainMenu()
+    public void MainMenu()
     {
         while(true)
         {
             // display home screen
             UserOutput.displayMainMenu();
             String mainMenuSelection = UserInput.getMainMenuSelection();
+
 
             switch (mainMenuSelection)
             {
@@ -59,8 +41,8 @@ public class VendingMachine
                 case "2":
                     // purchase product
                     UserOutput.displayPurchaseMenu();
-                    String purchaseMenuSelection = UserInput.getPurchaseMenuSelection();
-                    purchaseMenu(purchaseMenuSelection);
+//                    String purchaseMenuSelection = UserInput.getPurchaseMenuSelection();
+                    purchaseMenu();
                     break;
                 case "3":
                     // Exit program/vending machine
@@ -73,14 +55,43 @@ public class VendingMachine
                     // invalid option exception
                     System.out.println("Not a valid menu option. Try again...");
                     UserOutput.displayMainMenu();
-
             }
         }
     }
 
+    public void purchaseMenu()
+    {
+        // get user selection
+        String purchaseMenuSelection = UserInput.getPurchaseMenuSelection();
+
+        while (true)
+        {
+            switch (purchaseMenuSelection)
+            {
+                case "1":
+                    UserOutput.displayFeedMoney();
+                    UserInput.getMoney();
+                    UserOutput.displayPurchaseMenu();
+                    break;
+                case "2":
+                    // select product
+                    UserOutput.displayEnterProduct();
+                    UserInput.getPurchaseItemSelection();
+                    break;
+                case "3":
+                    // finish transaction
+                    break;
+                default:
+                    System.out.println("Not a valid menu option. Try again...");
+
+            }
         }
+
     }
+
 }
+
+
 
 
 
