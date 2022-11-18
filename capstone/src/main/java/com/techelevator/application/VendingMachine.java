@@ -2,27 +2,18 @@ package com.techelevator.application;
 
 import com.techelevator.models.Inventory;
 import com.techelevator.models.Transaction;
-import com.techelevator.models.file_io.ProductLoader;
 import com.techelevator.ui.UserInput;
 import com.techelevator.ui.UserOutput;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-import static com.techelevator.models.file_io.ProductLoader.LoadProductList;
-
 public class VendingMachine
 {
-
-
     public void run()
     {
         // run main menu
         MainMenu();
-
-        // run purchase menu
-
-
     }
 
     public void MainMenu()
@@ -37,12 +28,9 @@ public class VendingMachine
 
             if (mainMenuSelection.equals("1"))
             {
-                // display products & purchase
-                Inventory.displayInventory();
-                // purchase product
+                // purchase product menu
                 UserOutput.displayPurchaseMenu(transaction);
                 purchaseMenu(transaction);
-
             }
             // exit program
             else if (mainMenuSelection.equals("2")) {System.exit(0);}
@@ -60,16 +48,21 @@ public class VendingMachine
         {
             // get user selection
             String purchaseMenuSelection = UserInput.getPurchaseMenuSelection();
+            // Display inventory
+            if (purchaseMenuSelection.equals("1")) {Inventory.displayInventory();}
             // Display addMoneyMenu()
-            if (purchaseMenuSelection.equals("1")) {addMoneyMenu(transaction);}
+            else if (purchaseMenuSelection.equals("2")) {addMoneyMenu(transaction);}
             // Display select product menu
-            else if (purchaseMenuSelection.equals("2")) { selectProductMenu(transaction);}
             else if (purchaseMenuSelection.equals("3"))
             {
+                selectProductMenu(transaction);
+            }
+            else if (purchaseMenuSelection.equals("4"))
+            {
                 // Finish transaction
-                MainMenu();
                 transaction.finishTransaction();
                 transaction = new Transaction();
+                MainMenu();
             }
             else {System.out.println("Not a valid menu option.");}
             UserOutput.displayPurchaseMenu(transaction);

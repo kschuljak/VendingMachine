@@ -14,6 +14,7 @@ public class UserOutput {
 
     public static void displayMainMenu()
     {
+        System.out.println();
         System.out.println("1) Browse Vending Machine");
         System.out.println("2) Exit");
     }
@@ -26,9 +27,10 @@ public class UserOutput {
             System.out.println("Current Funds: " + remainingFunds.toString());
         }
         System.out.println();
-        System.out.println("1) Add Money");
-        System.out.println("2) Select Product");
-        System.out.println("3) Finish Transaction");
+        System.out.println("1) Display inventory");
+        System.out.println("2) Add Money");
+        System.out.println("3) Select Product");
+        System.out.println("4) Finish Transaction");
     }
 
     public static void displayFeedMoney()
