@@ -20,7 +20,7 @@ public class Transaction {
         return remainingFunds;
     }
     public void setRemainingFunds(BigDecimal remainingFunds) {
-        this.remainingFunds = remainingFunds;
+        Transaction.remainingFunds = remainingFunds;
     }
 
     public Transaction() {
