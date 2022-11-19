@@ -28,6 +28,10 @@ public class Transaction {
         this.remainingFunds = remainingFunds;
     }
 
+    public Map<Product, Integer> getProductsPurchased() {
+        return productsPurchased;
+    }
+
     public Transaction() {
     }
 
@@ -62,7 +66,7 @@ public class Transaction {
 
     public void purchaseItem(String itemID)
     {
-        final int ITEM_QUANTITY_PER_SELECTION = 1;
+        final int ITEM_QUANTITY_PER_SELECTION = -1;
 
         if (isItemSelectionValid(itemID)) {
 
@@ -210,16 +214,14 @@ public class Transaction {
         final int QUARTER = 25;
         final int DIME = 10;
         final int NICKEL = 5;
-        final int PENNY = 1;
 
         int quartersReturned = remaining / QUARTER;
         int lessQuarters = remaining % QUARTER;
         int dimesReturned = lessQuarters / DIME;
         int lessDimes = lessQuarters % DIME;
         int nicklesReturned = lessDimes / NICKEL;
-        int penniesReturned = lessDimes % NICKEL;
 
-        UserOutput.displayChange(quartersReturned, dimesReturned, nicklesReturned, penniesReturned);
+        UserOutput.displayChange(quartersReturned, dimesReturned, nicklesReturned);
     }
 
 
