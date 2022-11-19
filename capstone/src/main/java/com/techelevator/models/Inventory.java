@@ -12,9 +12,12 @@ public class Inventory {
 
     private static List<Product> productList = ProductLoader.LoadProductList();
 
+    public static List<Product> getProductList() {
+        return productList;
+    }
+
     public static void displayInventory()
     {
-
         for (Product product : productList)
         {
             String id = product.getSlotID();
@@ -31,12 +34,10 @@ public class Inventory {
     public static void updateInventory(Product product, int quantity)
     {
         int currentQuantity = product.getQuantity();
-        product.setQuantity(currentQuantity-= quantity);
+        product.setQuantity(currentQuantity + quantity);
     }
 
-    public static List<Product> getProductList() {
-        return productList;
-    }
+
 }
 
 

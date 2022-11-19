@@ -66,7 +66,7 @@ public class Transaction {
 
     public void purchaseItem(String itemID)
     {
-        final int ITEM_QUANTITY_PER_SELECTION = 1;
+        final int ITEM_QUANTITY_PER_SELECTION = -1;
 
         if (isItemSelectionValid(itemID)) {
 
