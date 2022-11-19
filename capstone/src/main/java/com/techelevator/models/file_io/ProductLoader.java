@@ -19,11 +19,11 @@ public class ProductLoader{
         {
             List<Product> productList = new ArrayList<>();
             File productFile = new File("data/vendingmachine.csv");
-            try (Scanner productloader = new Scanner(productFile))
+            try (Scanner productLoader = new Scanner(productFile))
             {
-                while(productloader.hasNextLine())
+                while(productLoader.hasNextLine())
                 {
-                    String line = productloader.nextLine();
+                    String line = productLoader.nextLine();
                     String[]splitLine = line.split("\\|");
                     String productID = splitLine[0];
                     String productName = splitLine[1];
