@@ -64,7 +64,10 @@ public class UserOutput {
         System.out.print("Enter product selection: ");
     }
 
-    public static void displayPurchaseSuccess(String name) {System.out.println("\033[3m*Ca-THUNK*\033[0m\n" + name + " dispensed!");}
+    public static void displayPurchaseSuccess(String name)
+    {
+        System.out.println("\033[3m*Ca-THUNK*\033[0m\n" + name + " dispensed!");
+    }
 
     public static void displayItemTypeReturnMessage(String type) {
         switch (type.toLowerCase()) {
