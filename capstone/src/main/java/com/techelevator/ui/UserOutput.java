@@ -14,14 +14,13 @@ import java.util.Scanner;
 
 public class UserOutput {
 
-
-
     public static void displayMainMenu()
     {
         displaySplashScreen();
-        System.out.println();
+        System.out.println("=========================");
         System.out.println("1) Browse Vending Machine");
         System.out.println("2) Exit");
+        System.out.println("=========================");
     }
 
     public static void displayPurchaseMenu(Transaction transaction)
@@ -64,7 +63,7 @@ public class UserOutput {
 
     public static void displayPurchaseSuccess(String name)
     {
-        System.out.println("\033[3m*Ca-THUNK*\033[0m\n" + name + " dispensed!");
+        System.out.println(italicize("*Ca-THUNK*") + name + " dispensed!");
     }
 
     public static void displayItemTypeReturnMessage(String type) {
@@ -176,46 +175,6 @@ public class UserOutput {
         System.out.println();
     }
 
-    public static void loadingBar()
-    {
-        System.out.println("\nDispensing...");
-
-        for (int i = 0; i <= 100; i = i + 10)
-        {
-            int remainingTime = i;
-            int total = 100;
-
-            if (remainingTime > total)
-            {
-                throw new IllegalArgumentException();
-            }
-
-            int barSize = 10;
-            int remainingPercent = ((100 * remainingTime) / total) / barSize;
-            char barFiller = '.';
-            String bar = new String(new char[barSize]).replace('\0', ' ') + "]";
-            StringBuilder fullBar = new StringBuilder();
-            fullBar.append("[");
-            for (int j = 0; j < remainingPercent; j++)
-            {
-                fullBar.append(barFiller);
-            }
-            String remainingBar = bar.substring(remainingPercent);
-            System.out.print("\r" + fullBar + remainingBar + " ");
-
-            try
-            {
-                Thread.sleep(250);
-            }
-            catch (Exception e)
-            {
-
-            }
-
-        }
-        System.out.println();
-    }
-
     public static String createLine(int length)
     {
         String formatLength = "%-" + length + "s";
@@ -236,30 +195,15 @@ public class UserOutput {
         System.out.println("*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*");
     }
 
-    public static void displaySplashScreen() {
-        System.out.println(italicize("\n                                                 An Umbrella Corp Product"));
+    public static void displaySplashScreen()
+    {
+        System.out.println(italicize(Colors.PURPLE + "\n                                                 An Umbrella Corp Product" + Colors.RESET));
         System.out.println("  _   _______  _____  ____      __  ______ _______________  ___  ___  ___ ");
         System.out.println(" | | / / __/ |/ / _ \\/ __ \\____/  |/  / _ /_  __/  _/ ___/ ( _ )/ _ \\/ _ \\");
         System.out.println(" | |/ / _//    / // / /_/ /___/ /|_/ / __ |/ / _/ // /__  / _  / // / // /");
         System.out.println(" |___/___/_/|_/____/\\____/   /_/  /_/_/ |_/_/ /___/\\___/  \\___/\\___/\\___/ ");
-
-
-        System.out.println(italicize("                        Your one-stop shop for snacks, sweets, and sodas!\n"));
-//        System.out.println("Press any key to start shopping...");
-//        Scanner input = new Scanner(System.in);
-//        input.nextLine();
+        System.out.println(italicize(Colors.PURPLE + "                        Your one-stop shop for snacks, sweets, and sodas!\n" + Colors.RESET));
     }
-//    public static void displaySpinner(){
-//        try
-//        {
-//            Spinner.printSpinner();
-//        }
-//        catch (InterruptedException exception)
-//        {
-//            Logger.createLogEntry(exception.getMessage());
-//        }
-//    }
-
 
     public static String italicize(String text)
     {
