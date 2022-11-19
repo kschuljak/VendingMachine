@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class SalesReportReader {
 
-    public void readSalesReport() {
+    public static void readSalesReport() {
 
         File file = new File("reports/SALES_REPORT.txt");
 
@@ -20,11 +20,12 @@ public class SalesReportReader {
                     BigDecimal oldTotal = new BigDecimal(number);
                     SalesReport.updateTotalSalesFromFile(oldTotal);
                 }
-                else if (!line.equals("\n"))
+                else if (!line.equals(""))
                 {
-                    String[] product = line.split("//|");
+                    String[] product = line.split("\\|");
                     String name = product[0];
-                    int quantity = Integer.getInteger(product[1]);
+                    String stringQuantity = product[1];
+                    Integer quantity = Integer.valueOf(stringQuantity);
                     SalesReport.updateMapFromFile(name, quantity);
                 }
             }

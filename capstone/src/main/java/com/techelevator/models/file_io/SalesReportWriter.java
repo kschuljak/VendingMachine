@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class SalesReportWriter {
 
-    private static File newFile = new File("reports/temp_SALES_REPORT.txt");
+    private static File newFile = new File("reports/SALES_REPORT.txt");
 
     public static void updateSalesReportFile(Map<String, Integer> totalProductSales, BigDecimal totalSales) {
 
@@ -19,7 +19,7 @@ public class SalesReportWriter {
 
                 writer.println(productName + "|" + value);
             }
-            writer.println();
+            writer.println("");
 
             String sales = totalSales.toString();
             writer.println("**TOTAL SALES** $" + sales);
@@ -27,12 +27,6 @@ public class SalesReportWriter {
 
         }
 
-        replaceOldSalesReport();
-    }
-
-    public static void replaceOldSalesReport(){
-        File file = new File("reports/SALES_REPORT.txt");
-        newFile.renameTo(file);
     }
 
 

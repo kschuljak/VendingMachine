@@ -1,6 +1,7 @@
 package com.techelevator.ui;
 
 import com.techelevator.models.Transaction;
+import com.techelevator.models.file_io.SalesReport;
 import com.techelevator.models.products.Product;
 
 import java.math.BigDecimal;
@@ -85,5 +86,20 @@ public class UserOutput {
         System.out.println("Dimes: " + dimes);
         System.out.println("Nickels: " + nickels);
         System.out.println("Pennies: " + pennies);
+    }
+
+    public static void displaySalesReport(){
+        Map<String, Integer> totalProductSales = SalesReport.getTotalProductSales();
+        for (Map.Entry<String, Integer> product: totalProductSales.entrySet()) {
+            String productName = product.getKey();
+            int value = product.getValue();
+
+            System.out.println(productName + "|" + value);
+        }
+        System.out.println();
+
+        BigDecimal totalSales = SalesReport.getTotalSales();
+        String sales = totalSales.toString();
+        System.out.println("**TOTAL SALES** $" + sales);
     }
 }

@@ -3,6 +3,7 @@ package com.techelevator.application;
 import com.techelevator.models.Inventory;
 import com.techelevator.models.Transaction;
 import com.techelevator.models.file_io.SalesReport;
+import com.techelevator.models.file_io.SalesReportReader;
 import com.techelevator.models.file_io.SalesReportWriter;
 import com.techelevator.ui.UserInput;
 import com.techelevator.ui.UserOutput;
@@ -16,6 +17,7 @@ public class VendingMachine
     {
         // run main menu
         SalesReport.setProductSalesMapToZero();
+        SalesReportReader.readSalesReport();
         MainMenu();
     }
 
@@ -43,7 +45,7 @@ public class VendingMachine
             }
             else if (mainMenuSelection.equals("3"))
             {
-                // Secret bonus sales report easter egg
+                UserOutput.displaySalesReport();
             }
             else {System.out.println("Not a valid menu option.");}
         }
