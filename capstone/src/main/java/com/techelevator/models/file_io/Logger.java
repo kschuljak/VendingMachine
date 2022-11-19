@@ -23,13 +23,13 @@ public class Logger {
     {
         String today = LocalDate.now().format(DateTimeFormatter.BASIC_ISO_DATE);
         String file = directory + "/" + today + fileType;
-
+        String timePattern = "hh:mm:ss a";
         File logFile = new File(file);
 
         try (FileWriter fileWriter = new FileWriter(logFile, true);
              PrintWriter printWriter = new PrintWriter(fileWriter))
         {
-            String time = String.valueOf(LocalDateTime.now());
+            String time = LocalDateTime.now().format(DateTimeFormatter.ofPattern(timePattern));
             printWriter.println(today + " " + time + " " + message);
 
         } catch (IOException ex) {System.out.println(ex.getMessage());}
