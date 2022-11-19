@@ -28,6 +28,10 @@ public class Transaction {
         this.remainingFunds = remainingFunds;
     }
 
+    public Map<Product, Integer> getProductsPurchased() {
+        return productsPurchased;
+    }
+
     public Transaction() {
     }
 
