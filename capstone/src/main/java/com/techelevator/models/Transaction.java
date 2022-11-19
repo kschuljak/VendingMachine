@@ -49,10 +49,6 @@ public class Transaction {
             BigDecimal newFunds = remainingFunds.subtract(price);
             setRemainingFunds(newFunds);
         }
-        else
-        {
-            System.out.println("Not enough money");
-        }
     }
 
     public void updatePurchases(Product product) {
@@ -107,21 +103,30 @@ public class Transaction {
     }
 
 
-    public boolean isItemSelectionValid(String itemID) {
+    public boolean isItemSelectionValid(String itemID)
+    {
         boolean isValidSelection = false;
-        try {
-            if (itemID != null) {
+        try
+        {
+            if (itemID != null)
+            {
                 itemID = (itemID).toLowerCase();
-                if ((itemID.startsWith("a") || itemID.startsWith("b") || itemID.startsWith("c") || itemID.startsWith("d"))
+                if (
+                        (itemID.startsWith("a") || itemID.startsWith("b") || itemID.startsWith("c") || itemID.startsWith("d"))
                         && (itemID.endsWith("1") || itemID.endsWith("2") || itemID.endsWith("3") || itemID.endsWith("4"))
                 ) isValidSelection = true;
-                else {
-                    throw new InvalidOptionException("That is not a valid selection. Try again...", itemID);
+                else
+                {
+                    UserOutput.displayErrorMessage("That is not a valid selection! \nPlease select a different item.");
+                    throw new InvalidOptionException("Invalid selection entered", itemID);
                 }
-            } else throw new InvalidOptionException("That is not a valid selection. Try again...", null);
+            }
+            else throw new InvalidOptionException("Invalid selection", null);
         }
-        catch (InvalidOptionException exception) {Logger.createLogEntry(exception.getMessage());}
-
+        catch (InvalidOptionException exception)
+        {
+            Logger.createLogEntry(exception.getMessage());
+        }
         return isValidSelection;
     }
 
@@ -136,9 +141,12 @@ public class Transaction {
             }
             else
             {
-                System.out.println("\nThis item is out of stock.\n");
-                throw new InsufficientStockException("This product is not available", quantity);}
-        } catch (InsufficientStockException exception) {
+                UserOutput.displayErrorMessage("This item is out of stock! \nPlease select a different item.");
+                throw new InsufficientStockException("This product is not available", quantity);
+            }
+        }
+        catch (InsufficientStockException exception)
+        {
             Logger.createLogEntry(exception.getMessage());
         }
         return isInStock;
@@ -158,32 +166,37 @@ public class Transaction {
                     money.equals(tenDollars) || money.equals(twentyDollars))
                     || money.compareTo(zero) < 0)
             {
-                System.out.println("\nPlease enter a valid bill type ($1, $5, $10, or $20).\n");
+                UserOutput.displayErrorMessage("Please enter a valid bill type! \nThis machine accepts $1, $5, $10, & $20.");
                 throw new InvalidFundsException("Invalid bill type", money);
-            } else isValid = true;
-        } catch (InvalidFundsException exception){Logger.createLogEntry(exception.getMessage());}
-
+            }
+            else isValid = true;
+        } catch (InvalidFundsException exception)
+        {
+            Logger.createLogEntry(exception.getMessage());
+        }
         return isValid;
     }
 
-    public boolean hasEnoughMoney(Product product){
+    public boolean hasEnoughMoney(Product product)
+    {
         BigDecimal zero = new BigDecimal("0.00");
         BigDecimal itemCost = product.getPrice();
         boolean isValid = false;
 
-        if (itemCost != null) {
-            try {
+        if (itemCost != null)
+        {
+            try
+            {
                 BigDecimal totalFunds = getRemainingFunds();
 
-                if (totalFunds.compareTo(itemCost) >= 0) {
-                    isValid = true;
+                if (totalFunds.compareTo(itemCost) >= 0) isValid = true;
+                else
+                {
+                    UserOutput.displayErrorMessage("Insufficient funds! \nPlease add money to purchase item.");
+                    throw new InsufficientFundsException("Insufficient funds.", remainingFunds, itemCost);
                 }
-                else {
-                    System.out.println("\nYou don't have enough funds to make that transaction. Please add more bills.\n");
-
-                    throw new InsufficientFundsException("You don't have enough funds to make that transaction.", remainingFunds, itemCost);
-                }
-            } catch (InsufficientFundsException exception) {
+            }
+            catch (InsufficientFundsException exception) {
                 Logger.createLogEntry(exception.getMessage());
             }
         }

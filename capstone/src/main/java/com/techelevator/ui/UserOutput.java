@@ -165,4 +165,9 @@ public class UserOutput {
         String line = "";
         return String.format(formatLength, line).replace(' ', '*');
     }
+
+    public static void displayErrorMessage(String message)
+    {
+        System.out.println(Colors.RED + message + Colors.RESET);
+    }
 }
