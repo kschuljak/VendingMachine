@@ -1,6 +1,7 @@
 package com.techelevator.ui;
 
 import com.techelevator.models.Transaction;
+import com.techelevator.models.file_io.Logger;
 import com.techelevator.models.file_io.SalesReport;
 import com.techelevator.view.Colors;
 
@@ -99,11 +100,21 @@ public class UserOutput {
     public static void displayChange(int quarters, int dimes, int nickels)
     {
         System.out.println();
-        System.out.println("Change Dispensed: ");
-        System.out.println("-----------------");
-        System.out.println("Quarters: " + quarters);
-        System.out.println("Dimes: " + dimes);
-        System.out.println("Nickels: " + nickels);
+        System.out.println("--------------------");
+        System.out.println("  Change Dispensed  ");
+        System.out.println("--------------------");
+        String quarterString = formatChangeString("Quarters: ");
+        System.out.println(quarterString + quarters);
+        String dimeString = formatChangeString("Dimes: ");
+        System.out.println(dimeString + dimes);
+        String nickleString = formatChangeString("Nickels: ");
+        System.out.println(nickleString + nickels);
+        System.out.println("--------------------");
+    }
+
+    public static String formatChangeString(String coin)
+    {
+        return String.format("%13s", coin);
     }
 
     public static void displaySalesReport(){
@@ -238,6 +249,15 @@ public class UserOutput {
 //        System.out.println("Press any key to start shopping...");
 //        Scanner input = new Scanner(System.in);
 //        input.nextLine();
+    public static void displaySpinner(){
+        try
+        {
+            Spinner.printSpinner();
+        }
+        catch (InterruptedException exception)
+        {
+            Logger.createLogEntry(exception.getMessage());
+        }
     }
 
 
