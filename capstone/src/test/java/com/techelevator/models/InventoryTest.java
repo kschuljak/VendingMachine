@@ -20,7 +20,7 @@ public class InventoryTest
 
 
     @Test
-    public void updateInventory_PurchasingProductShouldUpdateQuantity()
+    public void updateInventory_PurchasingProductShouldUpdateQuantity_LessOne()
     {
         // arrange
         int expected = 4;

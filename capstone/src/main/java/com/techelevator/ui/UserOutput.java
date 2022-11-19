@@ -95,7 +95,7 @@ public class UserOutput {
        System.out.println(item + "'s Purchased: " + amount);
     }
 
-    public static void displayChange(int quarters, int dimes, int nickels, int pennies)
+    public static void displayChange(int quarters, int dimes, int nickels)
     {
         System.out.println();
         System.out.println("Change Dispensed: ");
@@ -103,7 +103,6 @@ public class UserOutput {
         System.out.println("Quarters: " + quarters);
         System.out.println("Dimes: " + dimes);
         System.out.println("Nickels: " + nickels);
-        System.out.println("Pennies: " + pennies);
     }
 
     public static void displaySalesReport(){
