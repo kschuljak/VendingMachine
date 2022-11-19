@@ -33,7 +33,7 @@ public class SalesReport {
 
     private static Map<String, Integer> totalProductSales = new HashMap<>();
 
-    private static BigDecimal totalSales = new BigDecimal("0.00");
+    private static BigDecimal totalSales;
 
     public static Map<String, Integer> getTotalProductSales() {
         return totalProductSales;
@@ -45,6 +45,7 @@ public class SalesReport {
 
     public static void setProductSalesMapToZero()
     {
+        totalSales = new BigDecimal("0.00");
         List<Product> productList = ProductLoader.LoadProductList();
         for (Product product: productList)
         {
