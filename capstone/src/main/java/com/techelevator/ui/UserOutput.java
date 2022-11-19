@@ -25,14 +25,29 @@ public class UserOutput {
         if (transaction != null)
         {
             BigDecimal remainingFunds = transaction.getRemainingFunds();
-            System.out.println();
-            System.out.println("Current Funds: $" + remainingFunds.toString());
+            String funds = remainingFunds.toString();
+            displayRemainingFunds(funds);
         }
         System.out.println();
-        System.out.println("1) Display inventory");
+        System.out.println("1) Display Inventory");
         System.out.println("2) Add Money");
         System.out.println("3) Select Product");
         System.out.println("4) Finish Transaction");
+    }
+
+    public static void displayRemainingFunds(String funds){
+
+        String currentFunds = ("* Current Funds: $" + funds + " *");
+        int stringLength = currentFunds.length();
+        String formatLength = "%-" + stringLength + "s";
+        String border = "";
+        String formatBorder = String.format(formatLength, border).replace(' ', '*');
+
+        System.out.println();
+        System.out.println(formatBorder);
+        System.out.println(currentFunds);
+        System.out.println(formatBorder);
+        System.out.println();
     }
 
     public static void displayFeedMoney()
