@@ -2,6 +2,7 @@ package com.techelevator.models;
 
 import com.techelevator.models.file_io.ProductLoader;
 import com.techelevator.models.products.Product;
+import com.techelevator.ui.UserOutput;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -17,13 +18,14 @@ public class Inventory {
         for (Product product : productList)
         {
             String id = product.getSlotID();
-            String name = product.getName();
+            String name = product.getName() + "*";
+            String nameNoSpaces = name.replace(' ', '*');
+            String formattedName = String.format("%-20s", nameNoSpaces).replace(' ', '-').replace('*', ' ');
             BigDecimal price = product.getPrice();
             int quantity = product.getQuantity();
-            if (quantity == 0) {System.out.println("[" + id + "] " + name + " - $" + price + " - SOLD OUT");}
-            else {System.out.println("[" + id + "] " + name + " - $" + price + " - Left: " + quantity);}
+            if (quantity == 0) UserOutput.displayProductSoldOut(id, formattedName, price);
+            else UserOutput.displayProductWithStock(id, formattedName, price, quantity);
         }
-        System.out.println();
     }
 
     public static void updateInventory(Product product, int quantity)

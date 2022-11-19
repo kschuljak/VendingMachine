@@ -25,7 +25,8 @@ public class UserOutput {
         if (transaction != null)
         {
             BigDecimal remainingFunds = transaction.getRemainingFunds();
-            System.out.println("Current Funds: " + remainingFunds.toString());
+            System.out.println();
+            System.out.println("Current Funds: $" + remainingFunds.toString());
         }
         System.out.println();
         System.out.println("1) Display inventory");
@@ -36,7 +37,7 @@ public class UserOutput {
 
     public static void displayFeedMoney()
     {
-        System.out.println("Enter dollar amount added (in whole dollars)");
+        System.out.print("Enter dollar amount added (in whole dollars): ");
     }
 
     public static void displayEnterProduct()
@@ -81,7 +82,9 @@ public class UserOutput {
 
     public static void displayChange(int quarters, int dimes, int nickels, int pennies)
     {
+        System.out.println();
         System.out.println("Change Dispensed: ");
+        System.out.println("-----------------");
         System.out.println("Quarters: " + quarters);
         System.out.println("Dimes: " + dimes);
         System.out.println("Nickels: " + nickels);
@@ -101,5 +104,15 @@ public class UserOutput {
         BigDecimal totalSales = SalesReport.getTotalSales();
         String sales = totalSales.toString();
         System.out.println("**TOTAL SALES** $" + sales);
+    }
+
+    public static void displayProductWithStock(String id, String name, BigDecimal price, int quantity)
+    {
+        System.out.println("[" + id + "] " + name + " $" + price + " - Left: " + quantity);
+    }
+
+    public static void displayProductSoldOut(String id, String name, BigDecimal price)
+    {
+        System.out.println("[" + id + "] " + name + " $" + price + " - SOLD OUT");
     }
 }
