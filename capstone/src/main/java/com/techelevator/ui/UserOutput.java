@@ -2,16 +2,12 @@ package com.techelevator.ui;
 
 import com.techelevator.models.Transaction;
 import com.techelevator.models.file_io.SalesReport;
-import com.techelevator.models.products.Product;
 import com.techelevator.view.Colors;
 
-import java.awt.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -21,6 +17,7 @@ public class UserOutput {
 
     public static void displayMainMenu()
     {
+        displaySplashScreen();
         System.out.println();
         System.out.println("1) Browse Vending Machine");
         System.out.println("2) Exit");
@@ -133,7 +130,7 @@ public class UserOutput {
         String lastUpdatedDate = LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE);
         String timePattern = "hh:mm:ss a";
         String lastUpdatedTime = LocalTime.now().format(DateTimeFormatter.ofPattern(timePattern));
-        System.out.println("\033[3m\nLast updated: " + lastUpdatedDate + " " + lastUpdatedTime + "\033[0m\n");
+        System.out.println(italicize("Last updated: " + lastUpdatedDate + " " + lastUpdatedTime));
 
         // Waits for user input before returning to main menu.
         Scanner input = new Scanner(System.in);
@@ -153,7 +150,7 @@ public class UserOutput {
 
     public static void kickedVendingMachineMessage()
     {
-        System.out.println(Colors.RED_BACKGROUND + "\033[3mAn avalanche of snacks and soda spills out at your feet, emptying the vending machine!\033[3m" + Colors.RESET);
+        System.out.println(Colors.RED_BACKGROUND + italicize("An avalanche of snacks and soda spills out at your feet, emptying the vending machine!") + Colors.RESET);
     }
 
     public static void createBorder(String string)
@@ -227,11 +224,26 @@ public class UserOutput {
         System.out.println("*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*");
     }
 
-    public static void displayLoader()
+    public static void displaySplashScreen()
     {
+        System.out.println(italicize("\n                                                 An Umbrella Corp Product"));
+        System.out.println("  _   _______  _____  ____      __  ______ _______________  ___  ___  ___ ");
+        System.out.println(" | | / / __/ |/ / _ \\/ __ \\____/  |/  / _ /_  __/  _/ ___/ ( _ )/ _ \\/ _ \\");
+        System.out.println(" | |/ / _//    / // / /_/ /___/ /|_/ / __ |/ / _/ // /__  / _  / // / // /");
+        System.out.println(" |___/___/_/|_/____/\\____/   /_/  /_/_/ |_/_/ /___/\\___/  \\___/\\___/\\___/ ");
 
+
+
+        System.out.println(italicize("                        Your one-stop shop for snacks, sweets, and sodas!\n"));
+//        System.out.println("Press any key to start shopping...");
+//        Scanner input = new Scanner(System.in);
+//        input.nextLine();
     }
 
 
+    public static String italicize(String text)
+    {
+        return "\033[3m" + text + "\033[0m";
+    }
 
 }

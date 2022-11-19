@@ -18,10 +18,10 @@ public class VendingMachine
         // run main menu
         SalesReport.setProductSalesMapToZero();
         SalesReportReader.readSalesReport();
-        MainMenu();
+        mainMenu();
     }
 
-    public void MainMenu()
+    public void mainMenu()
     {
         Transaction transaction = new Transaction();
 
@@ -76,7 +76,7 @@ public class VendingMachine
                 // Finish transaction
                 transaction.finishTransaction();
                 transaction = new Transaction();
-                MainMenu();
+                mainMenu();
             }
             else if (purchaseMenuSelection.equalsIgnoreCase("kick"))
             {
@@ -105,6 +105,11 @@ public class VendingMachine
         UserOutput.loadingBar();
         transaction.purchaseItem(productSelection);
 
+    }
+
+    public void spashScreen()
+    {
+        UserOutput.displaySplashScreen();
     }
 
 
