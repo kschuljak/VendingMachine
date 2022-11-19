@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class SalesReportWriter {
 
-    private static File newFile = new File("reports/SALES_REPORT.txt");
+    private static File newFile = new File("C:\\Users\\Student\\workspace\\module-1-week-4-pair-8\\capstone\\reports\\SALES_REPORT.txt");
 
     public static void updateSalesReportFile(Map<String, Integer> totalProductSales, BigDecimal totalSales) {
 

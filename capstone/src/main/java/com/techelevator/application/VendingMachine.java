@@ -4,9 +4,9 @@ import com.techelevator.models.Inventory;
 import com.techelevator.models.Transaction;
 import com.techelevator.models.file_io.SalesReport;
 import com.techelevator.models.file_io.SalesReportReader;
-import com.techelevator.models.file_io.SalesReportWriter;
 import com.techelevator.ui.UserInput;
 import com.techelevator.ui.UserOutput;
+import com.techelevator.view.Console;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -27,6 +27,7 @@ public class VendingMachine
 
         while (true)
         {
+            System.out.print(Console.CLEAR_SCREEN);
             // display home screen
             UserOutput.displayMainMenu();
             String mainMenuSelection = UserInput.getMainMenuSelection();
@@ -34,6 +35,7 @@ public class VendingMachine
             if (mainMenuSelection.equals("1"))
             {
                 // purchase product menu
+                System.out.print(Console.CLEAR_SCREEN);
                 UserOutput.displayPurchaseMenu(transaction);
                 purchaseMenu(transaction);
             }
@@ -45,7 +47,10 @@ public class VendingMachine
             }
             else if (mainMenuSelection.equals("3"))
             {
+                System.out.print(Console.CLEAR_SCREEN);
+                SalesReport.replaceSalesReport();
                 UserOutput.displaySalesReport();
+
             }
             else {System.out.println("Not a valid menu option.");}
         }
@@ -80,6 +85,7 @@ public class VendingMachine
 
     public void addMoneyMenu(Transaction transaction)
     {
+        System.out.print(Console.CLEAR_SCREEN);
         UserOutput.displayFeedMoney();
         BigDecimal userFunds = UserInput.getMoney();
         transaction.addMoney(userFunds.setScale(2, RoundingMode.UNNECESSARY));
@@ -87,6 +93,7 @@ public class VendingMachine
 
     public void selectProductMenu(Transaction transaction)
     {
+        System.out.print(Console.CLEAR_SCREEN);
         UserOutput.displayEnterProduct();
         String productSelection = UserInput.getPurchaseItemSelection();
         transaction.purchaseItem(productSelection);

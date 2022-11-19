@@ -9,7 +9,7 @@ public class SalesReportReader {
 
     public static void readSalesReport() {
 
-        File file = new File("reports/SALES_REPORT.txt");
+        File file = new File("C:\\Users\\Student\\workspace\\module-1-week-4-pair-8\\capstone\\reports\\SALES_REPORT.txt");
 
         try (Scanner reader = new Scanner(file)) {
             while(reader.hasNextLine()){

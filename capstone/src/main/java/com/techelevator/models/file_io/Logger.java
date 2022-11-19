@@ -12,7 +12,7 @@ public class Logger {
 
     private static String fileType = ".log";
 
-    private static String directory = "logs";
+    private static String directory = "C:\\Users\\Student\\workspace\\module-1-week-4-pair-8\\capstone\\logs";
 
     public Logger(String directory)
     {
