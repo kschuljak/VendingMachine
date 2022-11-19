@@ -78,6 +78,12 @@ public class VendingMachine
                 transaction = new Transaction();
                 MainMenu();
             }
+            else if (purchaseMenuSelection.equalsIgnoreCase("kick"))
+            {
+                Inventory.kickTheVendingMachine();
+                Inventory.displayInventory();
+                UserOutput.kickedVendingMachineMessage();
+            }
             else {System.out.println("Not a valid menu option.");}
             UserOutput.displayPurchaseMenu(transaction);
         }
@@ -96,6 +102,7 @@ public class VendingMachine
         System.out.print(Console.CLEAR_SCREEN);
         UserOutput.displayEnterProduct();
         String productSelection = UserInput.getPurchaseItemSelection();
+        UserOutput.loadingBar();
         transaction.purchaseItem(productSelection);
 
     }

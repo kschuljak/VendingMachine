@@ -138,6 +138,11 @@ public class UserOutput {
         System.out.println("[" + id + "] " + name + " $" + price + " - " + Colors.RED + "SOLD OUT" + Colors.RESET);
     }
 
+    public static void kickedVendingMachineMessage()
+    {
+        System.out.println(Colors.RED_BACKGROUND + "\033[3mAn avalanche of snacks and soda spills out at your feet, emptying the vending machine!\033[3m" + Colors.RESET);
+    }
+
     public static void createBorder(String string)
     {
         int stringLength = string.length();
@@ -151,4 +156,45 @@ public class UserOutput {
         System.out.println(formatBorder);
         System.out.println();
     }
+
+    public static void loadingBar()
+    {
+        System.out.println("\nDispensing...");
+
+        for (int i = 0; i <= 100; i = i + 10)
+        {
+            int remainingTime = i;
+            int total = 100;
+
+            if (remainingTime > total)
+            {
+                throw new IllegalArgumentException();
+            }
+
+            int barSize = 10;
+            int remainingPercent = ((100 * remainingTime) / total) / barSize;
+            char barFiller = '.';
+            String bar = new String(new char[barSize]).replace('\0', ' ') + "]";
+            StringBuilder fullBar = new StringBuilder();
+            fullBar.append("[");
+            for (int j = 0; j < remainingPercent; j++)
+            {
+                fullBar.append(barFiller);
+            }
+            String remainingBar = bar.substring(remainingPercent);
+            System.out.print("\r" + fullBar + remainingBar + " ");
+
+            try
+            {
+                Thread.sleep(250);
+            }
+            catch (Exception e)
+            {
+
+            }
+
+        }
+        System.out.println();
+    }
+
 }
