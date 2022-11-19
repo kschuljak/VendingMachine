@@ -6,8 +6,9 @@ Cloud Popcorn|0
 Dr. Salt|0
 Little League Chew|0
 Wonka Bar|2
-Crunchie|0
+Crunchie|1
 Moonpie|1
+Potato Crisps|3
 Potato Crisps|7
 Triplemint|1
 Mountain Melter|0
@@ -15,4 +16,5 @@ U-Chews|0
 Grain Waves|0
 Chiclets|0
 
+**TOTAL SALES** $17.95
 **TOTAL SALES** $28.40

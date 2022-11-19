@@ -29,12 +29,21 @@ public class Inventory {
             if (quantity == 0) UserOutput.displayProductSoldOut(id, formattedName, price);
             else UserOutput.displayProductWithStock(id, formattedName, price, quantity);
         }
+        System.out.println();
     }
 
     public static void updateInventory(Product product, int quantity)
     {
         int currentQuantity = product.getQuantity();
         product.setQuantity(currentQuantity + quantity);
+    }
+
+    public static void kickTheVendingMachine()
+    {
+        for (Product product : productList)
+        {
+            product.setQuantity(0);
+        }
     }
 
 
