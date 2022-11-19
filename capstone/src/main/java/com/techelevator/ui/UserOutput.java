@@ -230,13 +230,13 @@ public class UserOutput {
 
     public static void displayThankYou()
     {
+        Spinner.displaySpinner();
         System.out.println("*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*");
         System.out.println("THANK YOU FOR SHOPPING WITH US TODAY!");
         System.out.println("*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*");
     }
 
-    public static void displaySplashScreen()
-    {
+    public static void displaySplashScreen() {
         System.out.println(italicize("\n                                                 An Umbrella Corp Product"));
         System.out.println("  _   _______  _____  ____      __  ______ _______________  ___  ___  ___ ");
         System.out.println(" | | / / __/ |/ / _ \\/ __ \\____/  |/  / _ /_  __/  _/ ___/ ( _ )/ _ \\/ _ \\");
@@ -244,21 +244,21 @@ public class UserOutput {
         System.out.println(" |___/___/_/|_/____/\\____/   /_/  /_/_/ |_/_/ /___/\\___/  \\___/\\___/\\___/ ");
 
 
-
         System.out.println(italicize("                        Your one-stop shop for snacks, sweets, and sodas!\n"));
 //        System.out.println("Press any key to start shopping...");
 //        Scanner input = new Scanner(System.in);
 //        input.nextLine();
-    public static void displaySpinner(){
-        try
-        {
-            Spinner.printSpinner();
-        }
-        catch (InterruptedException exception)
-        {
-            Logger.createLogEntry(exception.getMessage());
-        }
     }
+//    public static void displaySpinner(){
+//        try
+//        {
+//            Spinner.printSpinner();
+//        }
+//        catch (InterruptedException exception)
+//        {
+//            Logger.createLogEntry(exception.getMessage());
+//        }
+//    }
 
 
     public static String italicize(String text)
