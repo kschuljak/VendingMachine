@@ -7,12 +7,14 @@ import java.util.Scanner;
 
 public class SalesReportReader {
 
-    public static void readSalesReport() {
-
+    public static void readSalesReport()
+    {
         File file = new File("C:\\Users\\Student\\workspace\\module-1-week-4-pair-8\\capstone\\reports\\SALES_REPORT.txt");
 
-        try (Scanner reader = new Scanner(file)) {
-            while(reader.hasNextLine()){
+        try (Scanner reader = new Scanner(file))
+        {
+            while(reader.hasNextLine())
+            {
                 String line = reader.nextLine();
                 if (line.startsWith("**"))
                 {
@@ -25,14 +27,14 @@ public class SalesReportReader {
                     String[] product = line.split("\\|");
                     String name = product[0];
                     String stringQuantity = product[1];
-                    Integer quantity = Integer.valueOf(stringQuantity);
+                    int quantity = Integer.parseInt(stringQuantity);
                     SalesReport.updateMapFromFile(name, quantity);
                 }
             }
-
-        } catch (FileNotFoundException exception) {
-
-
+        }
+        catch (FileNotFoundException exception)
+        {
+            System.out.println(exception.getMessage());
         }
     }
 }

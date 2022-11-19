@@ -5,10 +5,12 @@ import com.techelevator.models.file_io.SalesReport;
 import com.techelevator.models.products.Product;
 import com.techelevator.view.Colors;
 
+import java.awt.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -39,9 +41,17 @@ public class UserOutput {
     }
 
     public static void displayRemainingFunds(String funds){
-
         String currentFunds = ("* Current Funds: $" + funds + " *");
-        createBorder(currentFunds);
+        int length = currentFunds.length();
+        if (funds.equals("0.00"))
+        {
+            System.out.println();
+            System.out.println(createLine(length));
+            System.out.println("* Current Funds: " + Colors.RED + "$" + funds + Colors.RESET + " *");
+            System.out.println(createLine(length));
+            System.out.println();
+        }
+        else createBorder(currentFunds);
     }
 
     public static void displayFeedMoney()
@@ -76,7 +86,7 @@ public class UserOutput {
     }
 
     public static void displaySummaryIntro() {
-        System.out.println("Thank you for shopping with us today!");
+        displayThankYou();
         System.out.println();
         System.out.println("Items Purchased: ");
     }
@@ -146,9 +156,7 @@ public class UserOutput {
     public static void createBorder(String string)
     {
         int stringLength = string.length();
-        String formatLength = "%-" + stringLength + "s";
-        String border = "";
-        String formatBorder = String.format(formatLength, border).replace(' ', '*');
+        String formatBorder = createLine(stringLength);
 
         System.out.println();
         System.out.println(formatBorder);
@@ -196,5 +204,31 @@ public class UserOutput {
         }
         System.out.println();
     }
+
+    public static String createLine(int length)
+    {
+        String formatLength = "%-" + length + "s";
+        String line = "";
+        return String.format(formatLength, line).replace(' ', '*');
+    }
+
+    public static void displayErrorMessage(String message)
+    {
+        System.out.println(Colors.RED + message + Colors.RESET);
+    }
+
+    public static void displayThankYou()
+    {
+        System.out.println("*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*");
+        System.out.println("THANK YOU FOR SHOPPING WITH US TODAY!");
+        System.out.println("*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*");
+    }
+
+    public static void displayLoader()
+    {
+
+    }
+
+
 
 }

@@ -32,7 +32,11 @@ public class Logger {
             String time = LocalDateTime.now().format(DateTimeFormatter.ofPattern(timePattern));
             printWriter.println(today + " " + time + " " + message);
 
-        } catch (IOException ex) {System.out.println(ex.getMessage());}
+        }
+        catch (IOException ex)
+        {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public Logger() {

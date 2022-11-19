@@ -16,31 +16,32 @@ public class ProductLoader{
 //    }
 
     public static List<Product> LoadProductList()
+    {
+        List<Product> productList = new ArrayList<>();
+        File productFile = new File("data/vendingmachine.csv");
+        try (Scanner productLoader = new Scanner(productFile))
         {
-            List<Product> productList = new ArrayList<>();
-            File productFile = new File("data/vendingmachine.csv");
-            try (Scanner productLoader = new Scanner(productFile))
+            while (productLoader.hasNextLine())
             {
-                while(productLoader.hasNextLine())
-                {
-                    String line = productLoader.nextLine();
-                    String[]splitLine = line.split("\\|");
-                    String productID = splitLine[0];
-                    String productName = splitLine[1];
-                    BigDecimal productPrice = new BigDecimal(splitLine[2]);
-                    productPrice = productPrice.setScale(2);
-                    String productType = splitLine[3];
+                String line = productLoader.nextLine();
+                String[] splitLine = line.split("\\|");
+                String productID = splitLine[0];
+                String productName = splitLine[1];
+                BigDecimal productPrice = new BigDecimal(splitLine[2]);
+                productPrice = productPrice.setScale(2);
+                String productType = splitLine[3];
 
-                    Product product = new Product(productID, productName, productPrice, productType);
+                Product product = new Product(productID, productName, productPrice, productType);
 
-                    productList.add(product);
-                }
-
+                productList.add(product);
             }
-            catch (FileNotFoundException ex) {System.out.println(ex.getMessage());}
-
-            return productList;
         }
+        catch (FileNotFoundException ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+        return productList;
+    }
 
 
 
