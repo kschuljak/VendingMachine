@@ -17,8 +17,9 @@ import java.util.*;
 
 public class Transaction {
 
+
     private  BigDecimal remainingFunds = new BigDecimal("0.00");
-    private Map<Product, Integer> productsPurcahsed = new HashMap<>();
+    private Map<Product, Integer> productsPurchased = new HashMap<>();
 
     public BigDecimal getRemainingFunds() {
         return remainingFunds;
@@ -51,12 +52,12 @@ public class Transaction {
     }
 
     public void updatePurchases(Product product) {
-        if (productsPurcahsed.containsKey(product))
+        if (productsPurchased.containsKey(product))
         {
-            int amountPurchased = productsPurcahsed.get(product);
-            productsPurcahsed.replace(product, amountPurchased + 1);
+            int amountPurchased = productsPurchased.get(product);
+            productsPurchased.replace(product, amountPurchased + 1);
         }
-        else productsPurcahsed.put(product, 1);
+        else productsPurchased.put(product, 1);
     }
 
     public void purchaseItem(String itemID)
@@ -86,6 +87,8 @@ public class Transaction {
                 updatePurchases(selection);
 
                 spendMoney(selection);
+
+                SalesReport.update(selection);
 
                 String type = selection.getType();
                 String name = selection.getName();
@@ -153,7 +156,6 @@ public class Transaction {
                     || money.compareTo(zero) < 0)
             {
                 System.out.println("\nPlease enter a valid bill type ($1, $5, $10, or $20).\n");
-
                 throw new InvalidFundsException("Invalid bill type", money);
             } else isValid = true;
         } catch (InvalidFundsException exception){Logger.createLogEntry(exception.getMessage());}
@@ -188,9 +190,9 @@ public class Transaction {
     public Map<Product, Integer> finishTransaction()
     {
         UserOutput.displaySummaryIntro();
-        getItemSummary(productsPurcahsed);
+        getItemSummary(productsPurchased);
         returnChange(remainingFunds);
-        return productsPurcahsed;
+        return productsPurchased;
     }
 
     public void getItemSummary(Map<Product, Integer> productsPurchased)
@@ -204,16 +206,15 @@ public class Transaction {
 
     public void returnChange(BigDecimal remainingFunds) {
 
-        String remaining = remainingFunds.toString();
-        int penniesRemaining = Integer.parseInt(remaining) * 100;
+        int remaining = remainingFunds.multiply(new BigDecimal("100")).intValue();
 
         final int QUARTER = 25;
         final int DIME = 10;
         final int NICKEL = 5;
         final int PENNY = 1;
 
-        int quartersReturned = penniesRemaining / QUARTER;
-        int lessQuarters = penniesRemaining % QUARTER;
+        int quartersReturned = remaining / QUARTER;
+        int lessQuarters = remaining % QUARTER;
         int dimesReturned = lessQuarters / DIME;
         int lessDimes = lessQuarters % DIME;
         int nicklesReturned = lessDimes / NICKEL;

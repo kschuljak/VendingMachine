@@ -2,6 +2,8 @@ package com.techelevator.application;
 
 import com.techelevator.models.Inventory;
 import com.techelevator.models.Transaction;
+import com.techelevator.models.file_io.SalesReport;
+import com.techelevator.models.file_io.SalesReportWriter;
 import com.techelevator.ui.UserInput;
 import com.techelevator.ui.UserOutput;
 
@@ -13,6 +15,7 @@ public class VendingMachine
     public void run()
     {
         // run main menu
+        SalesReport.setProductSalesMapToZero();
         MainMenu();
     }
 
@@ -33,7 +36,11 @@ public class VendingMachine
                 purchaseMenu(transaction);
             }
             // exit program
-            else if (mainMenuSelection.equals("2")) {System.exit(0);}
+            else if (mainMenuSelection.equals("2"))
+            {
+                SalesReport.replaceSalesReport();
+                System.exit(0);
+            }
             else if (mainMenuSelection.equals("3"))
             {
                 // Secret bonus sales report easter egg
