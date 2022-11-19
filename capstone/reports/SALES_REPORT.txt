@@ -8,11 +8,11 @@ Little League Chew|0
 Wonka Bar|2
 Crunchie|0
 Moonpie|1
-Potato Crisps|2
+Potato Crisps|7
 Triplemint|1
 Mountain Melter|0
 U-Chews|0
 Grain Waves|0
 Chiclets|0
 
-**TOTAL SALES** $13.15
+**TOTAL SALES** $28.40
