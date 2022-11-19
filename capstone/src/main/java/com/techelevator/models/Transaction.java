@@ -100,9 +100,8 @@ public class Transaction {
                 BigDecimal price = selection.getPrice();
                 TransactionLog.createLogEntry(name + " " + id + " " + price + " " + remainingFunds);
                 System.out.println();
-                UserOutput.displayPurchaseSuccess();
+                UserOutput.displayPurchaseSuccess(name);
                 UserOutput.displayItemTypeReturnMessage(type);
-                System.out.println();
             }
         }
     }

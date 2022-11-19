@@ -19,7 +19,7 @@ public class TransactionLog extends Logger {
 
     private static final String fileType = ".txt";
 
-    private static String directory = "logs/transactions";
+    private static String directory = "C:\\Users\\Student\\workspace\\module-1-week-4-pair-8\\capstone\\logs\\transactions";
 
     public static void createLogEntry(String message)
     {
