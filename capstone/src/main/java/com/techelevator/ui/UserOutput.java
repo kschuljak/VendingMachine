@@ -5,6 +5,7 @@ import com.techelevator.models.file_io.SalesReport;
 import com.techelevator.models.products.Product;
 import com.techelevator.view.Colors;
 
+import java.awt.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -85,7 +86,7 @@ public class UserOutput {
     }
 
     public static void displaySummaryIntro() {
-        System.out.println("Thank you for shopping with us today!");
+        displayThankYou();
         System.out.println();
         System.out.println("Items Purchased: ");
     }
@@ -170,4 +171,19 @@ public class UserOutput {
     {
         System.out.println(Colors.RED + message + Colors.RESET);
     }
+
+    public static void displayThankYou()
+    {
+        System.out.println("*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*");
+        System.out.println("THANK YOU FOR SHOPPING WITH US TODAY!");
+        System.out.println("*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*");
+    }
+
+    public static void displayLoader()
+    {
+
+    }
+
+
+
 }
