@@ -1,6 +1,7 @@
 package com.techelevator.ui;
 
 import com.techelevator.models.Transaction;
+import com.techelevator.models.file_io.Logger;
 import com.techelevator.models.file_io.SalesReport;
 import com.techelevator.models.products.Product;
 import com.techelevator.view.Colors;
@@ -237,9 +238,15 @@ public class UserOutput {
         System.out.println("*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*");
     }
 
-    public static void displayLoader()
-    {
-
+    public static void displaySpinner(){
+        try
+        {
+            Spinner.printSpinner();
+        }
+        catch (InterruptedException exception)
+        {
+            Logger.createLogEntry(exception.getMessage());
+        }
     }
 
 
