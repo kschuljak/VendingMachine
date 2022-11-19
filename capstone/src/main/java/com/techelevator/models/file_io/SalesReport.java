@@ -35,11 +35,13 @@ public class SalesReport {
 
     private static BigDecimal totalSales;
 
-    public static Map<String, Integer> getTotalProductSales() {
+    public static Map<String, Integer> getTotalProductSales()
+    {
         return totalProductSales;
     }
 
-    public static BigDecimal getTotalSales() {
+    public static BigDecimal getTotalSales()
+    {
         return totalSales;
     }
 
@@ -63,8 +65,8 @@ public class SalesReport {
         totalSales = totalSales.add(sales);
     }
 
-    public static void update(Product product){
-
+    public static void update(Product product)
+    {
         int totalSold = totalProductSales.get(product.getName());
         totalSold++;
         totalProductSales.put(product.getName(), totalSold);
@@ -73,7 +75,8 @@ public class SalesReport {
         totalSales = totalSales.add(price);
     }
 
-    public static void replaceSalesReport(){
+    public static void replaceSalesReport()
+    {
         SalesReportWriter.updateSalesReportFile(totalProductSales, totalSales);
     }
 
