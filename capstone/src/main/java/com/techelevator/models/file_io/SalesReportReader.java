@@ -16,7 +16,7 @@ public class SalesReportReader {
                 String line = reader.nextLine();
                 if (line.startsWith("**"))
                 {
-                    String number = line.substring(18);
+                    String number = line.substring(17);
                     BigDecimal oldTotal = new BigDecimal(number);
                     SalesReport.updateTotalSalesFromFile(oldTotal);
                 }
