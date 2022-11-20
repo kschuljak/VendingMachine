@@ -4,7 +4,6 @@ import com.techelevator.models.Inventory;
 import com.techelevator.models.Transaction;
 import com.techelevator.models.file_io.SalesReport;
 import com.techelevator.models.file_io.SalesReportReader;
-import com.techelevator.ui.Spinner;
 import com.techelevator.ui.LoadingBar;
 import com.techelevator.ui.UserInput;
 import com.techelevator.ui.UserOutput;

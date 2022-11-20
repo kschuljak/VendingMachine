@@ -6,7 +6,7 @@ public class LoadingBar
 {
     public static void displayLoadingBar()
     {
-        System.out.println("\nDispensing...");
+        System.out.println("\n-Dispensing-");
 
         for (int i = 0; i <= 100; i = i + 10)
         {

@@ -63,22 +63,23 @@ public class UserOutput {
 
     public static void displayPurchaseSuccess(String name)
     {
+        System.out.println();
         System.out.println(italicize("*Ca-THUNK*") + name + " dispensed!");
     }
 
     public static void displayItemTypeReturnMessage(String type) {
         switch (type.toLowerCase()) {
             case "chip":
-                System.out.println("Crunch Crunch, Yum!");
+                System.out.println(Colors.PURPLE + "Crunch Crunch, Yum!" + Colors.RESET);
                 break;
             case "candy":
-                System.out.println("Munch Munch, Yum!");
+                System.out.println(Colors.PURPLE + "Munch Munch, Yum!" + Colors.RESET);
                 break;
             case "drink":
-                System.out.println("Glug Glug, Yum!");
+                System.out.println(Colors.PURPLE + "Glug Glug, Yum!" + Colors.RESET);
                 break;
             case "gum":
-                System.out.println("Chew Chew, Yum!");
+                System.out.println(Colors.PURPLE + "Chew Chew, Yum!" + Colors.RESET);
                 break;
             default:
                 break;
@@ -86,9 +87,11 @@ public class UserOutput {
     }
 
     public static void displaySummaryIntro() {
-        displayThankYou();
+        displaySummaryDivider();
         System.out.println();
-        System.out.println("Items Purchased: ");
+        System.out.println("--------------------");
+        System.out.println("  Items Purchased   ");
+        System.out.println("--------------------");
     }
 
     public static void displayItemSummary(String item, String amount)
@@ -108,7 +111,8 @@ public class UserOutput {
         System.out.println(dimeString + dimes);
         String nickleString = formatChangeString("Nickels: ");
         System.out.println(nickleString + nickels);
-        System.out.println("--------------------");
+        System.out.println();
+        displayThankYou();
     }
 
     public static String formatChangeString(String coin)
@@ -150,17 +154,17 @@ public class UserOutput {
 
     public static void displayProductWithStock(String id, String name, BigDecimal price, int quantity)
     {
-        System.out.println("[" + id + "] " + name + " $" + price + " - Left: " + quantity);
+        System.out.println(Colors.PURPLE + "[" + id + "] " + Colors.RESET + name + " $" + price + " " + Colors.PURPLE + "[stock: " + quantity + "]" + Colors.RESET);
     }
 
     public static void displayProductSoldOut(String id, String name, BigDecimal price)
     {
-        System.out.println("[" + id + "] " + name + " $" + price + " - " + Colors.RED + "SOLD OUT" + Colors.RESET);
+        System.out.println(Colors.PURPLE + "[" + id + "] " + Colors.RESET + name + " $" + price + " " + Colors.RED + "[SOLD OUT]" + Colors.RESET);
     }
 
     public static void kickedVendingMachineMessage()
     {
-        System.out.println(Colors.RED_BACKGROUND + italicize("An avalanche of snacks and soda spills out at your feet, emptying the vending machine!") + Colors.RESET);
+        System.out.println(Colors.RED_BACKGROUND + Colors.BLACK + italicize(" An avalanche of snacks and soda spills out at your feet, emptying the vending machine! ") + Colors.RESET);
     }
 
     public static void createBorder(String string)
@@ -187,12 +191,17 @@ public class UserOutput {
         System.out.println(Colors.RED + message + Colors.RESET);
     }
 
+    public static void displaySummaryDivider()
+    {
+        System.out.println(Colors.PURPLE + "*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*" + Colors.RESET);
+    }
+
     public static void displayThankYou()
     {
-        Spinner.displaySpinner();
-        System.out.println("*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*");
-        System.out.println("THANK YOU FOR SHOPPING WITH US TODAY!");
-        System.out.println("*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*");
+        System.out.println(Colors.PURPLE + "*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*");
+        System.out.println("                 THANK YOU FOR SHOPPING WITH US TODAY!");
+        System.out.println("*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*" + Colors.RESET);
+        System.out.println();
     }
 
     public static void displaySplashScreen()

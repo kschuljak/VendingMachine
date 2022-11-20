@@ -9,10 +9,10 @@ Wonka Bar|2
 Crunchie|1
 Moonpie|1
 Potato Crisps|7
-Triplemint|1
+Triplemint|2
 Mountain Melter|0
 U-Chews|0
 Grain Waves|0
 Chiclets|0
 
-**TOTAL SALES** $46.35
+**TOTAL SALES** $47.10

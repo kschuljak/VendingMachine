@@ -95,7 +95,7 @@ public class Transaction {
                 String id = selection.getSlotID();
                 BigDecimal price = selection.getPrice();
                 TransactionLog.createLogEntry(name + " " + id + " " + price + " " + remainingFunds);
-                System.out.println();
+
                 UserOutput.displayPurchaseSuccess(name);
                 UserOutput.displayItemTypeReturnMessage(type);
             }
@@ -208,6 +208,7 @@ public class Transaction {
         UserOutput.displaySummaryIntro();
         getItemSummary(productsPurchased);
         returnChange(remainingFunds);
+
         return productsPurchased;
     }
 
