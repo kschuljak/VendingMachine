@@ -1,5 +1,5 @@
 Stackers|0
-Cowtales|1
+Cowtales|2
 Cola|0
 Heavy|0
 Cloud Popcorn|0
@@ -15,4 +15,4 @@ U-Chews|0
 Grain Waves|0
 Chiclets|0
 
-**TOTAL SALES** $47.10
+**TOTAL SALES** $48.60

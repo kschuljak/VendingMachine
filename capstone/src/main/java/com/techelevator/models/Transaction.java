@@ -9,6 +9,7 @@ import com.techelevator.models.file_io.Logger;
 import com.techelevator.models.file_io.SalesReport;
 import com.techelevator.models.file_io.TransactionLog;
 import com.techelevator.models.products.Product;
+import com.techelevator.ui.LoadingBar;
 import com.techelevator.ui.UserOutput;
 
 import java.math.BigDecimal;
@@ -95,7 +96,7 @@ public class Transaction {
                 String id = selection.getSlotID();
                 BigDecimal price = selection.getPrice();
                 TransactionLog.createLogEntry(name + " " + id + " " + price + " " + remainingFunds);
-
+                LoadingBar.displayLoadingBar();
                 UserOutput.displayPurchaseSuccess(name);
                 UserOutput.displayItemTypeReturnMessage(type);
             }

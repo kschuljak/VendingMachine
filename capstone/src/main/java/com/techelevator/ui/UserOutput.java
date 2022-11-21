@@ -64,7 +64,7 @@ public class UserOutput {
     public static void displayPurchaseSuccess(String name)
     {
         System.out.println();
-        System.out.println(italicize("*Ca-THUNK*") + name + " dispensed!");
+        System.out.println(italicize("*Ca-THUNK* ") + name + " dispensed!");
     }
 
     public static void displayItemTypeReturnMessage(String type) {

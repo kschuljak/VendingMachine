@@ -103,7 +103,6 @@ public class VendingMachine
         System.out.print(Console.CLEAR_SCREEN);
         UserOutput.displayEnterProduct();
         String productSelection = UserInput.getPurchaseItemSelection();
-        LoadingBar.displayLoadingBar();
         transaction.purchaseItem(productSelection);
     }
 
