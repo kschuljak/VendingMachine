@@ -1,4 +1,4 @@
-Stackers|0
+Stackers|1
 Cowtales|2
 Cola|0
 Heavy|0
@@ -8,11 +8,11 @@ Little League Chew|0
 Wonka Bar|2
 Crunchie|1
 Moonpie|1
-Potato Crisps|7
+Potato Crisps|11
 Triplemint|2
 Mountain Melter|0
 U-Chews|0
 Grain Waves|0
 Chiclets|0
 
-**TOTAL SALES** $48.60
+**TOTAL SALES** $62.25

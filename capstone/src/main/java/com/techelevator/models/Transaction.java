@@ -210,6 +210,9 @@ public class Transaction {
         getItemSummary(productsPurchased);
         returnChange(remainingFunds);
 
+        Scanner input = new Scanner(System.in);
+        System.out.println("Press enter to return to main menu...");
+        input.nextLine();
         return productsPurchased;
     }
 

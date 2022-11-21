@@ -75,6 +75,7 @@ public class VendingMachine
             else if (purchaseMenuSelection.equals("4"))
             {
                 // Finish transaction
+                System.out.print(Console.CLEAR_SCREEN);
                 transaction.finishTransaction();
                 transaction = new Transaction();
                 mainMenu();
