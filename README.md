@@ -12,7 +12,7 @@ Java Console Vending Machine App
   String funds = remainingFunds.toString();
   displayRemainingFunds(funds);
   ```
-  - Adding money updates current funds
+  - Adding money updates current funds   
   ![image](https://user-images.githubusercontent.com/47723396/203185135-fd158f03-27f2-4fd3-aef6-5f28e27df11f.png)      
   ```java
   public void addMoney(BigDecimal amount){
