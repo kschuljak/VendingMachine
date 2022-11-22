@@ -61,7 +61,8 @@ Java Console Vending Machine App
   ```
   ![image](https://user-images.githubusercontent.com/47723396/203185389-3059fbb6-fe1f-4eaf-b905-9375759058d0.png)
      
-- If selected product costs more than available funds, error is displayed and transaction does not complete 
+- If selected product costs more than available funds, error is displayed and transaction does not complete    
+  ![image](https://user-images.githubusercontent.com/47723396/203185477-40d2f7b6-c386-4f82-a187-40febce78f99.png)
   ```java
   public boolean hasEnoughMoney(Product product) {
      BigDecimal zero = new BigDecimal("0.00");
@@ -80,8 +81,6 @@ Java Console Vending Machine App
      } return isValid;
   }
   ```
-  ![image](https://user-images.githubusercontent.com/47723396/203185477-40d2f7b6-c386-4f82-a187-40febce78f99.png)
-    
 - Displayed inventory reflects current stock   
   ![image](https://user-images.githubusercontent.com/47723396/203185706-be67d70e-0979-4394-87f8-782ae4baff47.png)
      
