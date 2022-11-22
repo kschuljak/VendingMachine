@@ -13,6 +13,7 @@ Java Console Vending Machine App
   ![image](https://user-images.githubusercontent.com/47723396/203184956-10a2dcb5-f676-406d-bd1d-88ca979cf31c.png)
      
 - Inventory display includes item cost and current stock   
+- Display is formatted so that product names have a standard length, so that price and quantity display nicely.
   ```java
   for (Product product : productList) {
             String id = product.getSlotID();
