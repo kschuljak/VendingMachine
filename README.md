@@ -24,5 +24,10 @@ TechElevator Capstone 1
 - A hidden menu option displays a current sales report   
 ![image](https://user-images.githubusercontent.com/47723396/203186694-95e7ff9e-de3b-42f4-bb7e-8c718fa7dc53.png)
 - Another hidden menu option promps the vending machine to dispense all remaining products for free   
-- ![image](https://user-images.githubusercontent.com/47723396/203186857-3202450a-95aa-4737-b54b-289d3bb3281d.png)
+![image](https://user-images.githubusercontent.com/47723396/203186857-3202450a-95aa-4737-b54b-289d3bb3281d.png)
+
+### Initial Diagram 
+- Flow diagram (credit to Daniel Duque)
+![image](https://user-images.githubusercontent.com/47723396/203187111-b9a87bf0-9eac-47da-9064-8646a941114c.png)
+
 
