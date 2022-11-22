@@ -59,7 +59,26 @@ Java Console Vending Machine App
   ```
   ![image](https://user-images.githubusercontent.com/47723396/203185389-3059fbb6-fe1f-4eaf-b905-9375759058d0.png)
      
-- If selected product costs more than available funds, error is displayed and transaction does not complete   
+- If selected product costs more than available funds, error is displayed and transaction does not complete 
+  ```java
+  public boolean hasEnoughMoney(Product product) {
+     BigDecimal zero = new BigDecimal("0.00");
+     BigDecimal itemCost = product.getPrice();
+     boolean isValid = false;
+
+     if (itemCost != null) {
+        try {
+           BigDecimal totalFunds = getRemainingFunds();
+           if (totalFunds.compareTo(itemCost) >= 0) isValid = true;
+           else {
+              UserOutput.displayErrorMessage("Insufficient funds! \nPlease add money to purchase item.");
+              throw new InsufficientFundsException("Insufficient funds.", remainingFunds, itemCost);
+           }
+        } catch (InsufficientFundsException exception) Logger.createLogEntry(exception.getMessage());
+     } 
+     return isValid;
+  }
+  ```
   ![image](https://user-images.githubusercontent.com/47723396/203185477-40d2f7b6-c386-4f82-a187-40febce78f99.png)
     
 - Displayed inventory reflects current stock   
