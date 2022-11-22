@@ -28,7 +28,6 @@
 
 
 ### Initial planning 
-(*diagram by Daniel Duque*)
 ![image](https://user-images.githubusercontent.com/47723396/203187111-b9a87bf0-9eac-47da-9064-8646a941114c.png)
-
+(*diagram by Daniel Duque*)
 
