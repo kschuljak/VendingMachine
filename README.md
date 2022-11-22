@@ -3,7 +3,12 @@ Java Console Vending Machine App
 
 - Intro and main menu   
   ![image](https://user-images.githubusercontent.com/47723396/203184846-86a43f6e-2167-4c21-974d-f77188ca5fbb.png)
-- Current funds displayed over transaction menu   
+- Current funds is displayed over transaction menu
+  ```java
+  BigDecimal remainingFunds = transaction.getRemainingFunds();
+  String funds = remainingFunds.toString();
+  displayRemainingFunds(funds);
+  ```
   ![image](https://user-images.githubusercontent.com/47723396/203184956-10a2dcb5-f676-406d-bd1d-88ca979cf31c.png)
 - Inventory display includes item cost and current stock   
   ![image](https://user-images.githubusercontent.com/47723396/203185032-104382dd-7593-4e8b-941b-10771a33a8ff.png)
