@@ -13,8 +13,9 @@ Java Console Vending Machine App
   displayRemainingFunds(funds);
   ```
 - Inventory display includes item cost and current stock   
-- Display is formatted such that product categories display evenly for easier visibility
-  ```java
+- Display is formatted such that product categories display evenly for easier visibility   
+  ![image](https://user-images.githubusercontent.com/47723396/203185032-104382dd-7593-4e8b-941b-10771a33a8ff.png) 
+   ```java
   for (Product product : productList) {
             String id = product.getSlotID();
             String name = product.getName() + "*";
@@ -28,7 +29,6 @@ Java Console Vending Machine App
             else UserOutput.displayProductWithStock(id, formattedName, price, quantity);
    }
    ```
-  ![image](https://user-images.githubusercontent.com/47723396/203185032-104382dd-7593-4e8b-941b-10771a33a8ff.png)
      
 - Adding money updates current funds   
   ```java
