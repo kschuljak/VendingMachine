@@ -96,10 +96,8 @@ Java Console Vending Machine App
            UserOutput.displayErrorMessage("This item is out of stock! \nPlease select a different item.");
            throw new InsufficientStockException("This product is not available", quantity);
         }
-        } catch (InsufficientStockException exception) {
-            Logger.createLogEntry(exception.getMessage());
-        } 
-        return isInStock;
+     } catch (InsufficientStockException exception) Logger.createLogEntry(exception.getMessage());
+     return isInStock;
   }
   ```
   ![image](https://user-images.githubusercontent.com/47723396/203185858-179e5b7c-8fa0-4004-80be-dc70ebebf6e3.png)
