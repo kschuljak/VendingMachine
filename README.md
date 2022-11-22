@@ -29,9 +29,17 @@ Java Console Vending Machine App
   ![image](https://user-images.githubusercontent.com/47723396/203185032-104382dd-7593-4e8b-941b-10771a33a8ff.png)
      
 - Adding money updates current funds   
+  ```java
+  public void addMoney(BigDecimal amount){
+     if (isMoneyValid(amount)) {
+        remainingFunds = remainingFunds.add(amount);
+        TransactionLog.createLogEntry("FEED MONEY: " + amount + " " + remainingFunds);
+     }
+  }
+  ```
   ![image](https://user-images.githubusercontent.com/47723396/203185135-fd158f03-27f2-4fd3-aef6-5f28e27df11f.png)
      
-- Selecting a product prompts a dispensing loading bar and purchased item, and updates current funds   
+- Selecting a product prompts a dispensing loading bar and purchased item to display, and updates current funds   
   ![image](https://user-images.githubusercontent.com/47723396/203185389-3059fbb6-fe1f-4eaf-b905-9375759058d0.png)
      
 - If selected product costs more than available funds, error is displayed and transaction does not complete   
