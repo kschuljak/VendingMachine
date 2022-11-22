@@ -40,6 +40,23 @@ Java Console Vending Machine App
   ![image](https://user-images.githubusercontent.com/47723396/203185135-fd158f03-27f2-4fd3-aef6-5f28e27df11f.png)
      
 - Selecting a product prompts a dispensing loading bar and purchased item to display, and updates current funds   
+  ```java
+  if (selection != null
+     && isInStock(selection)
+     && isItemSelectionValid(itemID)
+     && hasEnoughMoney(selection)
+  ) {
+     Inventory.updateInventory(selection, ITEM_QUANTITY_PER_SELECTION);
+     updatePurchases(selection);
+     spendMoney(selection);
+     SalesReport.update(selection);
+     // ... (get name, id, price, remainingFunds)
+     TransactionLog.createLogEntry(name + " " + id + " " + price + " " + remainingFunds);
+     LoadingBar.displayLoadingBar();
+     UserOutput.displayPurchaseSuccess(name);
+     UserOutput.displayItemTypeReturnMessage(type);
+  }
+  ```
   ![image](https://user-images.githubusercontent.com/47723396/203185389-3059fbb6-fe1f-4eaf-b905-9375759058d0.png)
      
 - If selected product costs more than available funds, error is displayed and transaction does not complete   
