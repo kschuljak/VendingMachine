@@ -136,7 +136,7 @@ Java Console Vending Machine App
 - Current stock persists between transactions   
   ![image](https://user-images.githubusercontent.com/47723396/203186555-660d8356-2781-4b76-999a-db4aee0653b7.png)
     
-### SALES REPORT
+## SALES REPORT
 - A hidden menu option displays a current sales report
 - An up-to-date sales report is written to a .csv file whenever the hidden menu option is called or the user selects the option to exit the program.
 - When the program is next run, the information from the .csv file is read and stored in memory until a new sales report is printed to overwrite the old file.   
