@@ -75,8 +75,7 @@ Java Console Vending Machine App
               throw new InsufficientFundsException("Insufficient funds.", remainingFunds, itemCost);
            }
         } catch (InsufficientFundsException exception) Logger.createLogEntry(exception.getMessage());
-     } 
-     return isValid;
+     } return isValid;
   }
   ```
   ![image](https://user-images.githubusercontent.com/47723396/203185477-40d2f7b6-c386-4f82-a187-40febce78f99.png)
