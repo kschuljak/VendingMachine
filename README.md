@@ -1,11 +1,11 @@
 # Vendo-Matic 800
 Java Console Vending Machine App
 
-## Splash Screen & Main Menu 
+## Splash Screen & Main Menu   
   ![image](https://user-images.githubusercontent.com/47723396/203184846-86a43f6e-2167-4c21-974d-f77188ca5fbb.png)
      
 ## Transaction Menu
-- Current funds are displayed over transaction menu
+- Current funds are displayed over transaction menu   
   ![image](https://user-images.githubusercontent.com/47723396/203184956-10a2dcb5-f676-406d-bd1d-88ca979cf31c.png)
   ```java
   BigDecimal remainingFunds = transaction.getRemainingFunds();
@@ -13,6 +13,7 @@ Java Console Vending Machine App
   displayRemainingFunds(funds);
   ```
   - Adding money updates current funds   
+  ![image](https://user-images.githubusercontent.com/47723396/203185032-104382dd-7593-4e8b-941b-10771a33a8ff.png)    
   ```java
   public void addMoney(BigDecimal amount){
      if (isMoneyValid(amount)) {
@@ -22,9 +23,8 @@ Java Console Vending Machine App
   }
   ```
 - Inventory display includes item cost and current stock   
-- Display is formatted such that product categories display evenly for easier visibility   
-  ![image](https://user-images.githubusercontent.com/47723396/203185032-104382dd-7593-4e8b-941b-10771a33a8ff.png) 
-   ```java
+  - Display is formatted such that product categories display evenly for easier visibility   
+  ```java
   for (Product product : productList) {
             String id = product.getSlotID();
             String name = product.getName() + "*";
@@ -97,7 +97,7 @@ Java Console Vending Machine App
      
 ## Error Handling
      
-- If selected product costs more than available funds, error is displayed and transaction does not complete    
+- If selected product costs more than available funds, an error is displayed and transaction does not complete    
   ![image](https://user-images.githubusercontent.com/47723396/203185477-40d2f7b6-c386-4f82-a187-40febce78f99.png)
   ```java
   public boolean hasEnoughMoney(Product product) {
@@ -120,7 +120,8 @@ Java Console Vending Machine App
 - Displayed inventory reflects current stock   
   ![image](https://user-images.githubusercontent.com/47723396/203185706-be67d70e-0979-4394-87f8-782ae4baff47.png)
      
-- If an item is out of stock, stock quantity in display is replaced by 'SOLD OUT', and trying to purchase an out of stock item will display an error   
+  - If an item is out of stock, stock quantity in display is replaced by 'SOLD OUT', and trying to purchase an out of stock item will display an error   
+  ![image](https://user-images.githubusercontent.com/47723396/203185858-179e5b7c-8fa0-4004-80be-dc70ebebf6e3.png)
   ```java
   public boolean isInStock(Product product) {
      boolean isInStock = false;
@@ -136,8 +137,6 @@ Java Console Vending Machine App
      return isInStock;
   }
   ```
-  ![image](https://user-images.githubusercontent.com/47723396/203185858-179e5b7c-8fa0-4004-80be-dc70ebebf6e3.png)
-     
     
 ## SALES REPORT
 - A hidden menu option displays a current sales report
