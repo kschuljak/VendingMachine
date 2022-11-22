@@ -13,6 +13,18 @@ Java Console Vending Machine App
   ![image](https://user-images.githubusercontent.com/47723396/203184956-10a2dcb5-f676-406d-bd1d-88ca979cf31c.png)
      
 - Inventory display includes item cost and current stock   
+  ```java
+  for (Product product : productList) {
+            String id = product.getSlotID();
+            String name = product.getName() + "*";
+            String nameNoSpaces = name.replace(' ', '*');
+            String formattedName = String.format("%-20s", nameNoSpaces).replace(' ', '-').replace('*', ' ');
+            BigDecimal price = product.getPrice();
+            int quantity = product.getQuantity();
+            if (quantity == 0) UserOutput.displayProductSoldOut(id, formattedName, price);
+            else UserOutput.displayProductWithStock(id, formattedName, price, quantity);
+   }
+   ```
   ![image](https://user-images.githubusercontent.com/47723396/203185032-104382dd-7593-4e8b-941b-10771a33a8ff.png)
      
 - Adding money updates current funds   
