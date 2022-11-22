@@ -102,6 +102,35 @@ Java Console Vending Machine App
   ![image](https://user-images.githubusercontent.com/47723396/203185858-179e5b7c-8fa0-4004-80be-dc70ebebf6e3.png)
      
 - Finishing the transaction promps a list of items purchased and change dispensed to display along with a thank you message   
+  ```java
+  public Map<Product, Integer> finishTransaction() {
+     UserOutput.displaySummaryIntro();
+     getItemSummary(productsPurchased);
+     returnChange(remainingFunds);
+     // ...
+  }
+  
+  public void getItemSummary(Map<Product, Integer> productsPurchased) {
+     for (Map.Entry<Product, Integer> product: productsPurchased.entrySet()) {
+        String productName = product.getKey().getName();
+        String amountPurchased = product.getValue().toString();
+        UserOutput.displayItemSummary(productName, amountPurchased);
+     }
+  }
+
+  public void returnChange(BigDecimal remainingFunds) {
+     int remaining = remainingFunds.multiply(new BigDecimal("100")).intValue();
+     final int QUARTER = 25;
+     final int DIME = 10;
+     final int NICKEL = 5;
+     int quartersReturned = remaining / QUARTER;
+     int lessQuarters = remaining % QUARTER;
+     int dimesReturned = lessQuarters / DIME;
+     int lessDimes = lessQuarters % DIME;
+     int nicklesReturned = lessDimes / NICKEL;
+     UserOutput.displayChange(quartersReturned, dimesReturned, nicklesReturned);
+  }
+  ```
   ![image](https://user-images.githubusercontent.com/47723396/203186349-0109b11c-5a1e-4cb7-837d-e1734dcd7ce6.png)
      
 - Current stock persists between transactions   
