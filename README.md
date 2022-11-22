@@ -120,9 +120,7 @@ Java Console Vending Machine App
 
   public void returnChange(BigDecimal remainingFunds) {
      int remaining = remainingFunds.multiply(new BigDecimal("100")).intValue();
-     final int QUARTER = 25;
-     final int DIME = 10;
-     final int NICKEL = 5;
+     // set constants QUARTER, DIME, NICKEL
      int quartersReturned = remaining / QUARTER;
      int lessQuarters = remaining % QUARTER;
      int dimesReturned = lessQuarters / DIME;
