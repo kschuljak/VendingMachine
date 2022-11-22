@@ -17,4 +17,6 @@ TechElevator Capstone 1
 ![image](https://user-images.githubusercontent.com/47723396/203185706-be67d70e-0979-4394-87f8-782ae4baff47.png)
 - If an item is out of stock, stock in display is replaced by 'SOLD OUT', and trying to purchase an out of stock item will display an error.
 ![image](https://user-images.githubusercontent.com/47723396/203185858-179e5b7c-8fa0-4004-80be-dc70ebebf6e3.png)
+-
+![image](https://user-images.githubusercontent.com/47723396/203186196-736b71d6-5961-4b89-8b8d-614da6ccd347.png)
 
