@@ -138,6 +138,11 @@ Java Console Vending Machine App
   ![image](https://user-images.githubusercontent.com/47723396/203186694-95e7ff9e-de3b-42f4-bb7e-8c718fa7dc53.png)
      
 - Another hidden menu option promps the vending machine to dispense all remaining products for free   
+  ```java
+  public static void kickTheVendingMachine() {
+     for (Product product : productList) product.setQuantity(0);
+  }
+  ```
   ![image](https://user-images.githubusercontent.com/47723396/203186857-3202450a-95aa-4737-b54b-289d3bb3281d.png)
 
 
