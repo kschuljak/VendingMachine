@@ -13,7 +13,7 @@ Java Console Vending Machine App
   displayRemainingFunds(funds);
   ```
 - Inventory display includes item cost and current stock   
-- Display is formatted such that product names have a standard length, so that the display is easy to read
+- Display is formatted such that product categories display evenly for easier visibility
   ```java
   for (Product product : productList) {
             String id = product.getSlotID();
