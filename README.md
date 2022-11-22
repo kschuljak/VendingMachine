@@ -26,8 +26,9 @@ TechElevator Capstone 1
 - Another hidden menu option promps the vending machine to dispense all remaining products for free   
 ![image](https://user-images.githubusercontent.com/47723396/203186857-3202450a-95aa-4737-b54b-289d3bb3281d.png)
 
-### Initial Diagram 
-- Flow diagram (credit to Daniel Duque)
+
+### Initial planning 
+(*diagram by Daniel Duque*)
 ![image](https://user-images.githubusercontent.com/47723396/203187111-b9a87bf0-9eac-47da-9064-8646a941114c.png)
 
 
