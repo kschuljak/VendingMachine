@@ -19,7 +19,9 @@ Java Console Vending Machine App
             String id = product.getSlotID();
             String name = product.getName() + "*";
             String nameNoSpaces = name.replace(' ', '*');
-            String formattedName = String.format("%-20s", nameNoSpaces).replace(' ', '-').replace('*', ' ');
+            String formattedName = String.format("%-20s", nameNoSpaces)
+                                         .replace(' ', '-')
+                                         .replace('*', ' ');
             BigDecimal price = product.getPrice();
             int quantity = product.getQuantity();
             if (quantity == 0) UserOutput.displayProductSoldOut(id, formattedName, price);
