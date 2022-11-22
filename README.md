@@ -5,12 +5,21 @@ Java Console Vending Machine App
   ![image](https://user-images.githubusercontent.com/47723396/203184846-86a43f6e-2167-4c21-974d-f77188ca5fbb.png)
      
 ## Transaction Menu
+- Current funds are displayed over transaction menu
   ![image](https://user-images.githubusercontent.com/47723396/203184956-10a2dcb5-f676-406d-bd1d-88ca979cf31c.png)
-- Current funds is displayed over transaction menu
   ```java
   BigDecimal remainingFunds = transaction.getRemainingFunds();
   String funds = remainingFunds.toString();
   displayRemainingFunds(funds);
+  ```
+  - Adding money updates current funds   
+  ```java
+  public void addMoney(BigDecimal amount){
+     if (isMoneyValid(amount)) {
+        remainingFunds = remainingFunds.add(amount);
+        TransactionLog.createLogEntry("FEED MONEY: " + amount + " " + remainingFunds);
+     }
+  }
   ```
 - Inventory display includes item cost and current stock   
 - Display is formatted such that product categories display evenly for easier visibility   
@@ -30,15 +39,7 @@ Java Console Vending Machine App
    }
    ```
      
-- Adding money updates current funds   
-  ```java
-  public void addMoney(BigDecimal amount){
-     if (isMoneyValid(amount)) {
-        remainingFunds = remainingFunds.add(amount);
-        TransactionLog.createLogEntry("FEED MONEY: " + amount + " " + remainingFunds);
-     }
-  }
-  ```
+
   ![image](https://user-images.githubusercontent.com/47723396/203185135-fd158f03-27f2-4fd3-aef6-5f28e27df11f.png)
      
 - Selecting a product prompts a dispensing loading bar and purchased item to display, and updates current funds   
