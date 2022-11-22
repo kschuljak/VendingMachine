@@ -61,7 +61,7 @@ Java Console Vending Machine App
   ```
   ![image](https://user-images.githubusercontent.com/47723396/203185389-3059fbb6-fe1f-4eaf-b905-9375759058d0.png)
   
-  - Finishing the transaction promps a list of items purchased and change dispensed to display along with a thank you message   
+- Finishing the transaction promps a list of items purchased and change dispensed to display along with a thank you message   
   ```java
   public Map<Product, Integer> finishTransaction() {
      UserOutput.displaySummaryIntro();
