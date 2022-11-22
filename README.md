@@ -1,9 +1,10 @@
 # Vendo-Matic 800
 Java Console Vending Machine App
 
-- Intro and main menu   
+## Splash Screen and Main Menu 
   ![image](https://user-images.githubusercontent.com/47723396/203184846-86a43f6e-2167-4c21-974d-f77188ca5fbb.png)
      
+## Transaction Menu
 - Current funds is displayed over transaction menu
   ```java
   BigDecimal remainingFunds = transaction.getRemainingFunds();
