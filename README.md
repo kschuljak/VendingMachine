@@ -1,5 +1,5 @@
 # Vending Machine
-Java Console App
+Java Console App   
 (*TechElevator Capstone 1*)
 
 - Intro and main menu   
