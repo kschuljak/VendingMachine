@@ -85,6 +85,23 @@ Java Console Vending Machine App
   ![image](https://user-images.githubusercontent.com/47723396/203185706-be67d70e-0979-4394-87f8-782ae4baff47.png)
      
 - If an item is out of stock, stock in display is replaced by 'SOLD OUT', and trying to purchase an out of stock item will display an error   
+  ```java
+  public boolean isInStock(Product product) {
+     boolean isInStock = false;
+     int quantity = 0;
+     if (product != null) quantity = product.getQuantity();
+     try {
+        if (quantity > 0) isInStock = true;
+        else {
+           UserOutput.displayErrorMessage("This item is out of stock! \nPlease select a different item.");
+           throw new InsufficientStockException("This product is not available", quantity);
+        }
+        } catch (InsufficientStockException exception) {
+            Logger.createLogEntry(exception.getMessage());
+        } 
+        return isInStock;
+  }
+  ```
   ![image](https://user-images.githubusercontent.com/47723396/203185858-179e5b7c-8fa0-4004-80be-dc70ebebf6e3.png)
      
 - Finishing the transaction promps a list of items purchased and change dispensed to display along with a thank you message   
