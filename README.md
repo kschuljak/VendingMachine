@@ -19,3 +19,8 @@ TechElevator Capstone 1
 ![image](https://user-images.githubusercontent.com/47723396/203185858-179e5b7c-8fa0-4004-80be-dc70ebebf6e3.png)
 - Finishing the transaction promps a list of items purchased and change dispensed to display along with a thank you message
 ![image](https://user-images.githubusercontent.com/47723396/203186349-0109b11c-5a1e-4cb7-837d-e1734dcd7ce6.png)
+- Current stock persists between transactions
+- ![image](https://user-images.githubusercontent.com/47723396/203186555-660d8356-2781-4b76-999a-db4aee0653b7.png)
+- A hidden menu option displays a current sales report
+![image](https://user-images.githubusercontent.com/47723396/203186694-95e7ff9e-de3b-42f4-bb7e-8c718fa7dc53.png)
+
