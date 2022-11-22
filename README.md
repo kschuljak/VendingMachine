@@ -12,8 +12,8 @@ Java Console Vending Machine App
   String funds = remainingFunds.toString();
   displayRemainingFunds(funds);
   ```
-  - Adding money updates current funds   
-  ![image](https://user-images.githubusercontent.com/47723396/203185032-104382dd-7593-4e8b-941b-10771a33a8ff.png)    
+  - Adding money updates current funds
+  ![image](https://user-images.githubusercontent.com/47723396/203185135-fd158f03-27f2-4fd3-aef6-5f28e27df11f.png)      
   ```java
   public void addMoney(BigDecimal amount){
      if (isMoneyValid(amount)) {
@@ -23,6 +23,7 @@ Java Console Vending Machine App
   }
   ```
 - Inventory display includes item cost and current stock   
+![image](https://user-images.githubusercontent.com/47723396/203185032-104382dd-7593-4e8b-941b-10771a33a8ff.png) 
   - Display is formatted such that product categories display evenly for easier visibility   
   ```java
   for (Product product : productList) {
@@ -37,11 +38,7 @@ Java Console Vending Machine App
             if (quantity == 0) UserOutput.displayProductSoldOut(id, formattedName, price);
             else UserOutput.displayProductWithStock(id, formattedName, price, quantity);
    }
-   ```
-     
-
-  ![image](https://user-images.githubusercontent.com/47723396/203185135-fd158f03-27f2-4fd3-aef6-5f28e27df11f.png)
-     
+   ```     
 - Selecting a product prompts a dispensing loading bar and purchased item to display, and updates current funds   
   ```java
   if (selection != null
@@ -63,6 +60,7 @@ Java Console Vending Machine App
   ![image](https://user-images.githubusercontent.com/47723396/203185389-3059fbb6-fe1f-4eaf-b905-9375759058d0.png)
   
 - Finishing the transaction promps a list of items purchased and change dispensed to display along with a thank you message   
+![image](https://user-images.githubusercontent.com/47723396/203186349-0109b11c-5a1e-4cb7-837d-e1734dcd7ce6.png)   
   ```java
   public Map<Product, Integer> finishTransaction() {
      UserOutput.displaySummaryIntro();
@@ -90,7 +88,7 @@ Java Console Vending Machine App
      UserOutput.displayChange(quartersReturned, dimesReturned, nicklesReturned);
   }
   ```
-  ![image](https://user-images.githubusercontent.com/47723396/203186349-0109b11c-5a1e-4cb7-837d-e1734dcd7ce6.png)
+
      
 - Current stock persists between transactions   
   ![image](https://user-images.githubusercontent.com/47723396/203186555-660d8356-2781-4b76-999a-db4aee0653b7.png)
