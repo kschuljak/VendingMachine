@@ -117,6 +117,8 @@ else if (!Validator.isInStock(selection)) {
      
 ## Error Handling
 Program has custom exceptions for insufficient funds, invalid funds, invalid selection, and insufficient stock. 
+![Untitled design (1)](https://user-images.githubusercontent.com/47723396/206980855-751f2c53-30fd-46e7-bd2a-89e62a9a8f90.png)
+
 ```java
 // if user enters $1, $5, $10, or $20 add money, otherwise throw Invalid Funds Exception
 try {
