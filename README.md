@@ -108,47 +108,30 @@ Java Console Vending Machine App
   ![image](https://user-images.githubusercontent.com/47723396/203186555-660d8356-2781-4b76-999a-db4aee0653b7.png)
      
 ## Error Handling
+Program has custom exceptions for insufficient funds, invalid funds, invalid selection, and insufficient stock. 
+```java
+try {
+    userOutput.displayEnterProduct();
+    String productSelection = userInput.getSelection();
+    transaction.purchaseItem(productSelection);
+} catch (InvalidOptionException ex) {       // if user does not enter a valid product code
+           // display error message for user and write exception to log file
+} catch (InsufficientStockException ex) {   // if user tries to purchase an item that's out of stock
+           // display error message for user and write exception to log file
+} catch (InsufficientFundsException ex) {   // if user does not have enough money to purchase item
+           // display error message for user and write exception to log file
+} catch (Exception ex) {                    // generic exception
+            Logger.createLogEntry(ex.getMessage());
+}
+```
      
 - If selected product costs more than available funds, an error is displayed and transaction does not complete    
-  ![image](https://user-images.githubusercontent.com/47723396/203185477-40d2f7b6-c386-4f82-a187-40febce78f99.png)
-  ```java
-  public boolean hasEnoughMoney(Product product) {
-     BigDecimal zero = new BigDecimal("0.00");
-     BigDecimal itemCost = product.getPrice();
-     boolean isValid = false;
-
-     if (itemCost != null) {
-        try {
-           BigDecimal totalFunds = getRemainingFunds();
-           if (totalFunds.compareTo(itemCost) >= 0) isValid = true;
-           else {
-              UserOutput.displayErrorMessage("Insufficient funds! \nPlease add money to purchase item.");
-              throw new InsufficientFundsException("Insufficient funds.", remainingFunds, itemCost);
-           }
-        } catch (InsufficientFundsException exception) Logger.createLogEntry(exception.getMessage());
-     } return isValid;
-  }
-  ```
 - Displayed inventory reflects current stock   
   ![image](https://user-images.githubusercontent.com/47723396/203185706-be67d70e-0979-4394-87f8-782ae4baff47.png)
      
   - If an item is out of stock, stock quantity in display is replaced by 'SOLD OUT', and trying to purchase an out of stock item will display an error   
   ![image](https://user-images.githubusercontent.com/47723396/203185858-179e5b7c-8fa0-4004-80be-dc70ebebf6e3.png)
-  ```java
-  public boolean isInStock(Product product) {
-     boolean isInStock = false;
-     int quantity = 0;
-     if (product != null) quantity = product.getQuantity();
-     try {
-        if (quantity > 0) isInStock = true;
-        else {
-           UserOutput.displayErrorMessage("This item is out of stock! \nPlease select a different item.");
-           throw new InsufficientStockException("This product is not available", quantity);
-        }
-     } catch (InsufficientStockException exception) Logger.createLogEntry(exception.getMessage());
-     return isInStock;
-  }
-  ```
+ 
     
 ## SALES REPORT
 - A hidden menu option displays a current sales report
