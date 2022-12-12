@@ -110,6 +110,15 @@ Java Console Vending Machine App
 ## Error Handling
 Program has custom exceptions for insufficient funds, invalid funds, invalid selection, and insufficient stock. 
 ```java
+// if user enters $1, $5, $10, or $20 add money, otherwise throw Invalid Funds Exception
+try {
+    transaction.addMoney(userFunds);
+} catch (InvalidFundsException ex) {
+    UserOutput.displayErrorMessage("That is not a valid bill type! \nThis machine accepts $1, $5, $10, & $20");
+    Logger.createLogEntry(ex.getMessage());
+}
+```
+```java
 try {
     userOutput.displayEnterProduct();
     String productSelection = userInput.getSelection();
@@ -124,6 +133,7 @@ try {
             Logger.createLogEntry(ex.getMessage());
 }
 ```
+
      
 - If selected product costs more than available funds, an error is displayed and transaction does not complete    
 - Displayed inventory reflects current stock   
