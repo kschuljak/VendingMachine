@@ -15,45 +15,30 @@ Java Console Vending Machine App
 - ***validators*** - contain functionality for checking the validity of user input
 - ***view*** - holds functionality for manipulating Java console display
 
-## Splash Screen & Main Menu   
-  ![image](https://user-images.githubusercontent.com/47723396/203184846-86a43f6e-2167-4c21-974d-f77188ca5fbb.png)
-     
-## Transaction Menu
-- Current funds are displayed over transaction menu   
-  ![image](https://user-images.githubusercontent.com/47723396/203184956-10a2dcb5-f676-406d-bd1d-88ca979cf31c.png)
-  ```java
-  BigDecimal remainingFunds = transaction.getRemainingFunds();
-  String funds = remainingFunds.toString();
-  displayRemainingFunds(funds);
-  ```
-  - Adding money updates current funds   
-  ![image](https://user-images.githubusercontent.com/47723396/203185135-fd158f03-27f2-4fd3-aef6-5f28e27df11f.png)      
-  ```java
-  public void addMoney(BigDecimal amount){
-     if (isMoneyValid(amount)) {
-        remainingFunds = remainingFunds.add(amount);
-        TransactionLog.createLogEntry("FEED MONEY: " + amount + " " + remainingFunds);
-     }
-  }
-  ```
-- Inventory display includes item cost and current stock   
-![image](https://user-images.githubusercontent.com/47723396/203185032-104382dd-7593-4e8b-941b-10771a33a8ff.png) 
-  - Display is formatted such that product categories display evenly for easier visibility   
-  ```java
-  for (Product product : productList) {
-            String id = product.getSlotID();
-            String name = product.getName() + "*";
-            String nameNoSpaces = name.replace(' ', '*');
-            String formattedName = String.format("%-20s", nameNoSpaces)
-                                         .replace(' ', '-')
-                                         .replace('*', ' ');
-            BigDecimal price = product.getPrice();
-            int quantity = product.getQuantity();
-            if (quantity == 0) UserOutput.displayProductSoldOut(id, formattedName, price);
-            else UserOutput.displayProductWithStock(id, formattedName, price, quantity);
-   }
-   ```     
-- Selecting a product prompts a dispensing loading bar and purchased item to display, and updates current funds   
+## Menu
+![image](https://user-images.githubusercontent.com/47723396/206981927-1eab7a34-1136-431d-81eb-222d577c1751.png)
+After choosing to browse the vending machine (and thus start a new transaction), the available funds are displayed over the transaction menu.  Adding money updates the funds available.
+
+## Inventory Display
+Inventory display includes item cost and current stock.  The display is formatted such that product categories display evenly for easier visability. 
+   
+```java
+for (Product product : productList) {
+      String id = product.getSlotID();
+      String name = product.getName() + "*";
+      String nameNoSpaces = name.replace(' ', '*');
+      String formattedName = String.format("%-20s", nameNoSpaces)
+                                   .replace(' ', '-')
+                                   .replace('*', ' ');
+      BigDecimal price = product.getPrice();
+      int quantity = product.getQuantity();
+      if (quantity == 0) UserOutput.displayProductSoldOut(id, formattedName, price); 
+      else UserOutput.displayProductWithStock(id, formattedName, price, quantity);
+}
+ ```
+      
+Selecting a product prompts a dispensing loading bar and purchased item to display, updates current stock of item, and updates current funds.  Item stock persists between transactions.
+   
 ```java
 if (selection == null) throw new Exception("Selection is null");
 else if (!Validator.isInStock(selection)) {
@@ -79,10 +64,11 @@ else if (!Validator.isInStock(selection)) {
         userOutput.displayItemTypeReturnMessage(type);
 }
 ```
-  ![image](https://user-images.githubusercontent.com/47723396/203185389-3059fbb6-fe1f-4eaf-b905-9375759058d0.png)
-  
-- Finishing the transaction promps a list of items purchased and change dispensed to display along with a thank you message   
-![image](https://user-images.githubusercontent.com/47723396/203186349-0109b11c-5a1e-4cb7-837d-e1734dcd7ce6.png)   
+        
+Finishing the transaction promps a list of items purchased and change dispensed to display along with a thank you message   
+     
+![image](https://user-images.githubusercontent.com/47723396/206982934-c560d2fe-a749-4bce-8c1f-04a32b6cf8aa.png)
+     
   ```java
   public Map<Product, Integer> finishTransaction() {
         UserOutput.displaySummaryIntro();
@@ -112,11 +98,9 @@ else if (!Validator.isInStock(selection)) {
   ```
 
      
-- Current stock persists between transactions   
-  ![image](https://user-images.githubusercontent.com/47723396/203186555-660d8356-2781-4b76-999a-db4aee0653b7.png)
-     
 ## Error Handling
 Program has custom exceptions for insufficient funds, invalid funds, invalid selection, and insufficient stock. 
+   
 ![Untitled design (1)](https://user-images.githubusercontent.com/47723396/206980855-751f2c53-30fd-46e7-bd2a-89e62a9a8f90.png)
 
 ```java
