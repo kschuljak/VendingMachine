@@ -4,7 +4,7 @@ Java Console Vending Machine App
 # Folder Structure
 
 - ***application*** - holds the functionality for navigating menu options   
-- ***exceptions*** - holds custom exceptions for insufficient funds, insufficient stock, invalid funds, and invalid option selection   
+- ***exceptions*** - holds custom exceptions
 
 - ***io*** - holds user input and output for both Java console and files
   - ***logs*** - holds functionality for creating timestamped logs   
