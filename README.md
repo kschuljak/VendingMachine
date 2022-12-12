@@ -3,14 +3,17 @@ Java Console Vending Machine App
 
 # Folder Structure
 
-***application*** - holds the functionality for navigating menu options   
-***exceptions*** - holds custom exceptions for insufficient funds, insufficient stock, invalid funds, and invalid option selection   
+- ***application*** - holds the functionality for navigating menu options   
+- ***exceptions*** - holds custom exceptions for insufficient funds, insufficient stock, invalid funds, and invalid option selection   
 
-***io***   
-  ***logs*** - holds functionality for creating timestamped logs   
-  ***report*** - holds functionality for reading and generating a persistent sales report CSV file   
-  ***ui*** - user input and output seperated into designated classes   
-  ProductLoader
+- ***io*** - holds user input and output for both Java console and files
+  - ***logs*** - holds functionality for creating timestamped logs   
+  - ***report*** - holds functionality for reading and generating a persistent sales report CSV file   
+  - ***ui*** - user input and output seperated into designated classes   
+- ***models*** - contains a product model used for creating product objects from CSV file information
+- ***services*** - contains functionality for generating inventntory based on a list of product objects and the functionality for completing user transactions
+- ***validators*** - contain functionality for checking the validity of user input
+- ***view*** - holds functionality for manipulating Java console display
 
 ## Splash Screen & Main Menu   
   ![image](https://user-images.githubusercontent.com/47723396/203184846-86a43f6e-2167-4c21-974d-f77188ca5fbb.png)
