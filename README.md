@@ -16,7 +16,7 @@ Java Console Vending Machine App
 - ***view*** - holds functionality for manipulating Java console display
 
 ## Menu
-![image](https://user-images.githubusercontent.com/47723396/206981927-1eab7a34-1136-431d-81eb-222d577c1751.png)
+![image](https://user-images.githubusercontent.com/47723396/206981927-1eab7a34-1136-431d-81eb-222d577c1751.png)     
 After choosing to browse the vending machine (and thus start a new transaction), the available funds are displayed over the transaction menu.  Adding money updates the funds available.
 
 ## Inventory Display
@@ -67,7 +67,7 @@ else if (!Validator.isInStock(selection)) {
         
 Finishing the transaction promps a list of items purchased and change dispensed to display along with a thank you message   
      
-![image](https://user-images.githubusercontent.com/47723396/206982934-c560d2fe-a749-4bce-8c1f-04a32b6cf8aa.png)
+![image](https://user-images.githubusercontent.com/47723396/206982934-c560d2fe-a749-4bce-8c1f-04a32b6cf8aa.png)      
      
   ```java
   public Map<Product, Integer> finishTransaction() {
@@ -101,7 +101,7 @@ Finishing the transaction promps a list of items purchased and change dispensed 
 ## Error Handling
 Program has custom exceptions for insufficient funds, invalid funds, invalid selection, and insufficient stock. 
    
-![Untitled design (1)](https://user-images.githubusercontent.com/47723396/206980855-751f2c53-30fd-46e7-bd2a-89e62a9a8f90.png)
+![Untitled design (1)](https://user-images.githubusercontent.com/47723396/206980855-751f2c53-30fd-46e7-bd2a-89e62a9a8f90.png)      
 
 ```java
 // if user enters $1, $5, $10, or $20 add money, otherwise throw Invalid Funds Exception
@@ -130,14 +130,14 @@ try {
 - If selected product costs more than available funds, an error is displayed and transaction does not complete    
 - Displayed inventory reflects current stock  
   - If an item is out of stock, stock quantity in display is replaced by 'SOLD OUT', and trying to purchase an out of stock item will display an error   
-  ![image](https://user-images.githubusercontent.com/47723396/203185858-179e5b7c-8fa0-4004-80be-dc70ebebf6e3.png)
+  ![image](https://user-images.githubusercontent.com/47723396/203185858-179e5b7c-8fa0-4004-80be-dc70ebebf6e3.png)      
  
     
 ## SALES REPORT
 - A hidden menu option displays a current sales report
 - An up-to-date sales report is written to a CSV file whenever the hidden menu option is called or the user selects the option to exit the program.
 - When the program is next run, the information from the CSV file is read and stored in memory until a new sales report is printed to overwrite the old file.   
-  ![image](https://user-images.githubusercontent.com/47723396/203186694-95e7ff9e-de3b-42f4-bb7e-8c718fa7dc53.png)
+  ![image](https://user-images.githubusercontent.com/47723396/203186694-95e7ff9e-de3b-42f4-bb7e-8c718fa7dc53.png)      
      
 - Another hidden menu option promps the vending machine to dispense all remaining products for free   
   ```java
@@ -145,10 +145,10 @@ try {
         for (Product product : productList) product.setQuantity(0);
   }
   ```
-  ![image](https://user-images.githubusercontent.com/47723396/203186857-3202450a-95aa-4737-b54b-289d3bb3281d.png)
+  ![image](https://user-images.githubusercontent.com/47723396/203186857-3202450a-95aa-4737-b54b-289d3bb3281d.png)     
 
 
 ### Initial planning 
-![image](https://user-images.githubusercontent.com/47723396/203187111-b9a87bf0-9eac-47da-9064-8646a941114c.png)
+![image](https://user-images.githubusercontent.com/47723396/203187111-b9a87bf0-9eac-47da-9064-8646a941114c.png)     
 (*diagram by Daniel Duque*)
 
