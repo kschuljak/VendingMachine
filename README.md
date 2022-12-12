@@ -135,9 +135,7 @@ try {
 
      
 - If selected product costs more than available funds, an error is displayed and transaction does not complete    
-- Displayed inventory reflects current stock   
-  ![image](https://user-images.githubusercontent.com/47723396/203185706-be67d70e-0979-4394-87f8-782ae4baff47.png)
-     
+- Displayed inventory reflects current stock  
   - If an item is out of stock, stock quantity in display is replaced by 'SOLD OUT', and trying to purchase an out of stock item will display an error   
   ![image](https://user-images.githubusercontent.com/47723396/203185858-179e5b7c-8fa0-4004-80be-dc70ebebf6e3.png)
  
