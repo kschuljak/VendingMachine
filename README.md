@@ -130,6 +130,7 @@ try {
         userOutput.displayEnterProduct();
         String productSelection = userInput.getSelection();
         transaction.purchaseItem(productSelection);
+        
 } catch (InvalidOptionException ex) {       // if user does not enter a valid product code
         // display error message for user and write exception to log file
 } catch (InsufficientStockException ex) {   // if user tries to purchase an item that's out of stock
