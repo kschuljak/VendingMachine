@@ -144,8 +144,8 @@ try {
     
 ## SALES REPORT
 - A hidden menu option displays a current sales report
-- An up-to-date sales report is written to a .csv file whenever the hidden menu option is called or the user selects the option to exit the program.
-- When the program is next run, the information from the .csv file is read and stored in memory until a new sales report is printed to overwrite the old file.   
+- An up-to-date sales report is written to a CSV file whenever the hidden menu option is called or the user selects the option to exit the program.
+- When the program is next run, the information from the CSV file is read and stored in memory until a new sales report is printed to overwrite the old file.   
   ![image](https://user-images.githubusercontent.com/47723396/203186694-95e7ff9e-de3b-42f4-bb7e-8c718fa7dc53.png)
      
 - Another hidden menu option promps the vending machine to dispense all remaining products for free   
