@@ -131,13 +131,11 @@ try {
         String productSelection = userInput.getSelection();
         transaction.purchaseItem(productSelection);
         
-} catch (InvalidOptionException ex) {       // if user does not enter a valid product code
-        // display error message for user and write exception to log file
-} catch (InsufficientStockException ex) {   // if user tries to purchase an item that's out of stock
-        // display error message for user and write exception to log file
-} catch (InsufficientFundsException ex) {   // if user does not have enough money to purchase item
-        // display error message for user and write exception to log file
-} catch (Exception ex) {                    // generic exception
+// if exception, display error message for user and write exception to log file
+} catch (InvalidOptionException ex) {     // ... if user does not enter a valid product code
+} catch (InsufficientStockException ex) { // ... if user tries to purchase an item that's out of stock
+} catch (InsufficientFundsException ex) { // ... if user does not have enough money to purchase item
+} catch (Exception ex) {                  // generic exception
         Logger.createLogEntry(ex.getMessage());
 }
 ```
