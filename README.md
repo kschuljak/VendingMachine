@@ -114,8 +114,7 @@ Program has custom exceptions for insufficient funds, invalid funds, invalid sel
 try {
     transaction.addMoney(userFunds);
 } catch (InvalidFundsException ex) {
-    UserOutput.displayErrorMessage("That is not a valid bill type! \nThis machine accepts $1, $5, $10, & $20");
-    Logger.createLogEntry(ex.getMessage());
+    // display error message for user and write exception to log file
 }
 ```
 ```java
@@ -124,13 +123,13 @@ try {
     String productSelection = userInput.getSelection();
     transaction.purchaseItem(productSelection);
 } catch (InvalidOptionException ex) {       // if user does not enter a valid product code
-           // display error message for user and write exception to log file
+    // display error message for user and write exception to log file
 } catch (InsufficientStockException ex) {   // if user tries to purchase an item that's out of stock
-           // display error message for user and write exception to log file
+    // display error message for user and write exception to log file
 } catch (InsufficientFundsException ex) {   // if user does not have enough money to purchase item
-           // display error message for user and write exception to log file
+    // display error message for user and write exception to log file
 } catch (Exception ex) {                    // generic exception
-            Logger.createLogEntry(ex.getMessage());
+    Logger.createLogEntry(ex.getMessage());
 }
 ```
 
