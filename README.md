@@ -57,26 +57,26 @@ Java Console Vending Machine App
 ```java
 if (selection == null) throw new Exception("Selection is null");
 else if (!Validator.isInStock(selection)) {
-    throw new InsufficientStockException("This item is out of stock",  selection.getQuantity());
+        throw new InsufficientStockException("This item is out of stock",  selection.getQuantity());
 } else if (!Validator.hasEnoughMoney(selection, remainingFunds)) {
-    throw new InsufficientFundsException("Insufficient funds", getRemainingFunds(), selection.getPrice());
+        throw new InsufficientFundsException("Insufficient funds", getRemainingFunds(), selection.getPrice());
 } else {  // selected item found in menu, item is in stock, and user has enough money to purchase item
-    Inventory.updateInventory(selection, ITEM_QUANTITY_PER_SELECTION);  // update inventory
-    updatePurchases(selection);  // add item to list of user purchases for this transaction
-    spendMoney(selection);  // subtract item cost from availabe funds
-    SalesReport.update(selection);  // add purchase to sales report in memory
+        Inventory.updateInventory(selection, ITEM_QUANTITY_PER_SELECTION);  // update inventory
+        updatePurchases(selection);  // add item to list of user purchases for this transaction
+        spendMoney(selection);  // subtract item cost from availabe funds
+        SalesReport.update(selection);  // add purchase to sales report in memory
 
-    String type = selection.getType();
-    String name = selection.getName();
-    String id = selection.getSlotID();
-    BigDecimal price = selection.getPrice();
-    // use values from getter functions to create an entry in the transaction log
-    TransactionLog.createLogEntry(name + " " + id + " " + price + " " + remainingFunds);
+        String type = selection.getType();
+        String name = selection.getName();
+        String id = selection.getSlotID();
+        BigDecimal price = selection.getPrice();
+        // use values from getter functions to create an entry in the transaction log
+        TransactionLog.createLogEntry(name + " " + id + " " + price + " " + remainingFunds);
 
-    // display loading bar, item purchased, and a purchase success message to the user
-    LoadingBar.displayLoadingBar();
-    userOutput.displayPurchaseSuccess(name);
-    userOutput.displayItemTypeReturnMessage(type);
+        // display loading bar, item purchased, and a purchase success message to the user
+        LoadingBar.displayLoadingBar();
+        userOutput.displayPurchaseSuccess(name);
+        userOutput.displayItemTypeReturnMessage(type);
 }
 ```
   ![image](https://user-images.githubusercontent.com/47723396/203185389-3059fbb6-fe1f-4eaf-b905-9375759058d0.png)
@@ -85,29 +85,29 @@ else if (!Validator.isInStock(selection)) {
 ![image](https://user-images.githubusercontent.com/47723396/203186349-0109b11c-5a1e-4cb7-837d-e1734dcd7ce6.png)   
   ```java
   public Map<Product, Integer> finishTransaction() {
-     UserOutput.displaySummaryIntro();
-     getItemSummary(productsPurchased);
-     returnChange(remainingFunds);
-     // ...
+        UserOutput.displaySummaryIntro();
+        getItemSummary(productsPurchased);
+        returnChange(remainingFunds);
+        // ...
   }
   
   public void getItemSummary(Map<Product, Integer> productsPurchased) {
-     for (Map.Entry<Product, Integer> product: productsPurchased.entrySet()) {
-        String productName = product.getKey().getName();
-        String amountPurchased = product.getValue().toString();
-        UserOutput.displayItemSummary(productName, amountPurchased);
-     }
+        for (Map.Entry<Product, Integer> product: productsPurchased.entrySet()) {
+              String productName = product.getKey().getName();
+              String amountPurchased = product.getValue().toString();
+              UserOutput.displayItemSummary(productName, amountPurchased);
+        }
   }
 
   public void returnChange(BigDecimal remainingFunds) {
-     int remaining = remainingFunds.multiply(new BigDecimal("100")).intValue();
-     // set constants QUARTER, DIME, NICKEL
-     int quartersReturned = remaining / QUARTER;
-     int lessQuarters = remaining % QUARTER;
-     int dimesReturned = lessQuarters / DIME;
-     int lessDimes = lessQuarters % DIME;
-     int nicklesReturned = lessDimes / NICKEL;
-     UserOutput.displayChange(quartersReturned, dimesReturned, nicklesReturned);
+        int remaining = remainingFunds.multiply(new BigDecimal("100")).intValue();
+        // set constants QUARTER, DIME, NICKEL
+        int quartersReturned = remaining / QUARTER;
+        int lessQuarters = remaining % QUARTER;
+        int dimesReturned = lessQuarters / DIME;
+        int lessDimes = lessQuarters % DIME;
+        int nicklesReturned = lessDimes / NICKEL;
+        UserOutput.displayChange(quartersReturned, dimesReturned, nicklesReturned);
   }
   ```
 
@@ -120,24 +120,24 @@ Program has custom exceptions for insufficient funds, invalid funds, invalid sel
 ```java
 // if user enters $1, $5, $10, or $20 add money, otherwise throw Invalid Funds Exception
 try {
-    transaction.addMoney(userFunds);
+        transaction.addMoney(userFunds);
 } catch (InvalidFundsException ex) {
-    // display error message for user and write exception to log file
+        // display error message for user and write exception to log file
 }
 ```
 ```java
 try {
-    userOutput.displayEnterProduct();
-    String productSelection = userInput.getSelection();
-    transaction.purchaseItem(productSelection);
+        userOutput.displayEnterProduct();
+        String productSelection = userInput.getSelection();
+        transaction.purchaseItem(productSelection);
 } catch (InvalidOptionException ex) {       // if user does not enter a valid product code
-    // display error message for user and write exception to log file
+        // display error message for user and write exception to log file
 } catch (InsufficientStockException ex) {   // if user tries to purchase an item that's out of stock
-    // display error message for user and write exception to log file
+        // display error message for user and write exception to log file
 } catch (InsufficientFundsException ex) {   // if user does not have enough money to purchase item
-    // display error message for user and write exception to log file
+        // display error message for user and write exception to log file
 } catch (Exception ex) {                    // generic exception
-    Logger.createLogEntry(ex.getMessage());
+        Logger.createLogEntry(ex.getMessage());
 }
 ```
 
@@ -157,7 +157,7 @@ try {
 - Another hidden menu option promps the vending machine to dispense all remaining products for free   
   ```java
   public static void kickTheVendingMachine() {
-     for (Product product : productList) product.setQuantity(0);
+        for (Product product : productList) product.setQuantity(0);
   }
   ```
   ![image](https://user-images.githubusercontent.com/47723396/203186857-3202450a-95aa-4737-b54b-289d3bb3281d.png)
