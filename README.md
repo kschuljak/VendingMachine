@@ -54,23 +54,31 @@ Java Console Vending Machine App
    }
    ```     
 - Selecting a product prompts a dispensing loading bar and purchased item to display, and updates current funds   
-  ```java
-  if (selection != null
-     && isInStock(selection)
-     && isItemSelectionValid(itemID)
-     && hasEnoughMoney(selection)
-  ) {
-     Inventory.updateInventory(selection, ITEM_QUANTITY_PER_SELECTION);
-     updatePurchases(selection);
-     spendMoney(selection);
-     SalesReport.update(selection);
-     // ... (get name, id, price, remainingFunds)
-     TransactionLog.createLogEntry(name + " " + id + " " + price + " " + remainingFunds);
-     LoadingBar.displayLoadingBar();
-     UserOutput.displayPurchaseSuccess(name);
-     UserOutput.displayItemTypeReturnMessage(type);
-  }
-  ```
+```java
+if (selection == null) throw new Exception("Selection is null");
+else if (!Validator.isInStock(selection)) {
+    throw new InsufficientStockException("This item is out of stock",  selection.getQuantity());
+} else if (!Validator.hasEnoughMoney(selection, remainingFunds)) {
+    throw new InsufficientFundsException("Insufficient funds", getRemainingFunds(), selection.getPrice());
+} else {  // selected item found in menu, item is in stock, and user has enough money to purchase item
+    Inventory.updateInventory(selection, ITEM_QUANTITY_PER_SELECTION);  // update inventory
+    updatePurchases(selection);  // add item to list of user purchases for this transaction
+    spendMoney(selection);  // subtract item cost from availabe funds
+    SalesReport.update(selection);  // add purchase to sales report in memory
+
+    String type = selection.getType();
+    String name = selection.getName();
+    String id = selection.getSlotID();
+    BigDecimal price = selection.getPrice();
+    // use values from getter functions to create an entry in the transaction log
+    TransactionLog.createLogEntry(name + " " + id + " " + price + " " + remainingFunds);
+
+    // display loading bar, item purchased, and a purchase success message to the user
+    LoadingBar.displayLoadingBar();
+    userOutput.displayPurchaseSuccess(name);
+    userOutput.displayItemTypeReturnMessage(type);
+}
+```
   ![image](https://user-images.githubusercontent.com/47723396/203185389-3059fbb6-fe1f-4eaf-b905-9375759058d0.png)
   
 - Finishing the transaction promps a list of items purchased and change dispensed to display along with a thank you message   
