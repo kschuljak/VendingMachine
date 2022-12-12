@@ -11,7 +11,7 @@ Java Console Vending Machine App
   - ***report*** - holds functionality for reading and generating a persistent sales report CSV file   
   - ***ui*** - user input and output seperated into designated classes   
 - ***models*** - contains a product model used for creating product objects from CSV file information
-- ***services*** - contains functionality for generating inventntory based on a list of product objects and the functionality for completing user transactions
+- ***services*** - contains functionality for generating inventntory list and completing user transactions
 - ***validators*** - contain functionality for checking the validity of user input
 - ***view*** - holds functionality for manipulating Java console display
 
